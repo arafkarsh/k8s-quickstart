@@ -1,8 +1,8 @@
 # Kubernetes Workshop
 
-- Docker Containers (20.10)
-- Kind (0.11)
-- Kubernetes (1.21)
+- Docker Containers (20.10.22)
+- Kind (0.17)
+- Kubernetes (1.26)
 - Istio (1.10x)
 
 ##  Getting Started
