@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+kubectl get ns,ing,svc,pods -n monitoring -o wide
+
+echo "Start Grafana Dashboard : admin/admin"
+kubectl --namespace monitoring port-forward svc/grafana 3000 &
+
+echo "Start Prometheus Dashboard"
+kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090 &
+
+echo "Start Alert Manager Dashboard"
+kubectl --namespace monitoring port-forward svc/alertmanager-main 9093 &
+
+

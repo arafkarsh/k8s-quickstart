@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Delete PodShell..."
+kubectl delete pod podshell

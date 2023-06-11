@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "Chapter 3: Deployment / Service Ingres / Horizontal Pod Auto Scaler (3-apps-deploy-service-ingress)"
+echo "3.1 Install the Apps: Pods / Replica Set / Deploy / Service / Ingress"
+kubectl apply  --filename 3-apps-deploy-service-ingress/sigma-namespace.yaml
+kubectl label namespace sigma istio-injection=enabled
+
+kubectl apply  --filename 3-apps-deploy-service-ingress/sigma-ingress.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/ws-deploy.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/ws-service.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc8-deploy.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc8-service.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc9-deploy-v1.yaml --record
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc9-service.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc10-deploy.yaml
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc10-service.yaml
+
+echo "...."
+echo "3.2 Switch the Namespace to Sigma"
+kubectl config set-context $(kubectl config current-context) --namespace=sigma
+
+echo "........"
+echo "3.3 Show Ingress, Services, Pods, HPA"
+kubectl get ing,svc,pods,hpa -o wide
+echo "............ Setup Complete!"
+echo

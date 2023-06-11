@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cart-lambda-vs
+  namespace: lambda  
+spec:
+  gateways:
+  - lambda-gateway
+  hosts:
+   - "*"
+  http:
+  - match:
+    - uri:
+        prefix: /api/v1/cart/
+    route:
+    - destination:
+        host: cart-service.lambda.svc.cluster.local
+        port:
+          number: 80

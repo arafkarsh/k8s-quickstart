@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Simulating Traffic for  Horizontal Pod Auto scaling..."
+
+time test-hpa &> /dev/null  &
+echo "Test 1 PID = $!"
+time test-hpa &> /dev/null  &
+echo "Test 2 PID = $!"
+time test-hpa &> /dev/null  &
+echo "Test 3 PID = $!"
+time test-hpa &> /dev/null  &
+echo "Test 4 PID = $!"
+time test-hpa &> /dev/null  &
+echo "Test 5 PID = $!"
+
+echo "Simulation running...... "

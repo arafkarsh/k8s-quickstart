@@ -1,0 +1,50 @@
+# App Server for the Microservice
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-deploy
+  namespace: lambda
+  labels:
+    app: order-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Matching the labels from Pod Meta Data
+      # Multiple labels can be used
+      app: order-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: order-pod
+        version: "1.0.0"
+        release: stable
+        organization: MetaArivu
+    spec:
+      containers:
+      - name: order-container
+        image: metamagic/mock-order
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9090
+        resources:
+        # QoS : Guranteed
+        # Pod will not be launched if the Hardware 
+        # resources are not available
+        # To check, Run the command kubectl describe pods pod-name
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+

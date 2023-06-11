@@ -1,0 +1,38 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+name: beta-2
+networking:
+  apiServerAddress: "127.0.0.1"
+  apiServerPort: 6443
+  # Based on RFC 1918
+  podSubnet: "178.16.0.0/16"
+  serviceSubnet: "178.0.0.0/16"
+  # Use Calico Driver
+  disableDefaultCNI: true
+  kubeProxyMode: "iptables"
+nodes:
+# 2 Node Cluster (1 Master & 1 Worker Nodes)
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 30000
+    hostPort: 80
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  - containerPort: 30001
+    hostPort: 443
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  - containerPort: 30002
+    hostPort: 15021
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+- role: control-plane
+# 1 Worker Nodes
+- role: worker
+

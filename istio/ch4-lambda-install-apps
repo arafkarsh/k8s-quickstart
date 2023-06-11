@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "Chapter 4: Lambda : App Setup (Env, ConfigMap, Presets, Secrets)"
+echo "4.1 Install the Apps: (Env, ConfigMap, Presets, Secrets)"
+
+kubectl apply  --filename 4-apps-setup/lambda-namespace.yaml
+kubectl apply  --filename 4-apps-setup/lambda-gateway.yaml
+
+kubectl apply  --filename 4-apps-setup/ws-deploy.yaml
+kubectl apply  --filename 4-apps-setup/ws-service.yaml
+kubectl apply  --filename 4-apps-setup/ws-vs.yaml
+
+kubectl apply  --filename 4-apps-setup/cart-deploy.yaml
+kubectl apply  --filename 4-apps-setup/cart-service.yaml
+kubectl apply  --filename 4-apps-setup/cart-vs.yaml
+
+kubectl apply  --filename 4-apps-setup/order-deploy-v1.yaml --record
+kubectl apply  --filename 4-apps-setup/order-service.yaml
+kubectl apply  --filename 4-apps-setup/order-vs.yaml
+kubectl apply  --filename 4-apps-setup/order-dr.yaml
+kubectl apply  --filename 4-apps-setup/order-hpa.yaml
+
+kubectl apply  --filename 4-apps-setup/payment-deploy.yaml
+kubectl apply  --filename 4-apps-setup/payment-service.yaml
+kubectl apply  --filename 4-apps-setup/payment-vs.yaml
+
+
+echo "...."
+echo "4.2 Switch the Namespace to Lambda"
+kubectl config set-context $(kubectl config current-context) --namespace=lambda
+
+echo "........"
+echo "4.3 Show Ingress, Services, Pods, HPA"
+kubectl get gw,vs,svc,pods,hpa -o wide
+echo "............ Setup Complete!"
+echo

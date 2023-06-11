@@ -1,0 +1,44 @@
+# App Server for the Microservice
+# Horizontal Pod Auto Scaling 
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: order-hpa
+  namespace: lambda
+spec:
+  scaleTargetRef:
+    apiVersion:  apps/v1beta2
+    kind: Deployment
+    name: order-deploy
+  # Min Replica will overwrite Deployment replicas with
+  # if minReplicas > replicas (in Deployment)
+  # For Ex. order-deploy.yaml replicas = 2
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        # Kept at 2% for Demo ONLY
+        averageUtilization: 2
+  - type: Pods
+    pods:
+      metric:
+        name: packets-per-second
+      target:
+        type: AverageValue
+        averageValue: 1k
+  - type: Object
+    object:
+      metric:
+        name: requests-per-second
+      describedObject:
+        apiVersion: networking.k8s.io/v1beta1
+        kind: Ingress
+        name: main-route
+      target:
+        # Kept a low value for Demo ONLY
+        type: Value
+        value: 1k

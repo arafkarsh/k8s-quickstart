@@ -1,0 +1,36 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: p02-multi-tasks
+spec:
+  tasks:
+    - name: p02-task-1
+      params: 
+        - name: taskname
+          value: ABC
+      taskRef:
+        name: t09-task-params
+    - name: p02-task-2
+      params: 
+        - name: taskname
+          value: BCD
+      taskRef:
+        name: t09-task-params
+      runAfter:
+        - p02-task-1
+    - name: p02-task-3
+      params: 
+        - name: taskname
+          value: CDE
+      taskRef:
+        name: t09-task-params
+      runAfter:
+        - p02-task-2
+    - name: p02-task-4
+      params: 
+        - name: taskname
+          value: DEF
+      taskRef:
+        name: t09-task-params
+      runAfter:
+        - p02-task-3

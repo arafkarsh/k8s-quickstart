@@ -1,0 +1,23 @@
+# Clean Up the Build Outputs 
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: t31-task-git-cleanup
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: t3-git-cleanup
+      image: registry.access.redhat.com/ubi8/ubi
+      command:
+        - /bin/bash
+      args: 
+        - "-c"
+        - "rm -rf $(workspaces.source.path)/source"
+    - name: t3-cleanup-msg
+      image: registry.access.redhat.com/ubi8/ubi
+      command:
+        - /bin/bash
+      args:
+        - "-c"
+        - echo All Source files were deleted

@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: t03-param-default
+spec:
+  params:
+    - name: who
+      type: string
+      default: World
+  steps:
+    - name: t03-params-default
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command: 
+        - /bin/bash
+        - -c
+        - echo "Hello Tekton Params Default $(params.who)"

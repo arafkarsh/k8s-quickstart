@@ -1,0 +1,44 @@
+# API Gateway for Routing traffic to
+# respective Microservices
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lambda-gw-ingress
+  namespace: lambda
+spec:
+  # Add TLS 
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+          # UI Service
+           name: ws-service
+           port:
+             number: 80
+      - path: /api/v1/cart/
+        pathType: Prefix
+        backend:
+          service:
+          # Service 1: Cart Service
+           name: cart-service
+           port:
+             number: 80
+      - path: /api/v1/order/
+        pathType: Prefix
+        backend:
+          service:
+          # Service 2: Order Service
+           name: order-service
+           port:
+             number: 80
+      - path: /api/v1/payment/
+        pathType: Prefix
+        backend:
+          service:
+          # Service 3: Payment Service
+           name: payment-service
+           port:
+             number: 80

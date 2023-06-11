@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "Chapter 5: Kappa : Init / Live / Ready / QoS"
+echo "5.1 Install the Apps:"
+kubectl apply  --filename 5-apps-init-live-ready-qos/kappa-namespace.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/kappa-ingress.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/ws-deploy.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/ws-service.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/cart-deploy.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/cart-service.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/order-deploy-v1.yaml --record
+kubectl apply  --filename 5-apps-init-live-ready-qos/order-service.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/order-hpa.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/payment-deploy.yaml
+kubectl apply  --filename 5-apps-init-live-ready-qos/payment-service.yaml
+
+echo "...."
+echo "5.2 Switch the Namespace to Kappa"
+kubectl config set-context $(kubectl config current-context) --namespace=kappa
+
+echo "........"
+echo "5.3 Show Ingress, Services, Pods, HPA"
+kubectl get ing,svc,pods,hpa -o wide
+echo "............ Setup Complete!"
+echo

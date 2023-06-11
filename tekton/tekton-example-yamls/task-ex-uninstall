@@ -1,0 +1,12 @@
+#!/bin/bash
+
+kubectl delete -f 01_hello-world-task.yaml		
+kubectl delete -f 02_hello-world-params.yaml	
+kubectl delete -f 03_hello-world-params-2.yaml	
+kubectl delete -f 04_task_multi_steps.yaml		
+kubectl delete -f 05_task_configmap.yaml		
+kubectl delete -f 06_task_share_data.yaml
+kubectl delete -f 07_task_share_data_file.yaml
+kubectl delete -f 08_task_script-step.yaml
+kubectl delete -f 09_task-params.yaml
+kubectl delete -f 10_task-slow.yaml

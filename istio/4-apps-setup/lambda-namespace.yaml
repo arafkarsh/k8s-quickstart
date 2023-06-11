@@ -1,0 +1,8 @@
+# Namespace Definition
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lambda
+  labels:
+    name: lambda
+    istio-injection: enabled

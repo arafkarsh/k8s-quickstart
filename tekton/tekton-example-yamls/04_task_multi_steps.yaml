@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: t04-multiple-steps
+spec:
+  steps:
+    - name: t04-step1
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command: 
+        - /bin/bash
+        - -c
+        - echo "Step 1 Completed"
+    - name: t04-step2
+      image: alpine
+      command:
+        - /bin/sh
+        - -c
+        - echo "Step 2 Completed"
+    - name: t04-step3
+      image: alpine
+      command:
+        - /bin/sh
+        - -c
+        - echo "Step 3 Completed"

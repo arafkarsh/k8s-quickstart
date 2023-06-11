@@ -1,0 +1,20 @@
+# API Gateway for Routing traffic to
+# Tekton Dashboard
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tekton-gw-ingress
+  namespace: tekton-pipelines
+spec:
+  # Add TLS 
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+          # Tekton Dashboard
+           name: tekton-dashboard
+           port:
+             number: 9097

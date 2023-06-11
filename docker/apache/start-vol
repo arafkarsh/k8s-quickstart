@@ -1,0 +1,5 @@
+#!/bin/bash
+echo If K8s cluster is already running then the Port 80 wont be available
+echo " Change the following /ws/k8s-workshop/docker/apache when you run locally"
+echo "docker container run --name apache2 -v $HOME/ws/k8s-workshop/docker/apache:/var/www/localhost/htdocs/ -d --rm -p 81:80 metamagic/apache2 "
+docker container run --name apache2 -v $HOME/ws/k8s-workshop/docker/apache:/var/www/localhost/htdocs/ -d --rm -p 81:80 metamagic/apache2 

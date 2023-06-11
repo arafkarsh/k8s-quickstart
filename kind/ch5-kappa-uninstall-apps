@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Chapter 5: Kappa : Init / Live / Ready / QoS"
+echo "5.1 Un-Install the Apps:"
+
+kubectl delete  --filename 5-apps-init-live-ready-qos/ws-deploy.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/ws-service.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/cart-deploy.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/cart-service.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/order-deploy-v1.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/order-service.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/order-hpa.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/payment-deploy.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/payment-service.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/kappa-ingress.yaml
+kubectl delete  --filename 5-apps-init-live-ready-qos/kappa-namespace.yaml
+
+

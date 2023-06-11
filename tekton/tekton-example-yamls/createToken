@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Create Token"
+TOKEN=`head -c 24 /dev/random  | base64`
+echo "TOKEN=$TOKEN"
+echo $TOKEN > token.txt
+echo "Use the token stored in the token.txt in the following scenarios"
+echo "Store the token as a secret in kubernetes cluster"
+echo "Set up the Web Hook"
+echo "1. Goto Github Repo"
+echo "2. Use the token under Git Repo > Settings > WebHooks / Add Webhooks"
+echo "3. Payload URL: ngrok http port (this gives a URL)"
+echo "4. Content Type: application/json"
+echo "5. Secret: $TOKEN"
+

@@ -1,0 +1,26 @@
+# App Server for the Microservice
+# Service Definition
+apiVersion: v1
+kind: Service
+metadata:
+  # Service Name: Ex. Order Service
+  name: order-service
+  namespace: lambda
+  labels:
+    app: order-service
+spec:
+  # Type Cluster IP, Load Balancer, Node Port etc.
+  # Cluster IP Automatically assigned by Kubernetes
+  type: ClusterIP
+  ports:
+  - port: 80
+    # Port Exposed by the Container
+    targetPort: 9090
+    protocol: TCP
+    name: http
+  selector:
+    # Instance Labels
+    # Ex. Order Service Instances
+    app: order-pod
+    release: stable
+    organization: MetaArivu

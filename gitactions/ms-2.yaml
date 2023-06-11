@@ -1,0 +1,72 @@
+# GitHub Action Pipeline for Microservices Template
+name: Microservices Template
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull 
+  # request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually 
+  # from the Actions tab
+  workflow_dispatch:
+
+  schedule:
+  # * is a special character in YAML so you have to quote this string
+  # 5:30 AM and 5:30 PM ** Monday - Friday
+  - cron:  '30 5,17 * * 0-4'
+
+# A workflow run is made up of one or more jobs that 
+# can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        java-version: [8, 12, 15]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+      # Set up JDK 8
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      # Set up Maven cache
+      - name: Cache Maven packages
+        # This action allows caching dependencies and build outputs to improve 
+        # workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2    
+      # Build Package
+      - name : Build Package
+        run: mvn -B package -DskipTests --file pom.xml    
+      # Upload Artifacts
+      - name: Upload JAR
+        # This uploads artifacts from your workflow allowing you 
+        # to share data between jobs and store data once a workflow is complete.
+        uses: actions/upload-artifact@v2
+        with:
+          #Set artifact name
+          name: artifact
+          #From this path
+          path: target/ebs-demo-0.0.1-SNAPSHOT.jar
+
+  prod-check:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to production server on branch $GITHUB_REF"

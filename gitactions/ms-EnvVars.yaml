@@ -1,0 +1,27 @@
+# Workflow Env Vars
+name: Env Vars
+
+# Event On Push
+on: [push]
+
+# Execute Jobs
+jobs:
+
+  # Job Name
+  weekday_job:
+    # Runs on Ubuntu Latest VM
+    runs-on: ubuntu-latest
+    # Set Env
+    env:
+      DAY_OF_WEEK: Mon
+    # Steps to Execute
+    steps:
+      - name: "Hello world when it's Monday"
+        # Expression: if Day of Week == MON then RUN
+        if: ${{ env.DAY_OF_WEEK == 'Mon' }}
+        run: echo "Hello $FIRST_NAME $middle_name $Last_Name, today is Monday!"
+        env:
+          FIRST_NAME: John
+          middle_name: The
+          Last_Name: Baptist
+

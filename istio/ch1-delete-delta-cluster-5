@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Chapter 1: Delete Kubernetes Cluster"
+echo "Delete Gamma-3 K8s Cluster"
+kind delete cluster --name gamma-3
+
+

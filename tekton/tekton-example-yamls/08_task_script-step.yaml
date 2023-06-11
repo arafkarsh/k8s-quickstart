@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: t08-script-step
+spec:
+  steps:
+    - name: t08-step-with-script
+      image: registry.access.redhat.com/ubi8/ubi
+      script: |
+        #!/usr/bin/env bash
+        echo "Installing iputils"
+        dnf install iputils -y
+        ping redhat.com -c 3
+        echo "All iputils done!"
