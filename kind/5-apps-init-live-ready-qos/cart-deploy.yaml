@@ -28,7 +28,7 @@ spec:
         app: cart-pod
         version: "1.0.0"
         release: stable
-        organization: MetaArivu
+        organization: Ozazo
     spec:
       # Init Containers Will run Before the App Container
       initContainers:

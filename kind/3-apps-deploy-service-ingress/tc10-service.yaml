@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  # Service Name: Ex. Payment Service
+  # Service Name: Ex. Order Service
   name: tc10-service
   namespace: sigma
   labels:
@@ -20,5 +20,7 @@ spec:
     name: http
   selector:
     # Instance Labels
-    # Ex. Payment Service Instances
+    # Ex. Order Service Instances
     app: tc10-pod
+    release: stable
+    organization: Apache

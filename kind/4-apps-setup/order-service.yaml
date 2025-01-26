@@ -23,4 +23,4 @@ spec:
     # Ex. Order Service Instances
     app: order-pod
     release: stable
-    organization: MetaArivu
+    organization: Ozazo

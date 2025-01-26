@@ -1,0 +1,80 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Server Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Common Functions used in other Scripts
+#---------------------------------------------------------------
+
+# Function to set VERSION from input or default to 21
+set_version() {
+  if [[ -n "$1" ]]; then
+    VERSION="$1"
+  else
+    VERSION=2
+  fi
+}
+
+# Show Help
+show_help() {
+  echo "----------------------------------------------------------------"
+  echo "Server (PodShell/Apache/Tomcat) Container Management. "
+  echo "Copyright (c) Araf Karsh Hamid, 2025"
+  echo "Use buildx to create Multi-Architecture (arm64/amd64) Images"
+  echo "----------------------------------------------------------------"
+  echo "Invalid INPUTS! Server and/or Version Number Missing!"
+  echo "----------------------------------------------------------------"
+  echo "Usage: $0 [apache, tomcat] [2, 9, 10, 11]"
+  echo "Examples"
+  echo "----------------------------------------------------------------"
+  echo "$0 podshell 1"
+  echo "$0 apache 2  "
+  echo "$0 tomcat 9  "
+  echo "$0 tomcat 10 "
+  echo "$0 tomcat 11 "
+  echo "----------------------------------------------------------------"
+}
+
+# Validate the Paramters to the Shell Script
+validate_params() {
+    local expected_count=2  # Expected number of parameters
+    local actual_count=$#   # Number of parameters passed
+
+    if [ "$actual_count" -ne "$expected_count" ]; then
+        show_help
+        exit 1
+    fi
+}
+
+# Function to determine SERVICE and DOCKER_FILE based on $1
+determine_config() {
+  case "$1" in
+    podshell)
+      SERVICE="podshell:$VERSION"
+      SERVICE_NAME="podshell-$VERSION"
+      SERVICE_PORT="80"
+      DOCKER_FILE="Dockerfiles/Dockerfile.podshell"
+      ;;
+    apache)
+      SERVICE="apache:$VERSION"
+      SERVICE_NAME="apache-$VERSION"
+      SERVICE_PORT="80"
+      DOCKER_FILE="Dockerfiles/Dockerfile.apache"
+      ;;
+    tomcat)
+      SERVICE="tomcat:$VERSION"
+      SERVICE_NAME="tomcat-$VERSION"
+      SERVICE_PORT="8080"
+      DOCKER_FILE="Dockerfiles/Dockerfile.tomcat.$VERSION"
+      ;;
+    *)
+      SERVICE="apache:$VERSION"
+      SERVICE_NAME="apache-$VERSION"
+      SERVICE_PORT="80"
+      DOCKER_FILE="Dockerfiles/Dockerfile.apache"
+      show_help
+      ;;
+  esac
+}

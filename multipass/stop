@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Delete VM...."
+echo "multipass stop $1"
+multipass delete $1

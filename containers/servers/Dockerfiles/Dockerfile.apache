@@ -1,0 +1,33 @@
+#---------------------------------------------------------------
+# Apache Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Apache 2 Container
+#---------------------------------------------------------------
+
+FROM arafkarsh/alpine:3.21
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Apache 2 Alpine image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+
+# Install Apache2 (httpd) and clean up unnecessary files
+RUN apk update && apk add --no-cache apache2 && \
+    rm -rf /var/cache/apk/*
+
+# Copy the custom HTML file to the Apache document root
+# Assuming custom index.html is in the same directory as the build
+COPY utils/apache-index.html /var/www/localhost/htdocs/index.html
+
+# Expose the default HTTP port
+EXPOSE 80
+
+# Command to start Apache2 in the foreground
+ENTRYPOINT ["httpd", "-D", "FOREGROUND"]

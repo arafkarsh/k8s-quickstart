@@ -1,0 +1,45 @@
+#---------------------------------------------------------------
+# Base Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+
+FROM alpine:3.21
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the base Alpine (3.21) image with few utilities." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+
+# Install vim, bash, gzip
+RUN apk update && \
+    apk add --no-cache bash gzip vim 
+
+# Create Software Directories
+RUN mkdir -p /Softwares && \
+    chmod -R 750 /Softwares
+
+# Add group 'dev' and user 'ozazo' to the 'dev' group
+RUN addgroup -g 3000 dev && \
+    adduser -D -u 2048 -s /bin/bash -G dev ozazo
+
+# Copy bash profile for user ozazo
+COPY --chown=ozazo:dev bash_profile /home/ozazo/.bash_profile
+COPY --chown=ozazo:dev bash_rc /home/ozazo/.bashrc
+
+# Set permissions for directories
+RUN chown -R ozazo:dev /Softwares && \
+    chown -R ozazo:dev /home/ozazo
+
+WORKDIR /home/ozazo
+ENV HOME=/home/ozazo
+
+# Enable User root at this Level
+USER root
+
+ENTRYPOINT ["/bin/bash", "--login"]

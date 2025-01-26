@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Transfer File..."
+echo "multipass transfer $1 $2:/home/ubuntu/$1"
+multipass transfer $1 $2:/home/ubuntu/$1

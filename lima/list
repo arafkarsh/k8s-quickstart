@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "limactl list"
+limactl list

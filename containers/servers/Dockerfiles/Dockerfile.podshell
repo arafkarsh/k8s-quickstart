@@ -1,0 +1,61 @@
+#---------------------------------------------------------------
+# PodShell Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# PodShell Container
+#---------------------------------------------------------------
+
+#FROM arafkarsh/alpine:3.21
+FROM arafkarsh/alpaquita:musl
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the PodShell Alpine image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+
+# Install Utilities to troubleshoot K8s Deployments
+RUN apk update && \
+    apk add --no-cache \
+        bash \
+	# DNS Tools - nslookup, dig
+	bind-tools \		
+        busybox-extras \
+        curl \
+        gzip \
+        iputils \
+        nano \
+        openssh \
+        postgresql-client \
+        unzip \
+        wget && \
+    rm -rf /var/cache/apk/*
+
+# Copy the custom HTML file to the Apache document root
+# Assuming custom index.html is in the same directory as the build
+COPY utils/apache-index.html /var/www/localhost/htdocs/index.html
+COPY utils/checkdb /home/ozazo/
+
+# Add profile information to .bash_profile
+RUN { \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "echo \"Tools Available: vi, nano, curl, wget, gzip, unzip, openssh... \""; \
+    echo "echo \"Alpine arm64/amd64 Podshell Container\""; \
+    echo "echo \"----------------------------------------------------------------\""; \
+  } >> /home/ozazo/.bash_profile
+
+# Expose the default HTTP port
+EXPOSE 80
+
+  # User
+USER ozazo
+
+# Command to start Podshell
+#CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "--login", "-i"]
+

@@ -1,0 +1,2 @@
+#!/bin/sh
+limactl shell k3s-worker$1

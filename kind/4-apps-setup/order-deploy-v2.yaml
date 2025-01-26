@@ -28,11 +28,11 @@ spec:
         app: order-pod
         version: "1.2.0"
         release: stable
-        organization: MetaArivu
+        organization: Ozazo
     spec:
       containers:
       - name: order-container
-        image: metamagic/mock-order
+        image: arafkarsh/mock-order
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

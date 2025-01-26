@@ -27,11 +27,11 @@ spec:
         app: payment-pod
         version: "1.0.0"
         release: stable
-        organization: MetaArivu
+        organization: Ozazo
     spec:
       containers:
       - name: payment-container
-        image: metamagic/mock-payment
+        image: arafkarsh/mock-payment
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

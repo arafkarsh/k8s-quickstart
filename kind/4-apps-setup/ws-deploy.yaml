@@ -25,10 +25,12 @@ spec:
     metadata:
       labels:
         app: ws-pod
+        release: stable
+        organization: MetaArivu
     spec:
       containers:
       - name: ws-container
-        image: metamagic/lambda
+        image: arafkarsh/lambda
         imagePullPolicy: Always
         ports:
         - containerPort: 80
