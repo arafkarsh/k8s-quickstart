@@ -1,24 +1,30 @@
-#################################################################
+#---------------------------------------------------------------
+# PodShell Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
 #
-# PodShell - Developer Tool box to test Pods in Kubernetes
-#
-# (C) MetaMagic Global Inc, NJ, USA, 2021
-#
-# Arivu Services & Containers
-#
-# Version 0.1
-#################################################################
+# Version 0.01
+#---------------------------------------------------------------
 # Base Version
-FROM metamagic/alpine
+FROM arafkarsh/alpaquita:musl
 
-MAINTAINER Araf Karsh Hamid <araf.karsh@metamagic.in>
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the OShell image with few utilities." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
 
-RUN mkdir -p /home/bin
-RUN mkdir -p /home/data
+RUN mkdir -p /home/ozazo/bin
+COPY --chown=ozazo:dev gb /home/ozazo/bin
 
-COPY gb.sh /home/bin
+# Set permissions for directories
+RUN chown -R ozazo:dev /home/ozazo/bin
 
-WORKDIR /home/data
+WORKDIR /home/ozazo
+ENV HOME=/home/ozazo
 
+# Enable User root at this Level
+USER ozazo
 
-ENTRYPOINT ["/home/bin/gb.sh"] 
+ENTRYPOINT ["/home/ozazo/bin/gb"] 

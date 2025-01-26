@@ -5,13 +5,13 @@
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
-# Build the OShell Container
-#---------------------------------------------------------------
+# Check OShell Container Logs
+# --------------------------------------------------------------
 
 # Source the organization-wide config
 source ../utils/config-org.env
 source ../utils/colimaStatus
 
-
-echo "docker build --rm=true -t $ORG/oshell ."
-docker build --rm=true -t $ORG/oshell .
+CID=`cat $SERVICE.cid`
+echo "Checking logs for Container = $ORG/oshell and Container ID = $CID"
+docker logs $CID
