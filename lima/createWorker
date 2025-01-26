@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Creating a Worker Node for Kubernetes (K3s) Clusters"
+echo "limactl start --name k3s-worker$1 template://default"
+limactl start --name k3s-worker$1 template://default

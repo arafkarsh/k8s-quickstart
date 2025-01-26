@@ -20,4 +20,4 @@ spec:
   selector:
     app: ws-pod
     release: stable
-    organization: MetaArivu
+    organization: Ozazo

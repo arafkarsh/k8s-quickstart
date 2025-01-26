@@ -1,0 +1,39 @@
+#---------------------------------------------------------------
+# Base Ubuntu Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+
+FROM ubuntu:latest
+
+MAINTAINER Araf Karsh Hamid "araf.karsh@gmail.com"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+# Make sure the package repository is up to date and update Ubuntu
+RUN apt-get update && \
+    apt-get install -y curl git htop bash software-properties-common telnet unzip vim wget
+
+# Create directories and add user with appropriate permissions
+RUN mkdir /Softwares && \
+    chmod -R 755 /Softwares && \
+    groupadd -r dev && \
+    useradd -r -g dev -ms /bin/bash ozazo && \
+    mkdir -p /home/ozazo && \
+    chown -R ozazo:dev /Softwares && \
+    chown -R ozazo:dev /home/ozazo && \
+    chmod 750 /home/ozazo
+
+# Copy configuration files for the new user
+COPY bash_profile /home/ozazo/.bash_profile
+COPY bash_rc /home/ozazo/.bashrc
+RUN chown ozazo:dev /home/ozazo/.bash_profile /home/ozazo/.bashrc
+
+# Enable User root at this Level
+USER root
+
+WORKDIR /home/ozazo
+ENV HOME /home/ozazo
+
+ENTRYPOINT ["/bin/bash", "--login"]

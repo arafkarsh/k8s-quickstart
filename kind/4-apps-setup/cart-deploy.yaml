@@ -28,11 +28,11 @@ spec:
         app: cart-pod
         version: "1.0.0"
         release: stable
-        organization: MetaArivu
+        organization: Ozazo
     spec:
       containers:
       - name: cart-container
-        image: metamagic/mock-cart
+        image: arafkarsh/mock-cart
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

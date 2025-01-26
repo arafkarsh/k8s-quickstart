@@ -1,0 +1,23 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Base OS Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Check Container Logs
+# --------------------------------------------------------------
+
+# Source the organization-wide config
+source ../utils/config-org.env
+source utils/common-functions
+source ../utils/colimaStatus
+
+# Call the validation function with "$@"
+validate_params "$@"
+
+determine_os "$1"
+
+CID=`cat $SERVICE.cid`
+echo "Checking logs for Container = $ORG/$SERVICE and Container ID = $CID"
+docker logs $CID

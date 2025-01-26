@@ -24,11 +24,11 @@ spec:
       labels:
         app: ws-pod
         release: stable
-        organization: MetaArivu
+        organization: Ozazo
     spec:
       containers:
       - name: ws-container
-        image: metamagic/kappa
+        image: arafkarsh/kappa
         imagePullPolicy: Always
         ports:
         - containerPort: 80

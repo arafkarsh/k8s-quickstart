@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: ws-container
-        image: metamagic/sigma
+        image: arafkarsh/sigma
         imagePullPolicy: Always
         ports:
         - containerPort: 80

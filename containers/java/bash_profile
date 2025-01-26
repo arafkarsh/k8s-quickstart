@@ -1,0 +1,32 @@
+# Load ~/.bashrc if it exists
+if [ -f "$HOME/.bashrc" ]; then
+   . "$HOME/.bashrc"
+fi
+
+# Set USER if it's not already set
+if [ -z "$USER" ]; then
+    USER=$(whoami)
+fi
+
+# Display a welcome message
+echo "----------------------------------------------------------------"
+echo "Welcome to Ozazo Developer login..."
+# Greet the user based on the time of day
+hour=$(date +"%H")
+if [ "$hour" -lt 12 ]; then
+    echo "Good Morning, $USER! .............."
+elif [ "$hour" -lt 18 ]; then
+    echo "Good Afternoon, $USER! ................"
+else
+    echo "Good Evening, $USER! ..............."
+fi
+echo "----------------------------------------------------------------"
+
+# Display system information
+df -h
+uname -a
+echo "----------------------------------------------------------------"
+
+# Print the current directory
+pwd
+

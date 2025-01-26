@@ -1,0 +1,44 @@
+#---------------------------------------------------------------
+# Java Ubuntu x86 Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Java 17 Container
+#---------------------------------------------------------------
+
+FROM arafkarsh/ubuntu:24.04
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Oracle Java Ubuntu image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+# Download and install Java (Intel version)
+RUN mkdir -p /Softwares/jdk17 && \
+    wget -q https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz -O /tmp/jdk17.tar.gz && \
+    tar -xzf /tmp/jdk17.tar.gz -C /Softwares/jdk17 --strip-components=1 && \
+    rm -f /tmp/jdk17.tar.gz
+
+RUN chown -R ozazo:dev /Softwares/jdk17 && \
+  chmod -R 750 /Softwares/jdk17
+
+# Add profile information to .bash_profile
+RUN { \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "java -version"; \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "echo \"Ubuntu x86 Java 17 Container\""; \
+    echo "echo \"----------------------------------------------------------------\""; \
+  }  >> /home/ozazo/.bash_profile
+
+ENV PATH=$PATH:/Softwares/jdk17/bin:
+ENV JAVA_HOME=/Softwares/jdk17
+
+# Enable User ozazo at this Level
+USER ozazo
+
+ENTRYPOINT ["/bin/bash", "--login"]

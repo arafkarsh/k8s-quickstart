@@ -18,19 +18,11 @@ spec:
            name: ws-service
            port:
              number: 80
-      - path: /tomcat8
-        pathType: Prefix
-        backend:
-          service:
-          # Service 1: Product Service
-           name: tc8-service
-           port:
-             number: 80
       - path: /tomcat9
         pathType: Prefix
         backend:
           service:
-          # Service 2: Shopping Cart Service
+          # Service 1: Product Service
            name: tc9-service
            port:
              number: 80
@@ -38,7 +30,15 @@ spec:
         pathType: Prefix
         backend:
           service:
-          # Service 3: Order Service
+          # Service 2: Shopping Cart Service
            name: tc10-service
+           port:
+             number: 80
+      - path: /tomcat11
+        pathType: Prefix
+        backend:
+          service:
+          # Service 3: Order Service
+           name: tc11-service
            port:
              number: 80

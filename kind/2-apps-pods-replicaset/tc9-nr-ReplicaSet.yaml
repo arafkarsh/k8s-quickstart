@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: tc9-n-container
-        image: metamagic/tomcat:9
+        image: arafkarsh/tomcat:9
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

@@ -13,7 +13,7 @@ metadata:
 spec:
   containers:
   - name: oshell-container
-    image: metamagic/oshell
+    image: arafkarsh/oshell
     # Use Always ONLY for Development purpose.
     imagePullPolicy: Always
     ports:
