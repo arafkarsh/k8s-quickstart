@@ -5,13 +5,12 @@
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
-# Build the OShell Container
+# OShell Container
 #---------------------------------------------------------------
 
 # Source the organization-wide config
 source ../utils/config-org.env
 source ../utils/colimaStatus
 
-
-echo "docker build --rm=true -t $ORG/oshell ."
-docker build --rm=true -t $ORG/oshell .
+echo "docker container exec -it $ORG/oshell /bin/bash"
+docker container exec -it $ORG/oshell /bin/bash

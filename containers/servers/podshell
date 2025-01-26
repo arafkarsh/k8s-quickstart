@@ -1,11 +1,11 @@
 #!/bin/bash
 #---------------------------------------------------------------
-# Server Installation
+# Podshell Installation
 # Araf Karsh Hamid, (c) Copyright 2025
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
-# Push Server Docker Container to Docker Hub
+# Log into Podshell
 #---------------------------------------------------------------
 
 echo "docker container run -it arafkarsh/podshell:1"
