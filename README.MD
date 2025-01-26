@@ -1,13 +1,35 @@
 # Kubernetes Workshop
 
-- Docker Containers (20.10.22)
+- Docker Client (20.10.22)
+- Docker Engine (27.4.0)
+- Containerd (1.7.24)
+- colima (0.8.1)
+- multipass (1.15)
 - Kind (0.17)
-- Kubernetes (1.26)
-- Istio (1.10x)
+- Kubernetes (1.32)
+- Istio (1.24)
 
 ##  Getting Started
 
 Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with Docker, KinD, Kubernetes installation and Demo Apps.
+
+### Updates as on Jan 26, 2025
+
+#### 1. Multi Architecture Containers
+
+1. Java (11,17,21 & 23) for Alpine, Alpaquita and Ubuntu OS
+2. OS - Alpine, Alpaquita & Ubuntu
+3. Apache 2 Web Server
+4. Tomcat - 9, 10 & 11
+5. PodShell
+6. OShell
+
+#### 2. Added Test Containers to Docker Hub
+
+1. <a href="https://hub.docker.com/r/arafkarsh/omega/tags">Omega</a>
+2. <a href="https://hub.docker.com/r/arafkarsh/sigma/tags">Sigma</a>
+3. <a href="https://hub.docker.com/r/arafkarsh/lambda/tags">Lambda</a>
+4. <a href="https://hub.docker.com/r/arafkarsh/kappa/tags">Kappa</a>
 
 ## New Apps Added in Kind section
 
@@ -61,17 +83,11 @@ These services will be updated with more functionality by end of Aug 2021.
 
 ## Docker Images - Sofware <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/docker">(docker)</a> for running Application
 
-- alpine-base
-- apache
-- echo
-- java (8)
-- node
-- podshell
-- tomcat (8,9 & 10)
-
-## Distroless Container Images
-
-<WIP>
+- OS (Alpine, Alpaquita, Ubuntu)
+- Java 11, 17, 21, 23
+- Apache 2 Web Server
+- Tomcat 9, 10, 11
+- PodShell and OShell
 
 ## KinD Clusters
 
