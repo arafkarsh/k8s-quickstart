@@ -1,0 +1,12 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Kappa Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Start Kappa Container
+#---------------------------------------------------------------
+echo If K8s cluster is already running then the Port 80 wont be available
+echo "docker container run --name kappa -d --rm -p 85:80 arafkarsh/kappa"
+docker container run --name kappa -d --rm -p 85:80 arafkarsh/kappa
