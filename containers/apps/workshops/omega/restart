@@ -9,5 +9,5 @@
 #---------------------------------------------------------------
 echo "docker container stop omega"
 docker container stop omega
-echo "docker container run --name omega -d --rm -p 82:80 arafkarsh/omega"
-docker container run --name omega -d --rm -p 82:80 arafkarsh/omega
+echo "docker container run --name omega -d --rm -p 82:82 arafkarsh/omega"
+docker container run --name omega -d --rm -p 82:82 arafkarsh/omega

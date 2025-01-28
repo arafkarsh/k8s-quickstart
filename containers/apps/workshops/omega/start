@@ -8,5 +8,5 @@
 # Start Omega Container
 #---------------------------------------------------------------
 echo If K8s cluster is already running then the Port 80 wont be available
-echo "docker container run --name omega -d --rm -p 82:80 arafkarsh/omega"
-docker container run --name omega -d --rm -p 82:80 arafkarsh/omega
+echo "docker container run --name omega -d --rm -p 82:82 arafkarsh/omega"
+docker container run --name omega -d --rm -p 82:82 arafkarsh/omega

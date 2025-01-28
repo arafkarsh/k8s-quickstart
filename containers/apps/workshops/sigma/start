@@ -8,5 +8,5 @@
 # Start Sigma Container
 #---------------------------------------------------------------
 echo If K8s cluster is already running then the Port 80 wont be available
-echo "docker container run --name sigma -d --rm -p 83:80 arafkarsh/sigma"
-docker container run --name sigma -d --rm -p 83:80 arafkarsh/sigma
+echo "docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma"
+docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma
