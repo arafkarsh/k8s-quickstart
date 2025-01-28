@@ -8,5 +8,5 @@
 # Start Lambda Container
 #---------------------------------------------------------------
 echo If K8s cluster is already running then the Port 80 wont be available
-echo "docker container run --name lambda -d --rm -p 84:80 arafkarsh/lambda"
-docker container run --name lambda -d --rm -p 84:80 arafkarsh/lambda
+echo "docker container run --name lambda -d --rm -p 84:84 arafkarsh/lambda"
+docker container run --name lambda -d --rm -p 84:84 arafkarsh/lambda

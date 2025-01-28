@@ -1,0 +1,14 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source utils/colimaStatus
+
+echo "Apply the Yaml..."
+# Apply the yaml and --record keep tracks of the 
+# changes to the artifacts
+kubectl apply -f $1 --record

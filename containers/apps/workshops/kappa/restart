@@ -10,5 +10,5 @@
 echo "docker container stop kappa"
 docker container stop kappa
 
-echo "docker container run --name kappa -d --rm -p 85:80 arafkarsh/kappa"
-docker container run --name kappa -d --rm -p 85:80 arafkarsh/kappa
+echo "docker container run --name kappa -d --rm -p 85:85 arafkarsh/kappa"
+docker container run --name kappa -d --rm -p 85:85 arafkarsh/kappa
