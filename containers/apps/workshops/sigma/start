@@ -1,0 +1,12 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Sigma Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Start Sigma Container
+#---------------------------------------------------------------
+echo If K8s cluster is already running then the Port 80 wont be available
+echo "docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma"
+docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma

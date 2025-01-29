@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "kubectl run -it podshell --image=arafkarsh/podshell"
+kubectl run -it podshell --image=arafkarsh/podshell
+
+echo "Shutting down podshell.... "
+kubectl delete pod podshell

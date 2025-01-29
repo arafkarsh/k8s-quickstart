@@ -1,0 +1,16 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# OShell Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# OShell Container
+#---------------------------------------------------------------
+
+# Source the organization-wide config
+source ../utils/config-org.env
+source ../utils/colimaStatus
+
+echo "docker container exec -it $ORG/oshell /bin/bash"
+docker container exec -it $ORG/oshell /bin/bash

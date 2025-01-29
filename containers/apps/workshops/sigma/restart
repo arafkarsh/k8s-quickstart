@@ -1,0 +1,13 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Sigma Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Restart Sigma Container
+#---------------------------------------------------------------
+echo "docker container stop sigma"
+docker container stop sigma
+echo "docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma"
+docker container run --name sigma -d --rm -p 83:83 arafkarsh/sigma

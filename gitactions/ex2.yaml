@@ -1,0 +1,9 @@
+name: Events 
+
+on:
+  schedule:
+    # * is a special character in YAML so you 
+    # have to quote this string
+    # 5:30 AM and 3:30 PM ** Monday - Friday
+    - cron:  '30 5,17 * * 0-4'
+

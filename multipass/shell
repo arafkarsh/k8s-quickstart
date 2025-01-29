@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Log into Multipass Shell.."
+echo "multipass shell $1"
+multipass shell $1

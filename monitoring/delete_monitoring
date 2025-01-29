@@ -1,0 +1,9 @@
+#!/bin/bash
+
+kubectl get ns,ing,svc,pods -n monitoring -o wide
+
+echo "Delete Prometheus"
+kubectl delete -f prometheus/setup
+
+echo "Delete Prometheus Components"
+kubectl delete -f prometheus/

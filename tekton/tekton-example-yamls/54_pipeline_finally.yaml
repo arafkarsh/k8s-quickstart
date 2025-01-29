@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: p04-task-finally
+spec:
+  tasks:
+    - name: p04-task-build
+      params: 
+        - name: taskname
+          value: build
+      taskRef:
+        name: t09-task-params
+    - name: p04-task-test
+      params: 
+        - name: taskname
+          value: test
+      taskRef:
+        name: t09-task-params
+      runAfter:
+        - p04-task-build
+    - name: p04-task-deploy
+      timeout: "0h0m13s"
+      taskRef:
+        name: t10-task-slow-20
+      runAfter:
+        - p04-task-test
+  finally:
+    - name: cleanup-task
+      params: 
+        - name: taskname
+          value: cleanup
+      taskRef:
+        name: t09-task-params

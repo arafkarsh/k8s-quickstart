@@ -1,0 +1,12 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Lambda Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Start Lambda Container
+#---------------------------------------------------------------
+echo If K8s cluster is already running then the Port 80 wont be available
+echo "docker container run --name lambda -d --rm -p 84:84 arafkarsh/lambda"
+docker container run --name lambda -d --rm -p 84:84 arafkarsh/lambda

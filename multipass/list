@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "----------------------------------------------------------------------------"
+echo "List Multipass VMs..."
+echo "----------------------------------------------------------------------------"
+echo "Local Driver: `multipass get local.driver`"
+echo "To Set a new driver multipass set local.driver=driver-name"
+echo "----------------------------------------------------------------------------"
+multipass list

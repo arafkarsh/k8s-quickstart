@@ -1,0 +1,106 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Java Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Common Functions used in other Scripts
+#---------------------------------------------------------------
+
+# Get the name of the script (without the path)
+script_name=$(basename "$0")
+
+# Function to set VERSION from input or default to 21
+set_version() {
+  if [[ -n "$1" ]]; then
+    VERSION="$1"
+  else
+    VERSION=21
+  fi
+}
+
+# Show Help
+show_help() {
+  echo "----------------------------------------------------------------"
+  echo "Java Container Management. "
+  echo "Copyright (c) Araf Karsh Hamid, 2025"
+
+  # Check if the script name is "abc"
+  if [ "$script_name" = "build" ]; then
+    echo "Use buildx to create Multi-Architecture (arm64/amd64) Images"
+  fi
+  echo "----------------------------------------------------------------"
+  echo "INVALID INPUTS! Missing OS Name and/or Java Version Number"
+  echo "----------------------------------------------------------------"
+  if [ "$script_name" = "build" ]; then
+    echo "Usage: $0 [alpine, ubuntu, ubuntu-openjdk] [23, 21, 17, 11]"
+  fi
+    if [ "$script_name" = "buildx" ]; then
+    echo "Usage: $0 [alpine, ubuntu-openjdk] [21, 17, 11]"
+  fi
+  echo "Examples"
+  echo "----------------------------------------------------------------"
+  echo "$0 alpaquita 21"
+  echo "$0 alpine 21"
+  echo "$0 alpine 17"
+  if [ "$script_name" = "build" ]; then
+    echo "$0 ubuntu 21"
+    echo "$0 ubuntu 23"
+  fi
+  echo "$0 ubuntu-openjdk 17"
+  echo "$0 ubuntu-openjdk 21"
+  echo "----------------------------------------------------------------"
+  exit 1
+}
+
+# Validate the Paramters to the Shell Script
+validate_params() {
+    local expected_count=2  # Expected number of parameters
+    local actual_count=$#   # Number of parameters passed
+
+    if [ "$actual_count" -ne "$expected_count" ]; then
+        show_help
+        exit 1
+    fi
+}
+
+# Check if the OS is supported for Multi-Architecture
+validate_buildx_os() {
+  if [ "$script_name" = "buildx" ]; then
+    echo "OS '$1' with Oracla Java Not Supported!. "
+    echo "Try using alpine (openjdk) or ubuntu-openjdk"
+    exit 1
+  fi
+}
+
+# Function to determine SERVICE and DOCKER_FILE based on $1
+determine_config() {
+  case "$1" in
+    alpaquita)
+      SERVICE="java:$VERSION-alpaquita"
+      DOCKER_FILE="Dockerfiles/Dockerfile.alpaquita.$VERSION"
+      ;;
+    alpine)
+      SERVICE="java:$VERSION-alpine"
+      DOCKER_FILE="Dockerfiles/Dockerfile.alpine.$VERSION"
+      ;;
+    ubuntu)
+      validate_buildx_os "$1"
+      SERVICE="java:$VERSION"
+      DOCKER_FILE="Dockerfiles/Dockerfile.ubuntu.$VERSION"
+      ;;
+    ubuntu-x86)
+      validate_buildx_os "$1"
+      SERVICE="java:$VERSION-x86"
+      DOCKER_FILE="Dockerfiles/Dockerfile.ubuntu.x86.$VERSION"
+      ;;
+    ubuntu-openjdk)
+      SERVICE="java:$VERSION-openjdk"
+      DOCKER_FILE="Dockerfiles/Dockerfile.ubuntu.openjdk.$VERSION"
+      ;;
+    *)
+      show_help
+      ;;
+  esac
+}

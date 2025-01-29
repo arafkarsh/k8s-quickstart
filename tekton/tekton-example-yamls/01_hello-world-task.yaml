@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: t01-hello-world
+spec:
+  steps:
+    - name: t01-hello-world
+      image: ubuntu
+      command:
+        - echo
+      args:
+        - "Hello Tekton World!"

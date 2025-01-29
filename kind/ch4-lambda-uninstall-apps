@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Chapter 4: Lambda : App Setup (Env, ConfigMap, Presets, Secrets)"
+echo "4.4 Delete the Lambda Apps"
+
+kubectl delete  --filename 4-apps-setup/ws-deploy.yaml
+kubectl delete  --filename 4-apps-setup/ws-service.yaml
+kubectl delete  --filename 4-apps-setup/cart-deploy.yaml
+kubectl delete  --filename 4-apps-setup/cart-service.yaml
+kubectl delete  --filename 4-apps-setup/order-deploy-v1.yaml 
+kubectl delete  --filename 4-apps-setup/order-service.yaml
+kubectl delete  --filename 4-apps-setup/order-hpa.yaml
+kubectl delete  --filename 4-apps-setup/payment-deploy.yaml
+kubectl delete  --filename 4-apps-setup/payment-service.yaml
+kubectl delete  --filename 4-apps-setup/lambda-ingress.yaml
+kubectl delete  --filename 4-apps-setup/lambda-namespace.yaml
+

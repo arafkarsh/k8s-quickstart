@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: order-lambda
+  namespace: lambda
+spec:
+  host: order-service.lambda.svc.cluster.local
+  subsets:
+  - name: stable
+    labels:
+      version: "1.0.0"
+  - name: canary
+    labels:
+      version: "1.2.0"

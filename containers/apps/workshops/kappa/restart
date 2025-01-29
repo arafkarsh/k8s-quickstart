@@ -1,0 +1,14 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Kappa Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Restart Kappa Container
+#---------------------------------------------------------------
+echo "docker container stop kappa"
+docker container stop kappa
+
+echo "docker container run --name kappa -d --rm -p 85:85 arafkarsh/kappa"
+docker container run --name kappa -d --rm -p 85:85 arafkarsh/kappa

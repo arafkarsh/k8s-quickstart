@@ -1,0 +1,62 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# OS Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Common Functions used in other Scripts
+#---------------------------------------------------------------
+
+# Show Help
+show_help() {
+  echo "----------------------------------------------------------------"
+  echo "OS Container Management. "
+  echo "Copyright (c) Araf Karsh Hamid, 2025"
+  echo "Use buildx to create Multi-Architecture (arm64/amd64) Images"
+  echo "----------------------------------------------------------------"
+  echo "INVALID INPUTS! Missing OS Name"
+  echo "----------------------------------------------------------------"
+  echo "Usage: $0 [alpine, alpaquita, ubuntu]"
+  echo "Examples"
+  echo "----------------------------------------------------------------"
+  echo "$0 alpine "
+  echo "$0 alpaquita "
+  echo "$0 ubuntu "
+  echo "----------------------------------------------------------------"
+}
+
+
+# Validate the Paramters to the Shell Script
+validate_params() {
+    local expected_count=1  # Expected number of parameters
+    local actual_count=$#   # Number of parameters passed
+
+    if [ "$actual_count" -ne "$expected_count" ]; then
+        show_help
+        exit 1
+    fi
+}
+
+# Function to determine SERVICE and DOCKER_FILE based on $1
+determine_os() {
+  case "$1" in
+    alpine)
+      SERVICE="alpine:3.21"
+      DOCKER_FILE="Dockerfiles/Dockerfile.alpine"
+      ;;
+    alpaquita)
+      SERVICE="alpaquita:musl"
+      DOCKER_FILE="Dockerfiles/Dockerfile.alpaquita"
+      ;;
+    ubuntu)
+      SERVICE="ubuntu:24.04"
+      DOCKER_FILE="Dockerfiles/Dockerfile.ubuntu"
+      ;;
+    *)
+      SERVICE="alpine:3.21"
+      DOCKER_FILE="Dockerfiles/Dockerfile.alpine"
+      show_help
+      ;;
+  esac
+}

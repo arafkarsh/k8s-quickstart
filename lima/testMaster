@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Testing the master server"
+echo "curl -k https://`cat MASTER_IP`:6443"
+curl -k https://`cat MASTER_IP`:6443

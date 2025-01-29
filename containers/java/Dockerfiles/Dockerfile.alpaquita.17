@@ -1,0 +1,53 @@
+#---------------------------------------------------------------
+# Java Alpaquita Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Java 17 Container
+#---------------------------------------------------------------
+
+FROM bellsoft/liberica-openjdk-alpine:17.0.14
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Java Alpaquita image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+# Create Software Directories
+RUN mkdir -p /Softwares/service && \
+    chmod -R 750 /Softwares/service 
+
+# Add group 'dev' and user 'ozazo' to the 'dev' group
+RUN addgroup -g 3000 dev && \
+adduser -D -u 2048 -s /bin/sh -G dev ozazo
+
+# Copy bash profile for user ozazo
+COPY --chown=ozazo:dev bash_profile /home/ozazo/.profile
+COPY --chown=ozazo:dev bash_rc /home/ozazo/.bashrc
+
+# Set permissions for directories
+RUN chown -R ozazo:dev /Softwares && \
+    chown -R ozazo:dev /home/ozazo
+
+# Add profile information to .bash_profile
+RUN { \
+    echo "export JAVA_HOME=/usr/lib/jvm/jdk"; \
+    echo "export PATH=$JAVA_HOME/bin:$PATH"; \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "java -version"; \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "echo \"Alpaquita arm64/amd64 Java 17 Container\""; \
+    echo "echo \"----------------------------------------------------------------\""; \
+  } >> /home/ozazo/.profile
+
+WORKDIR /home/ozazo
+
+# Enable User ozazo at this Level
+USER ozazo
+
+ENTRYPOINT ["/bin/sh", "--login"]
+

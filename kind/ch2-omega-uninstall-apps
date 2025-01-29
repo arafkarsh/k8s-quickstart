@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Chapter 2: Pods and ReplicaSet (2-apps-pods-replicaset)"
+echo "2.4 Delete the Omega Apps"
+kubectl delete  --filename 2-apps-pods-replicaset/

@@ -1,0 +1,11 @@
+#! /bin/bash
+#---------------------------------------------------------------
+# Cleanup the Docker images
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+source colimaStatus
+
+echo "docker images -f "dangling=true" -q | xargs docker rmi -f"
+docker images -f "dangling=true" -q | xargs docker rmi -f

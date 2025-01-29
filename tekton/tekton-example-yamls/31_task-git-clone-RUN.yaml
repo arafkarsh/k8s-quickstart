@@ -1,0 +1,13 @@
+# To Execute a TaskRun use the following command
+# kubectl create -f 21_task-git-clone-RUN.yaml
+#
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: t31-task-git-clone-tr-
+spec:
+  workspaces:
+    - name: source
+      emptyDir: {}
+  taskRef: 
+    name: t31-task-git-clone

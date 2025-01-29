@@ -1,0 +1,29 @@
+# API Gateway for Routing traffic to
+# respective Microservices
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: omega-gw-ingress
+  namespace: omega
+spec:
+  # Add TLS 
+  rules:
+  # API Gateway Routing Rules
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            # Service Name: Ex. UI Service
+            name: ws-n-service
+            port:
+              number: 80
+      - path: /tomcat9
+        pathType: Prefix
+        backend:
+          service:
+            # Service Name: Ex. Product Review Service
+            name: tc9-n-service
+            port:
+              number: 80

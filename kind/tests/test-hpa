@@ -1,0 +1,11 @@
+#!/bin/bash
+
+START=1
+END=$1
+ID=""
+echo "Testing Horizontal Pod Auto scaling...Total #= $END" >&2
+for i in {1..1000}
+do
+   ID=`curl localhost/tc10`
+done
+echo "Test done $2" >&2

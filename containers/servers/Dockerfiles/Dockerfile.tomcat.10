@@ -1,0 +1,44 @@
+#---------------------------------------------------------------
+# Tomcat Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# 
+# Version 0.01
+#---------------------------------------------------------------
+# Tomcat 10 Container
+#---------------------------------------------------------------
+
+FROM arafkarsh/alpine:3.21
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Tomcat 11 Alpine image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+# Install Java
+RUN  apk update \
+  && apk upgrade \
+  && apk add --update openjdk21 tzdata \
+  && rm -rf /var/cache/apk/*
+
+# Set environment variables for Tomcat
+ENV CATALINA_HOME=/usr/local/tomcat
+ENV PATH=$CATALINA_HOME/bin:$PATH
+
+# Set the Tomcat version
+ENV TOMCAT_VERSION=10.1.34
+
+# Download and extract Tomcat
+RUN apk add --no-cache curl && \
+    curl -fSL https://dlcdn.apache.org/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat.tar.gz && \
+    mkdir -p $CATALINA_HOME && \
+    tar -xzf tomcat.tar.gz --strip-components=1 -C $CATALINA_HOME && \
+    rm tomcat.tar.gz
+
+# Expose Tomcat's default port
+EXPOSE 8080
+
+# Set the entry point to start Tomcat
+ENTRYPOINT ["catalina.sh", "run"]

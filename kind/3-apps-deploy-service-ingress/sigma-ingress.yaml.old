@@ -1,0 +1,50 @@
+# API Gateway for Routing traffic to
+# respective Microservices
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sigma-gw-ingress
+  namespace: sigma
+  # Enable these annotations as per the requirement
+  # annotations:
+    # ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  # Add TLS 
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+          # UI Service
+           name: ws-service
+           port:
+             number: 80
+      - path: /tomcat9
+        pathType: Prefix
+        backend:
+          service:
+          # Service 1: Product Service
+           name: tc9-service
+           port:
+             number: 80
+      - path: /tomcat10
+        pathType: Prefix
+        backend:
+          service:
+          # Service 2: Shopping Cart Service
+           name: tc10-service
+           port:
+             number: 80
+      - path: /tomcat11
+        pathType: Prefix
+        backend:
+          service:
+          # Service 3: Order Service
+           name: tc11-service
+           port:
+             number: 80

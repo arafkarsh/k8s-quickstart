@@ -1,0 +1,12 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source utils/colimaStatus
+
+echo "Restart all the pods of Water Deployment -n fusion"
+kubectl rollout restart deployment water-deploy -n fusion

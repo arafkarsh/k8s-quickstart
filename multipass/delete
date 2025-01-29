@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Stop VM...."
+echo "multipass stop $1"
+multipass stop $1

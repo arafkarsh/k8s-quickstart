@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: t09-task-params
+spec:
+  params:
+    - name: taskname
+      type: string
+      default: myTask
+  steps:
+    - name: t09-task-params
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command: 
+        - /bin/bash
+        - -c
+        - echo "Task Name $(params.taskname)"

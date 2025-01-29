@@ -1,0 +1,17 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# OShell Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Check OShell Container Logs
+# --------------------------------------------------------------
+
+# Source the organization-wide config
+source ../utils/config-org.env
+source ../utils/colimaStatus
+
+CID=`cat $SERVICE.cid`
+echo "Checking logs for Container = $ORG/oshell and Container ID = $CID"
+docker logs $CID

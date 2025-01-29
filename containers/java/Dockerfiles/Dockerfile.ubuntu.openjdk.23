@@ -1,0 +1,36 @@
+#---------------------------------------------------------------
+# Java Ubuntu Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Java 23 Container
+#---------------------------------------------------------------
+
+FROM arafkarsh/ubuntu:24.04
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Java Open JDK Ubuntu image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+RUN mkdir -p /Softwares/jdk23 
+
+RUN apt-get install -y openjdk-23-jdk
+    
+# Add profile information to .bash_profile
+RUN { \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "java -version"; \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "echo \"Ubuntu arm64/amd64 Java 23 Container\""; \
+    echo "echo \"----------------------------------------------------------------\""; \
+  } >> /home/ozazo/.bash_profile
+
+# Enable User ozazo at this Level
+USER ozazo
+
+ENTRYPOINT ["/bin/bash", "--login"]

@@ -1,0 +1,12 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Omega Alpine Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Start Omega Container
+#---------------------------------------------------------------
+echo If K8s cluster is already running then the Port 80 wont be available
+echo "docker container run --name omega -d --rm -p 82:82 arafkarsh/omega"
+docker container run --name omega -d --rm -p 82:82 arafkarsh/omega

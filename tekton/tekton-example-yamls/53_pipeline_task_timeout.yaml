@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: p03-task-timeout
+spec:
+  tasks:
+    - name: p03-task-fail
+      timeout: "0h0m13s"
+      taskRef:
+        name: t10-task-slow-10
+    - name: p03-task-fail
+      timeout: "0h0m13s"
+      taskRef:
+        name: t10-task-slow-20

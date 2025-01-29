@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "kubectl attach podshell -c podshell -it"
+kubectl attach podshell -c podshell -it

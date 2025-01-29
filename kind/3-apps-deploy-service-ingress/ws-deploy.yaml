@@ -1,0 +1,38 @@
+# Web Server for the Micro Frontend
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ws-deploy
+  namespace: sigma
+  labels:
+    app: ws-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ws-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: ws-pod
+    spec:
+      containers:
+      - name: ws-container
+        image: arafkarsh/sigma
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        # QoS : Best Effort
+        # Pod will not be launched if the Hardware 
+        # resources are not available
+        # To check, Run the command kubectl describe pods pod-name
+
+

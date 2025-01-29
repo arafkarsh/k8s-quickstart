@@ -1,0 +1,18 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Install the Fusion Order Service in Kubernetes cluster"
+echo "---------------------------------------------------------------"
+echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+kubectl create -f ../Yamls/fusion-09-water-order-service.yaml
+kubectl create -f ../Yamls/fusion-10-water-order-deploy.yaml
+kubectl create -f ../Yamls/fusion-14-water-order-hpa.yaml
+echo "---------------------------------------------------------------"

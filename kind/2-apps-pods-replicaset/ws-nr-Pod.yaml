@@ -1,0 +1,30 @@
+# Pod Definition (ONLY for LEARNING PURPOSE)
+# NOT TO BE USED IN PRODUCTION ENVIRONMENT
+# Use Deployment (Kind) instead of Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ws-n-pod
+  namespace: omega
+  labels:
+    # Labels used for Selection in Service
+    app: ws-n-pod
+    release: stable
+spec:
+  containers:
+  - name: ws-n-container
+    image: arafkarsh/omega
+    # Use Always ONLY for Development purpose.
+    imagePullPolicy: Always
+    ports:
+    # Port Exposed by the Container
+    - containerPort: 80
+    resources:
+    # QoS : Burstable
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+

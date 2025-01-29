@@ -1,0 +1,45 @@
+# API Gateway for Routing traffic to Water & Microservices
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fusion-water-gw-ingress
+  namespace: fusion
+spec:
+  ingressClassName: nginx
+  # Add TLS 
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            # Default Service: Water - Alpha Service
+            name: water-alpha-service
+            port:
+              number: 80
+      - path: /product
+        pathType: Prefix
+        backend:
+          service:
+            # Service 1: Water - Product Service
+            name: water-product-service
+            port:
+              number: 80
+      - path: /cart
+        pathType: Prefix
+        backend:
+          service:
+            # Service 2: Water - Cart Service
+            name: water-cart-service
+            port:
+              number: 80
+      - path: /order
+        pathType: Prefix
+        backend:
+          service:
+            # Service 2: Water - Order Service
+            name: water-order-service
+            port:
+              number: 80

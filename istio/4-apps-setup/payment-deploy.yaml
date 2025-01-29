@@ -1,0 +1,50 @@
+# App Server for the Microservice
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-deploy
+  namespace: lambda
+  labels:
+    app: payment-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Matching the labels from Pod Meta Data
+      # Multiple labels can be used
+      app: payment-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1  
+  template:
+    metadata:
+      labels:
+        app: payment-pod
+        version: "1.0.0"
+        release: stable
+        organization: Ozazo
+    spec:
+      containers:
+      - name: payment-container
+        image: arafkarsh/mock-payment
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9090
+        resources:
+        # QoS Burstable
+        # Pod will not be launched if the Hardware 
+        # resources are not available
+        # To check, Run the command kubectl describe pods pod-name
+          limits:
+            cpu: 756m
+            memory: 756Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+

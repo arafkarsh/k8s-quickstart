@@ -1,0 +1,29 @@
+#!/bin/sh
+echo "Install Kubernetes... "
+
+# Update and install dependencies
+echo "1/3 : Update dependencies.. https, ca-certificates, curl..."
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl
+
+# Add Kubernetes repository
+echo "2/3 : Add Kubernetes Repositories..."
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+# Install Kubernetes tools
+echo "3/3 : Add Kubernetes Repository Key"
+#sudo apt install -y kubelet kubeadm kubectl
+#sudo snap install --classic kubelet
+#sudo snap install --classic kubeadm
+#sudo snap install --classic kubectl
+
+sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+
+echo "4/3 : Install kubernetes tools kubelet, kubeadm, kubectl..."
+
+# Prevent updates to these packages
+#echo "4/4 : Prevent udpates to Kubernetes tools"
+#sudo apt-mark hold kubelet kubeadm kubectl

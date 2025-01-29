@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Chapter 2: Pods and ReplicaSet (2-apps-pods-replicaset)"
+echo "2.1 Install the Omega Apps: Pods / Replica Set / Service / Ingress"
+kubectl apply  --filename 2-apps-pods-replicaset/omega-namespace.yaml
+kubectl apply  --filename 2-apps-pods-replicaset/
+echo "...."
+echo "2.2 Switch the Namespace to Omega"
+kubectl config set-context $(kubectl config current-context) --namespace=omega
+
+echo "........"
+echo "2.3 Show Ingress, Services, Pods, HPA"
+kubectl get ing,svc,pods,hpa -o wide
+echo "............ Setup Complete!"
+echo

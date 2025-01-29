@@ -1,0 +1,16 @@
+#!/bin/sh
+# Create a master node
+echo "Creating Multipass Kubernetes Master"
+echo "multipass launch --name k8s-master --cpus 2 --mem 2G --disk 7G"
+multipass launch --name k8s-master --cpus 2 --mem 2G --disk 7G
+
+echo
+# Create worker nodes (adjust counts and resources as needed)
+echo "Create Kubernetes Worker 1"
+echo "multipass launch --name k8s-worker1 --cpus 2 --mem 2G --disk 7G"
+multipass launch --name k8s-worker1 --cpus 2 --mem 2G --disk 7G
+
+echo
+echo "Create Kubernetes Worker 2"
+echo "multipass launch --name k8s-worker2 --cpus 2 --mem 2G --disk 7G"
+multipass launch --name k8s-worker2 --cpus 2 --mem 2G --disk 7G

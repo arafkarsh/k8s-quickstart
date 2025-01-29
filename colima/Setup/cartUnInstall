@@ -1,0 +1,43 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../utils/colimaStatus
+
+
+# Function to handle uninstallation
+uninstall() {
+  echo "Proceeding with Cart Service uninstallation..."
+  echo "UnInstall the Fusion Cart Service in Kubernetes cluster"
+  kubectl delete service water-cart-service -n fusion
+  kubectl delete deploy water-cart-deploy -n fusion
+  kubectl delete hpa water-cart-hpa -n fusion
+  echo "Cart Service Uninstallation complete!"
+}
+
+# List all the Fusion Water Services
+kubectl get deploy -o wide -n fusion
+kubectl get service -o wide -n fusion
+echo 
+
+response="y"
+
+# Ask the user the question
+#read -p "Do you want to uninstall Fusion-Water-Cart Service? (yes/y or no/n): " response
+
+# Normalize the input to lowercase for easy comparison
+#response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+# Process the response
+if [[ "$response" == "y" || "$response" == "yes" ]]; then
+  uninstall
+elif [[ "$response" == "n" || "$response" == "no" ]]; then
+  echo "Cart Service Uninstallation canceled. Exiting."
+else
+  echo "Invalid input. Please enter yes/y or no/n."
+fi
+

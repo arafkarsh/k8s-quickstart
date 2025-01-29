@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "1.1 Un-Installing Tekton from Kubernetes Cluster"
+kubectl delete --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+
+echo "1.2 Setup Tekton Dashboard"
+kubectl delete --filename https://github.com/tektoncd/dashboard/releases/latest/download/tekton-dashboard-release.yaml
+
+echo "1.3 Setup Tekton Triggers"
+kubectl delete --filename https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+kubectl delete --filename https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+
+echo ""
+echo "1.4 Check the Tekton Pod Status"
+kubectl get pods --namespace tekton-pipelines

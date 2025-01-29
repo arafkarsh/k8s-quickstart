@@ -1,0 +1,2 @@
+#!/bin/bash
+curl -X 'GET'   "http://localhost/api/v1/$1/service/live"   -H 'accept: application/json'

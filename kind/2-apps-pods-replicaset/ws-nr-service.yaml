@@ -1,0 +1,25 @@
+# App Server for the Microservice
+# Service Definition
+apiVersion: v1
+kind: Service
+metadata:
+  # Service Name: Ex. Catalogue Service
+  name: ws-n-service
+  namespace: omega
+  labels:
+    app: ws-n-service
+spec:
+  # Type Cluster IP, Load Balancer, Node Port etc.
+  # Cluster IP is Automatically assigned by K8s
+  type: ClusterIP
+  ports:
+  # Port Exposed outside Pod
+  - port: 80
+    # Container Port
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    # Instance Labels
+    # Ex. Catalogue Service Instances
+    app: ws-n-pod

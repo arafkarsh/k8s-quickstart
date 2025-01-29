@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Chapter 3: Deployment / Service Ingres / Horizontal Pod Auto Scaler (3-apps-deploy-service-ingress)"
+echo "3.4 Upgrade Tomcat 9"
+
+kubectl apply  --filename 3-apps-deploy-service-ingress/tc9-deploy-v2.yaml --record
+
+echo "........"
+echo "3.5 Show Ingress, Services, Pods, HPA"
+kubectl get ing,svc,pods,hpa -o wide
+echo "............ Upgrade Complete!"
+echo

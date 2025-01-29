@@ -1,0 +1,23 @@
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+
+# Set USER if it's not already set
+USER=${USER:-$(whoami)}
+
+echo "----------------------------------------------------------------"
+echo "Welcome to Ozazo Developer login..."
+# Greet the user based on the time of day
+hour=$(date +"%H")
+if [ "$hour" -lt 12 ]; then
+    echo "Good Morning, $USER! .............."
+elif [ "$hour" -lt 18 ]; then
+    echo "Good Afternoon, $USER! ................"
+else
+    echo "Good Evening, $USER! ..............."
+fi
+echo "----------------------------------------------------------------"
+df -h
+uname -a
+echo "----------------------------------------------------------------"
+pwd

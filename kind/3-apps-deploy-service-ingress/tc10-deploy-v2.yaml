@@ -1,0 +1,50 @@
+# App Server for the Microservice
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tc10-deploy
+  namespace: sigma
+  labels:
+    app: tc10-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Matching the labels from Pod Meta Data
+      # Multiple labels can be used
+      app: tc10-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: tc10-pod
+        version: "9.0.52"
+        release: stable
+        organization: Ozazo
+    spec:
+      containers:
+      - name: tc10-container
+        image: arafkarsh/tomcat:10
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+        # QoS : Burstable
+        # Pod will not be launched if the Hardware 
+        # resources are not available
+        # To check, Run the command kubectl describe pods pod-name
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 256m
+            memory: 64Mi
+

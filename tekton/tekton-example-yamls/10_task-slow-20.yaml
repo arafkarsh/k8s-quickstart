@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: t10-task-slow-20
+spec:
+  params:
+    - name: taskname
+      type: string
+      default: slow-20
+  steps:
+    - name: t10-task-slow-can-fail-20
+      image: registry.access.redhat.com/ubi8/ubi
+      script: |
+        #!/usr/bin/env bash
+        echo "Performing Slow task > $(params.taskname)"
+        dnf install iputils -y
+        ping google.com -c 7
+        echo "Sleeping for 20 seconds"
+        sleep 20
+        echo "Slow task $(params.taskname) commpleted!"

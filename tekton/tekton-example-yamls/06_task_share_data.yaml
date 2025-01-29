@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: t06-share-data
+spec:
+  # Max Limit of 4K Data
+  results:
+    - name: data
+      description: Data to be shared
+  steps:
+    - name: t06-write-data
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command: 
+        - /bin/bash
+      args:
+        - "-c"
+        - echo "Plain Data converted to Base 64" > $(results.data.path)
+    - name: t06-read-data
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command:
+        - /bin/bash
+      args: 
+        - "-c"
+        - cat $(results.data.path)

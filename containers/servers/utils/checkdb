@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Default values
+DEFAULT_HOST="host.docker.internal"
+DEFAULT_PORT="5433"
+
+# Input arguments
+HOST=${1:-$DEFAULT_HOST} # Use first argument or default
+PORT=${2:-$DEFAULT_PORT} # Use second argument or default
+
+echo "Using Host: $HOST"
+echo "Using Port: $PORT"
+
+echo "pg_isready -h $HOST -p $PORT -U postgres"
+pg_isready -h $HOST -p $PORT -U postgres
+
+echo "psql -h $HOST -p $PORT -U postgres -c 'SELECT 1;'"
+psql -h $HOST -p $PORT -U postgres -c 'SELECT 1;'

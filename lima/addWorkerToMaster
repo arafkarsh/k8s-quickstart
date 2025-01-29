@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "Add the Worker Agent to the Cluster"
+echo "Kubernetes Master `cat MASTER_IP`:6443"
+echo "TOKEN = `cat TOKEN`"
+echo "curl -sfL https://get.k3s.io | K3S_URL=https://`cat MASTER_IP`:6443 K3S_TOKEN=`cat TOKEN` sh -"
+curl -sfL https://get.k3s.io | K3S_URL=https://`cat MASTER_IP`:6443 K3S_TOKEN=`cat TOKEN` sh -

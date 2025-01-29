@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Chapter 4: Lambda : App Setup (Env, ConfigMap, Presets, Secrets)"
+echo "4.1 Delete the Lambda Apps"
+
+kubectl delete  --filename 4-apps-setup/lambda-namespace.yaml
+
+echo "4.2 Switch the Namespace to default"
+kubectl config set-context $(kubectl config current-context) --namespace=default

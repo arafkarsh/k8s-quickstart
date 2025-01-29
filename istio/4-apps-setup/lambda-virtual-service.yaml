@@ -1,0 +1,48 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: lambda-virtual-service
+  namespace: lambda
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - lambda-gateway
+  http:
+  - match:
+    # UI Service
+    - uri:
+        exact: /
+    route:
+    - destination:
+        host: ws-service
+        port:
+          number: 80
+  - match:
+    # Service 1: Cart Service
+    - uri:
+        prefix: /api/v1/cart/
+    route:
+    - destination:
+        host: cart-service
+        port:
+          number: 80
+  - match:
+    # Service 2: Order Service
+    - uri:
+        prefix: /api/v1/order/
+    route:
+    - destination:
+        host: order-service
+        port:
+          number: 80
+  - match:
+    # Service 3: Payment Service
+    - uri:
+        prefix: /api/v1/payment/
+    route:
+    - destination:
+        host: payment-service
+        port:
+          number: 80
+

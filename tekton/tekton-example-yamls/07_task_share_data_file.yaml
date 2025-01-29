@@ -1,0 +1,23 @@
+# This feature is deprecated and will be removed
+# Will work only with Tekton v0.20 or less
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: t07-shared-data-file
+spec:
+  steps:
+    - name: t07-write-file
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      script: |
+        echo "Go to Homme Directory"
+        cd ~
+        echo Directory Name $(pwd)
+        echo "Creating a new File message.txt " > message.txt
+        echo "Line 2 of message.txt " >> message.txt
+        echo "Line 3 of message.txt " >> message.txt
+        echo "Line 4 of message.txt " >> message.txt
+    - name: t07-read-file
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      command:
+        - /bin/bash
+      args: ["-c", "cat ~/message.txt"]

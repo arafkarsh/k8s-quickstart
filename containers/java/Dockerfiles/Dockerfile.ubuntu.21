@@ -1,0 +1,62 @@
+#---------------------------------------------------------------
+# Java Ubuntu ARM Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+#
+# Version 0.01
+#---------------------------------------------------------------
+# Java 21 Container
+#---------------------------------------------------------------
+
+# Stage 1: Builder Stage
+FROM arafkarsh/ubuntu:24.04 AS builder
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Oracle Java Ubuntu image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+# Download and extract Java (ARM version) in the builder stage
+RUN mkdir -p /Softwares/jdk21 && \
+    wget -q https://download.oracle.com/java/21/latest/jdk-21_linux-aarch64_bin.tar.gz -O /tmp/jdk21-arm.tar.gz && \
+    tar -xzf /tmp/jdk21-arm.tar.gz -C /Softwares/jdk21 --strip-components=1 && \
+    rm -f /tmp/jdk21-arm.tar.gz
+
+# Stage 2: Final Image
+FROM arafkarsh/ubuntu:24.04
+
+# Metadata
+LABEL maintainer="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      description="This Dockerfile creates the Oracle Java Ubuntu image." \
+      version="1.0" \
+      org.opencontainers.image.authors="Araf Karsh Hamid <araf.karsh@gmail.com>" \
+      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.licenses="Apache 2"
+
+# Copy only the Java runtime from the builder stage
+COPY --from=builder /Softwares/jdk21 /Softwares/jdk21
+
+# Set permissions and environment variables
+RUN chown -R ozazo:dev /Softwares/jdk21 && \
+    chmod -R 750 /Softwares/jdk21
+
+# Add profile information to .bash_profile
+RUN { \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "java -version"; \
+    echo "echo \"----------------------------------------------------------------\""; \
+    echo "echo \"Ubuntu arm64/amd64 Java 21 Container\""; \
+    echo "echo \"----------------------------------------------------------------\""; \
+  } >> /home/ozazo/.bash_profile
+
+# Set environment variables
+ENV PATH=$PATH:/Softwares/jdk21/bin
+ENV JAVA_HOME=/Softwares/jdk21
+
+# Enable User ozazo at this Level
+USER ozazo
+
+# Set entry point
+ENTRYPOINT ["/bin/bash", "--login"]

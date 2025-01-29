@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: t31-task-git-clone
+spec:
+  params: 
+    - name: gitrepository
+      type: string 
+      description: Git repository to be cloned 
+      default: https://github.com/arafkarsh/ms-springboot-vanilla.git
+  workspaces:
+    - name: source
+  steps:
+    - name: t3-git-clone
+      image: alpine/git
+      workingDir: $(workspaces.source.path)
+      command:
+        - /bin/sh
+      args: 
+        - '-c'
+        - git clone -v $(params.gitrepository) ./source
+    - name: t3-repo-list
+      image: alpine
+      workingDir: $(workspaces.source.path)
+      command:
+        - /bin/sh
+      args:
+        - "-c"
+        - ls -la ./source

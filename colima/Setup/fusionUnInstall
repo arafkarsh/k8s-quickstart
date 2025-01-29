@@ -1,0 +1,42 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../utils/colimaStatus
+
+
+# Function to handle uninstallation
+uninstall() {
+  echo "Proceeding with Alpha Service uninstallation..."
+  echo "UnInstall the Fusion Service in Kubernetes cluster"
+  kubectl delete ingress fusion-water-gw-ingress -n fusion
+  kubectl delete namespace fusion
+  echo "Alpha Service Uninstallation complete!"
+}
+
+# List all the Fusion Water Services
+kubectl get ingress -o wide -n fusion
+kubectl get namespace -o wide | grep fusion
+echo 
+
+response="y"
+
+# Ask the user the question
+#read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+
+# Normalize the input to lowercase for easy comparison
+#response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+# Process the response
+if [[ "$response" == "y" || "$response" == "yes" ]]; then
+  uninstall
+elif [[ "$response" == "n" || "$response" == "no" ]]; then
+  echo "Alpha Service Uninstallation canceled. Exiting."
+else
+  echo "Invalid input. Please enter yes/y or no/n."
+fi
+

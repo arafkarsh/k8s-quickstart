@@ -1,0 +1,33 @@
+#!/bin/bash
+
+echo "Part 2: " 
+echo "Chapter 2: Install Istio"
+
+echo "2.1 Install Istio"
+istioctl manifest apply --set profile=demo
+
+kubectl get pods -n istio-system
+
+echo "2.2 Enable Istio Injection"
+kubectl label namespace default istio-injection=enabled
+
+echo "2.3 Patch Istio IngressGateway with NodePort"
+kubectl patch service istio-ingressgateway -n istio-system --patch "$(cat setup/patch-ingressgateway-nodeport.yaml)"
+
+echo "2.4 Install Prometheus for Metrics"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.12/samples/addons/prometheus.yaml
+
+echo "2.5 Install Grafana for Dashboard"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.12/samples/addons/grafana.yaml
+
+echo "2.6 Install Jaeger for Distributed Tracing"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.12/samples/addons/jaeger.yaml
+
+echo "2.7 Install Kiali for Observability Console"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.12/samples/addons/kiali.yaml
+
+
+kubectl get pods -n istio-system
+
+echo "2.8 To Install the Apps run the following command"
+echo "$ ch3-sigma-install-apps"

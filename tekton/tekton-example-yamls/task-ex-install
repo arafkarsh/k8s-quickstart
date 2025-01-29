@@ -1,0 +1,13 @@
+#!/bin/bash
+
+kubectl apply -f 01_hello-world-task.yaml		
+kubectl apply -f 02_hello-world-params.yaml	
+kubectl apply -f 03_hello-world-params-2.yaml	
+kubectl apply -f 04_task_multi_steps.yaml		
+kubectl apply -f 05_task_configmap.yaml		
+kubectl apply -f 06_task_share_data.yaml
+kubectl apply -f 07_task_share_data_file.yaml
+kubectl apply -f 08_task_script-step.yaml
+kubectl apply -f 09_task-params.yaml
+kubectl apply -f 10_task-slow.yaml
+

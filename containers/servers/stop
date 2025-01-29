@@ -1,0 +1,26 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Server Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+# Stop Server Container
+#---------------------------------------------------------------
+
+# Source the organization-wide config
+source ../utils/config-org.env
+source utils/common-functions
+source ../utils/colimaStatus
+
+# Call the validation function with "$@"
+validate_params "$@"
+
+# Set version from $2
+set_version "$2"
+
+# Determine configuration based on $1
+determine_config "$1"
+
+echo "docker container stop $ORG-$SERVICE_NAME"
+docker container stop $ORG-$SERVICE_NAME

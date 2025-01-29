@@ -1,0 +1,35 @@
+# Pod Definition (ONLY for LEARNING PURPOSE)
+# NOT TO BE USED IN PRODUCTION ENVIRONMENT
+# Use Deployment (Kind) instead of Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bb-n-pod
+  namespace: omega
+  labels:
+    app: bb-n-pod
+    release: stable
+spec:
+  # Init Containers Will run Before the App Container
+  initContainers:
+  - name: init-myservice
+    image: busybox:1.28
+    command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done"]
+  - name: init-mydb
+    image: busybox:1.28
+    command: ['sh', '-c', "until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done"]
+  # App Container
+  containers:
+  - name: bb-n-container
+    image: busybox:1.28
+    # Use Always ONLY for Development purpose.
+    imagePullPolicy: IfNotPresent
+    command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+    resources:
+    # QoS : Burstable
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 75m
+        memory: 64Mi

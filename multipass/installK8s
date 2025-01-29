@@ -1,0 +1,29 @@
+#!/bin/sh
+echo "Install Kubernetes... v1.32 "
+
+# Update and install dependencies
+echo "1/4 : Update dependencies.. https, ca-certificates, curl..."
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl
+
+# Add Kubernetes repository
+echo "2/4 : Add Kubernetes Repositories..."
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo mkdir -p -m 755 /etc/apt/keyrings
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+# Install Kubernetes tools
+echo "3/4 : Add Kubernetes Repository Key"
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+echo "4/4 : Prevent Updates to kubernetes tools kubelet, kubeadm, kubectl..."
+# Prevent updates to these packages
+sudo apt-mark hold kubelet kubeadm kubectl
+echo
+echo "Enable Kubelet"
+sudo systemctl enable --now kubelet

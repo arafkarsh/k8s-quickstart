@@ -1,0 +1,20 @@
+#  Define App / Service Properties 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cart-config
+  namespace: lambda
+data:
+  api.properties: |
+    service.name=Cart
+    springdoc.api-docs.path=/api/v1/cart/
+    springdoc.swagger-ui.path=/api/v1/cart/swagger-ui.html
+  extended.properties: |
+    app.property.list=element1, element2, element3
+    app.property.map={key1:'val1', key2 : 'val2', key3 : 'val3'}
+  remote.properties: |
+    payment.gateway.host=127.0.0.1
+    payment.gateway.port=8080
+    remote.host=127.0.0.1
+    remote.port=8080
+    remote.protocol=http

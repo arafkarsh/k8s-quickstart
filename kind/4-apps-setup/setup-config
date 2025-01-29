@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Create Cart Config Map from Multiple files in the setup folder"
+kubectl create configmap cart-config --from-file=setup
+echo "Show the Cart Config Map"
+kubectl get configmaps cart-config -o yaml > cart-config-auto.yaml
+kubectl get configmaps cart-config -o yaml
+

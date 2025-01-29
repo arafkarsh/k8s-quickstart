@@ -1,0 +1,43 @@
+# Web Server for the Micro Frontend
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ws-deploy
+  namespace: lambda
+  labels:
+    app: ws-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ws-pod
+      release: stable
+      organization: Ozazo
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: ws-pod
+        release: stable
+        organization: Ozazo
+    spec:
+      containers:
+      - name: ws-container
+        image: arafkarsh/lambda
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        # Qos Best Effort
+        # Pod will not be launched if the Hardware 
+        # resource is not available
+        # To check, Run the command kubectl describe pods pod-name
+
+
+

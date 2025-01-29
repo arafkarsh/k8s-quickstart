@@ -1,0 +1,76 @@
+# App Server for the Microservice
+# Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-deploy
+  namespace: kappa
+  labels:
+    app: cart-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Matching the labels from Pod Meta Data
+      # Multiple labels can be used
+      app: cart-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    # Pod Meta Data
+    metadata:
+      labels:
+        app: cart-pod
+        version: "1.0.0"
+        release: stable
+        organization: Ozazo
+    spec:
+      # Init Containers Will run Before the App Container
+      initContainers:
+      - name: init-cart-service
+        image: busybox:1.28
+        command: ['sh', '-c', 'echo Initialize the App! && sleep 10']
+      # App Container Specs
+      containers:
+      - name: cart-container
+        image: arafkarsh/mock-cart
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: cart-port
+          containerPort: 9090
+        livenessProbe:
+          httpGet:
+            httpHeaders:
+              - name: Accept
+                value: application/json
+            path: /api/v1/cart/service/live
+            port: cart-port
+          initialDelaySeconds: 60
+          periodSeconds: 60
+        readinessProbe:
+          httpGet:
+            httpHeaders:
+              - name: Accept
+                value: application/json
+            path: /api/v1/cart/service/ready
+            port: cart-port
+          initialDelaySeconds: 60
+          periodSeconds: 60
+        resources:
+        # QoS : Burstable
+        # Pod will not be launched if the Hardware 
+        # resources are not available
+        # To check, Run the command kubectl describe pods pod-name
+          limits:
+            cpu: 756m
+            memory: 756Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+

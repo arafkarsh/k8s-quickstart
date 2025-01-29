@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Chapter 1: Delete Kubernetes Cluster"
+echo "Delete Delta K8s Cluster"
+kind delete cluster --name delta-4

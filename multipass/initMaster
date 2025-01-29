@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "Enable Kubelet Service ..."
+sudo systemctl enable kubelet.service
+
+echo
+echo "Kubeadm pull images ..."
+sudo kubeadm config images pull
+
+echo
+echo "Init Master with Pod Network=172.168.0.0/26, Service=150.96.0.0/12"
+sudo kubeadm init --v=5 --pod-network-cidr=172.168.0.0/16 --service-cidr=150.96.0.0/12

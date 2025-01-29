@@ -1,0 +1,48 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Colima Manager for Kubernetes
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Function to check and start Colima
+check_and_start_colima() {
+    # Check if Colima is installed
+    if command_exists colima; then
+        # Redirect stderr of `colima status` to a temporary file and check for "running"
+        status=$(colima status 2> /tmp/cs.txt && cat /tmp/cs.txt | grep -iq "running" && echo "running")
+
+        # Check if `status` is null
+        if [ -z "$status" ]; then
+            echo "Colima is not running. Starting Colima..."
+            echo "colima start --kubernetes --cpu 4 --memory 4"
+            colima start --kubernetes --cpu 4 --memory 4
+	    #echo "colima start --cpu 4 --memory 4 --network-address --kubernetes"
+	    #colima start --cpu 4 --memory 4 --network-address --kubernetes
+            if [ $? -eq 0 ]; then
+		echo "---------------------------------------------------------------"
+                echo "Colima started successfully."
+		kubectl cluster-info
+		echo "---------------------------------------------------------------"
+		kubectl get nodes -o wide 
+		echo "---------------------------------------------------------------"
+		kubectl get pods -n kube-system -o wide
+            else
+                echo "Failed to start Colima. Please check the logs."
+            fi
+        fi
+    else
+        echo "Colima is not installed. Please install Colima before running this script."
+        echo "Visit https://github.com/abiosoft/colima for installation instructions."
+        exit 1
+    fi
+}
+
+# Automatically call the function when the script is sourced
+check_and_start_colima

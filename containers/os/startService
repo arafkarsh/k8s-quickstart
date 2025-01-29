@@ -1,0 +1,9 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Base App Installation
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+echo "Starting the MicroService"
+java -jar *spring-bbot.jar
