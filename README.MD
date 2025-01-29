@@ -33,8 +33,6 @@ Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind
 
 ## New Apps Added in Kind section
 
-### Updates on Nov 29, 2021
-
 1. Chapter 5 - Kappa App with Spring Boot Apps (Cart, Order, Payment)
 2. Checkout the <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">Kind directory</a> for the details.
 3. For Docker, Kind, Kubectl command short cuts checkout the <a href="https://github.com/arafkarsh/k8s-quickstart/blob/main/bash_profile">bash_profile</a> file.
