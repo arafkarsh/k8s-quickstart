@@ -21,8 +21,8 @@ check_and_start_colima() {
         # Check if `status` is null
         if [ -z "$status" ]; then
             echo "Colima is not running. Starting Colima..."
-            echo "colima start --kubernetes --cpu 4 --memory 4"
-            colima start --kubernetes --cpu 4 --memory 4
+            echo "colima start --kubernetes --cpu 2 --memory 2"
+            colima start --kubernetes --cpu 2 --memory 2
 	    #echo "colima start --cpu 4 --memory 4 --network-address --kubernetes"
 	    #colima start --cpu 4 --memory 4 --network-address --kubernetes
             if [ $? -eq 0 ]; then

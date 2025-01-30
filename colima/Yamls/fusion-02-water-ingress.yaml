@@ -1,4 +1,4 @@
-# API Gateway for Routing traffic to Water & Microservices
+# API Gateway for Routing traffic to Water Alpha Microservices
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -43,3 +43,5 @@ spec:
             name: water-order-service
             port:
               number: 80
+
+

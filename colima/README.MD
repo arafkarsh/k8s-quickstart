@@ -26,13 +26,13 @@ colima stop
 
 ## Customize Colima 
 ```
-colima start --cpu 4 --memory 8 --disk 30
+colima start --cpu 2 --memory 4 --disk 30
 ```
 
 
 ## Colima with Kubernetes
 ```
-colima start --kubernetes
+colima start --kubernetes --cpu 2 --memory 4 
 ```
 
 
