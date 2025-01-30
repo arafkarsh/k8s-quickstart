@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: water-cart-container
-        image: arafkarsh/mock-cart-ui
+        image: arafkarsh/mock-cart-ui:1
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

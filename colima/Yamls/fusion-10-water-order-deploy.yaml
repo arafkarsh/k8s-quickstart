@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: water-order-container
-        image: arafkarsh/mock-order-ui
+        image: arafkarsh/mock-order-ui:1
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:

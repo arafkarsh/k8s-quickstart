@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: water-alpha-container
-        image: arafkarsh/alpha
+        image: arafkarsh/alpha:1
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
