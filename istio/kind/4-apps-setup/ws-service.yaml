@@ -14,7 +14,7 @@ spec:
   ports:
   - port: 80
     # Port Exposed by the Container
-    targetPort: 80
+    targetPort: 81
     protocol: TCP
     name: http
   selector:

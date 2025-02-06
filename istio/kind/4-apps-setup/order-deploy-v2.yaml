@@ -32,20 +32,18 @@ spec:
     spec:
       containers:
       - name: order-container
-        image: arafkarsh/mock-order
+        image: arafkarsh/mock-order-ui:1
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9090
         resources:
-        # QoS : Guranteed
-        # Pod will not be launched if the Hardware 
-        # resources are not available
-        # To check, Run the command kubectl describe pods pod-name
+        # QoS : [Guaranteed], BestEffort, Burstable
+        # Pod will not be launched if the Hardware  resources are not available
           limits:
-            cpu: 500m
-            memory: 512Mi
+            cpu: 5m
+            memory: 16Mi
           requests:
-            cpu: 500m
-            memory: 512Mi
+            cpu: 5m
+            memory: 16Mi
 

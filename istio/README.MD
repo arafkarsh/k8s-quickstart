@@ -1,53 +1,85 @@
-# Service Mesh - Istio (WIP)
+# Istio Installation
 
-Istio Reference: https://istio.io/latest/docs/setup/getting-started/
+## 1. Using Istioctl
 
-## Download Istio
 
+### 1.1 Install Istio
 ```
-$ curl -L https://istio.io/downloadIstio | sh -
-```
-
-## Setup Istio
-
-```
-$ cd istio-1.11.3
-$ export PATH=$PWD/bin:$PATH
-
-$ istioctl install --set profile=demo -y
-
-# $ kubectl label namespace default istio-injection=enabled
-```
-
-## Setup Dashboard for UI
-
-```
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.1.0/aio/deploy/recommended.yaml
-$ kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
-
-$ token=$(kubectl get secrets -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='default')].data.token}"|base64 --decode)
-
-echo $token
-
-$ kubectl proxy
-```
-
-## Setup Istio Demo App
-
-```
-$ kubectl label namespace default istio-injection=enabled
-
-$ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
-
-$ kubectl get ing,services,pods -o wide
-
-$ kubectl exec "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -sS productpage:9080/productpage | grep -o "<title>.*</title>"
-
-$ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-
-$ istioctl analyze
-
+istioctl install
 ```
 
 
+### 1.2 Uninstall Istio
+```
+istioctl uninstall --purge
+```
 
+## 2. Using Helm Charts
+
+
+### 2.0 Update Helm
+```
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+helm repo update
+
+```
+
+### 2.1 Install Istio
+```
+helm install istio-base istio/base -n istio-system --set defaultRevision=default --create-namespace
+
+```
+
+### 2.2 Validate the CRD Installation with helm ls command
+```
+ helm ls -n istio-system
+````
+
+### 2.3 Install Istio with CNI Plugin (optional)
+
+### 2.4 Install the Istio Discovery chart which deploys the istiod service
+```
+helm install istiod istio/istiod -n istio-system --wait
+
+```
+
+### 2.5 Verify the Istio Discovery Chart Installation
+```
+helm ls -n istio-system
+```
+
+### 2.6 Get the status of the Installed Helm Chart
+```
+helm status istiod -n istio-system
+```
+
+### 2.7 Check Istiod Service is successfully installed and its pods are running
+```
+kubectl get deployments -n istio-system --output wide
+```
+
+### 2.8 Optional - Install an Ingress Gateway
+```
+kubectl create namespace istio-ingress
+helm install istio-ingress istio/gateway -n istio-ingress --wait
+```
+
+### 2.9 (Install on port 8080) - Install Istio Ingress Gateway
+
+In your Colima + Kubernetes setup, an NGINX Ingress Controller is already running on ports 80/443. This prevents Istio from deploying its own Ingress Gateway by default. To enable both ingress controllers to coexist, configure the Istio Ingress Gateway to operate on ports 8080/8443 instead.
+
+```
+helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values.yaml --wait
+```
+
+### Content of file istio-gateway-values.yaml
+```
+service:
+  ports:
+    - name: http2
+      port: 8080
+      targetPort: 8080
+    - name: https
+      port: 8443
+      targetPort: 8443
+```

@@ -8,5 +8,16 @@
 
 source utils/colimaStatus
 
+echo "---------------------------------------------------------------"
 echo "List All Pods of Kube System "
-kubectl get pods -o wide -n kube-system
+kubectl get pods,svc -o wide -n kube-system
+echo "---------------------------------------------------------------"
+echo "List All Pods of Kube base "
+kubectl get pods,svc -o wide -n kube-base
+echo "---------------------------------------------------------------"
+echo "List All Pods of Istio System "
+kubectl get pods,svc -o wide -n istio-system
+echo "---------------------------------------------------------------"
+echo "List All Pods of Istio Ingress "
+kubectl get pods,svc -o wide -n istio-ingress
+echo "---------------------------------------------------------------"

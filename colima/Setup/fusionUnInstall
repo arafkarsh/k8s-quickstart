@@ -23,13 +23,26 @@ kubectl get ingress -o wide -n fusion
 kubectl get namespace -o wide | grep fusion
 echo 
 
+# Check if the -s flag is passed
+SILENT_MODE=false
+
+# Loop through arguments
+while getopts "s" opt; do
+  case "$opt" in
+    s) SILENT_MODE=true ;;
+  esac
+done
+
 response="y"
 
-# Ask the user the question
-#read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+# Perform the operation only if silent mode is NOT enabled
+if [ "$SILENT_MODE" = false ]; then
+  # Ask the user the question
+  read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+  # Normalize the input to lowercase for easy comparison
+  response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+fi
 
-# Normalize the input to lowercase for easy comparison
-#response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then

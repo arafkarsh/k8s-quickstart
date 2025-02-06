@@ -29,15 +29,21 @@ spec:
         organization: Ozazo
     spec:
       containers:
-      - name: ws-container
-        image: arafkarsh/lambda
-        imagePullPolicy: Always
+      - name: water-alpha-container
+        image: arafkarsh/alpha:1
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
-        # Qos Best Effort
-        # Pod will not be launched if the Hardware 
-        # resource is not available
-        # To check, Run the command kubectl describe pods pod-name
+        - containerPort: 81
+        resources:
+          # QoS : [Burstable], BestEffort, Guaranteed
+          # Pod will not be launched if the Hardware  resources are not available
+          limits:
+            cpu: 5m
+            memory: 16Mi
+          requests:
+            cpu: 5m
+            memory: 12Mi
 
 
 
