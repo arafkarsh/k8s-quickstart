@@ -1,0 +1,19 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source utils/colimaStatus
+
+podName=$(kubectl get pods -n istio-ingress | grep "nginx" | awk 'NR==1 {print $1}')
+
+echo "---------------------------------------------------------------"
+kubectl get pods -o wide -n kube-system
+echo "---------------------------------------------------------------"
+echo "Check the Logs of the Pod=$podName -n istio-ingress"
+echo "---------------------------------------------------------------"
+echo "kubectl logs -f $podName -n istio-ingress"
+kubectl logs -f $podName -n istio-ingress
