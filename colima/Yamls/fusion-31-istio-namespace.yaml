@@ -1,0 +1,8 @@
+# Namespace Definition
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fusion
+  labels:
+    name: fusion
+    istio-injection: enabled

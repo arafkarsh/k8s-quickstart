@@ -75,11 +75,17 @@ These services will be updated with more functionality by end of Aug 2021.
 
 ![Service Mesh](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/Istio-Components.jpg)
 
-##  Demo App Architecture
+## Ozazo ShopEZ Demo Application
+
+###  Demo App Architecture
 
 ![Shopping Portal](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-Demo-1.jpg)
 
-## Docker Images - Sofware <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/docker">(docker)</a> for running Application
+### ShopEZ Hardware Specs
+
+![Shopping HW](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-Colima-Examples-Specs.jpg)
+
+### Docker Images - Software <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/docker">(docker)</a> for running Application
 
 - OS (Alpine, Alpaquita, Ubuntu)
 - Java 11, 17, 21, 23
