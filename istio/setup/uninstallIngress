@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "helm uninstall istio-ingress -n istio-ingress "
+helm uninstall istio-ingress -n istio-ingress 
