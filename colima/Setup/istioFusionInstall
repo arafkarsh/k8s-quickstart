@@ -9,16 +9,10 @@
 source ../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Water Services in Kubernetes cluster"
+echo "Install the Fusion Service in Kubernetes/Istio cluster"
 echo "---------------------------------------------------------------"
-echo "1. Setup the Namespace and Ingress"
-fusionK8sInstall
-echo "2. Setup Alpha Service"
-alphaInstall
-echo "3. Setup Product Service"
-productInstall
-echo "4. Setup Cart Service"
-cartInstall
-echo "5. Setup Order Service"
-orderInstall
+echo "1. Deploy the Istio Namespace / Gateway in Kubernetes cluster"
+kubectl create -f ../Yamls/fusion-31-istio-namespace.yaml
+kubectl create -f ../Yamls/fusion-32-istio-gateway.yaml
+kubectl port-forward svc/istio-ingress -n istio-ingress 8080:8080
 echo "---------------------------------------------------------------"

@@ -8,7 +8,7 @@
 
 source utils/colimaStatus
 
-podName=$(kubectl get pods -n istio-ingress | grep "nginx" | awk 'NR==1 {print $1}')
+podName=$(kubectl get pods -n istio-ingress | grep "istio-ingress" | awk 'NR==1 {print $1}')
 
 echo "---------------------------------------------------------------"
 kubectl get pods -o wide -n kube-system

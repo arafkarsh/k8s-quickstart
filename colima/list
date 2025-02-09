@@ -26,10 +26,12 @@ echo "---------------------------------------------------------------"
 #kubectl get svc -o wide 
 kubectl get svc -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Ingress / HPA"
+echo "Ingress : Istio Gateway / Virtual Service"
 echo "---------------------------------------------------------------"
 #kubectl get ing -o wide
 kubectl get ing -o wide -n fusion
+kubectl get gateway -o wide -n fusion
+kubectl get virtualservice -o wide -n fusion
 echo "---------------------------------------------------------------"
 #kubectl get hpa -o wide 
 kubectl get hpa -o wide -n fusion

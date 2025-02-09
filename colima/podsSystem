@@ -15,9 +15,10 @@ echo "---------------------------------------------------------------"
 echo "List All Pods of Kube base "
 kubectl get pods,svc -o wide -n kube-base
 echo "---------------------------------------------------------------"
-echo "List All Pods of Istio System "
-kubectl get pods,svc -o wide -n istio-system
+echo "List All Pods of nginx System "
+kubectl get pods,svc -o wide -n ingress-nginx
 echo "---------------------------------------------------------------"
 echo "List All Pods of Istio Ingress "
 kubectl get pods,svc -o wide -n istio-ingress
+kubectl get pods,svc -o wide -n istio-system
 echo "---------------------------------------------------------------"

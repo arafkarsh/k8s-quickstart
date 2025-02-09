@@ -9,16 +9,9 @@
 source ../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Water Services in Kubernetes cluster"
-echo "---------------------------------------------------------------"
-echo "1. Setup the Namespace and Ingress"
-fusionK8sInstall
-echo "2. Setup Alpha Service"
-alphaInstall
-echo "3. Setup Product Service"
-productInstall
-echo "4. Setup Cart Service"
-cartInstall
-echo "5. Setup Order Service"
-orderInstall
+echo "kubectl delete virtualservice fusion-*-vs -n fusion"
+kubectl delete virtualservice fusion-alpha-vs -n fusion
+kubectl delete virtualservice fusion-product-vs -n fusion
+kubectl delete virtualservice fusion-cart-vs -n fusion
+kubectl delete virtualservice fusion-order-vs -n fusion
 echo "---------------------------------------------------------------"

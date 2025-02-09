@@ -1,0 +1,21 @@
+# API Gateway for Routing traffic to Water Alpha Microservices
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: fusion-product-vs
+  namespace: fusion
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fusion-gateway
+  http:
+  - match:
+    # Service 1: Product Service
+    - uri:
+        prefix: /product/
+    route:
+    - destination:
+        host: water-product-service
+        port:
+          number: 80
