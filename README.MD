@@ -9,11 +9,15 @@
 - Kubernetes (1.32)
 - Istio (1.24)
 
-##  Getting Started
+##  1. Getting Started
 
-Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with Docker, KinD, Kubernetes installation and Demo Apps.
+### 1.1 Getting Started with Colima
+Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/colima">here</a> for getting started with Colima, Docker, Kubernetes, Istio installation and Demo Apps.
 
-### Updates as on Jan 26, 2025
+### 1.2 Getting Started with KinD
+Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with C Docker, KinD, Kubernetes installation and Demo Apps.
+
+### 1.3 Updates as on Jan 26, 2025
 
 #### 1. Multi Architecture Containers
 
@@ -31,13 +35,13 @@ Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind
 3. <a href="https://hub.docker.com/r/arafkarsh/lambda/tags">Lambda</a>
 4. <a href="https://hub.docker.com/r/arafkarsh/kappa/tags">Kappa</a>
 
-## New Apps Added in Kind section
+### 1.4 New Apps Added in Kind section
 
 1. Chapter 5 - Kappa App with Spring Boot Apps (Cart, Order, Payment)
 2. Checkout the <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">Kind directory</a> for the details.
 3. For Docker, Kind, Kubectl command short cuts checkout the <a href="https://github.com/arafkarsh/k8s-quickstart/blob/main/bash_profile">bash_profile</a> file.
 
-## Microservices Template
+### 1.6 Microservices Template
 
 Microservice Template gives you a
 
@@ -57,35 +61,36 @@ Mock Services built using Microservices Template Code base. These services have 
 3. <a href="https://github.com/arafkarsh/mock-payment">Payment Service</a>
 4. <a href="https://github.com/arafkarsh/mock-product">Product Service</a>
 
-These services will be updated with more functionality by end of Aug 2021.
 
-## Server, Virtual Machines & Containers
+## 2. Understanding the Servers, Containers & Container Orchestration
+
+### 2.1 Server, Virtual Machines & Containers
 
 ![Containers](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/Servers-VMs-Containers.jpg)
 
-##  How Docker Works?
+###  2.2 How Docker Works?
 
 ![Docker](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/How-Docker-Works.png)
 
-## Kubernetes Architcture
+### 2.3 Kubernetes Architcture
 
 ![K8s Architecture](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-Arch.jpg)
 
-## Service Mesh
+### 2.4 Service Mesh
 
 ![Service Mesh](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/Istio-Components.jpg)
 
-## Ozazo ShopEZ Demo Application
+## 3. Ozazo ShopEZ Demo Application
 
-###  Demo App Architecture
+### 3.1 Demo App Architecture
 
 ![Shopping Portal](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-Demo-1.jpg)
 
-### ShopEZ Hardware Specs
+### 3.2 ShopEZ Hardware Specs
 
 ![Shopping HW](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-Colima-Examples-Specs.jpg)
 
-### Docker Images - Software <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/docker">(docker)</a> for running Application
+### 3.3 Docker Images - Software <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/docker">(docker)</a> for running Application
 
 - OS (Alpine, Alpaquita, Ubuntu)
 - Java 11, 17, 21, 23
@@ -93,12 +98,26 @@ These services will be updated with more functionality by end of Aug 2021.
 - Tomcat 9, 10, 11
 - PodShell and OShell
 
-## KinD Clusters
+## 4. Developer Tools
+
+### 4.1 Colima Setup
+
+- Single Node 
+- Container Examples
+- Kubernetes Examples
+- Istio Examples (WIP)
+- Serverless Examples (WIP) 
+
+Checkout the Colima Section for more details. Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/colima">here</a> for getting started with Colima, Docker, Kubernetes, Istio installation and Demo Apps.
+
+### 4.2 KinD Clusters
 
 - Clusters (Contain Cluster Configurations)
 - Apps (Demo Service Infra Code) are created chapter wise based to demonstrate various Kubernetes features.
 
-## Kubernetes Chapters
+Checkout the KinD section for more details. Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with C Docker, KinD, Kubernetes installation and Demo Apps.
+
+### 4.3 Kubernetes Chapters
 
 1. Namespace, Pods, ReplicaSet, Service, Ingress
 2. Deployment, ReplicaSet, Service, Ingress, Auto Pod Scaling
@@ -107,11 +126,11 @@ These services will be updated with more functionality by end of Aug 2021.
 5. Volumes
 6. Network Policies
 
-## Service Mesh -Istio Chapters
+### 4.4 Service Mesh -Istio Chapters
 
 7. coming soon.
 
-## Short Cuts for Docker, KinD, Kubernetes and Git
+### 4.5 Short Cuts for Docker, KinD, Kubernetes and Git
 
 <a href="https://github.com/arafkarsh/k8s-quickstart/blob/master/bash_profile">bash_profile</a> contains shortcuts to various commmands for
 
