@@ -27,26 +27,28 @@ response="y"
 # Perform the operation only if silent mode is NOT enabled
 if [ "$SILENT_MODE" = false ]; then
   # Ask the user the question
-  read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+  read -p "Do you want to uninstall Fusion-Water-Alpha Istio Service? (yes/y or no/n): " response
   # Normalize the input to lowercase for easy comparison
   response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 fi
 
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then
-  echo "1. UnInstall Order Service"
+  echo "1. UnInstall the Virtual Services"
+  istioDeleteVirtualService
+  echo "2. UnInstall Order Service"
   orderUnInstall -s
-  echo "2. UnInstall Cart Service"
+  echo "3. UnInstall Cart Service"
   cartUnInstall -s
-  echo "3. UnInstall Product Service"
+  echo "4. UnInstall Product Service"
   productUnInstall -s
-  echo "4. UnInstall Alpha Service"
+  echo "5. UnInstall Alpha Service"
   alphaUnInstall -s
-  echo "5. UnInstall the Namespace and Ingress"
-  fusionK8sUnInstall -s
+  echo "6. UnInstall the Namespace / Gateway "
+  istioFusionUnInstall -s
   echo "---------------------------------------------------------------"
 elif [[ "$response" == "n" || "$response" == "no" ]]; then
-  echo "Alpha Service Uninstallation canceled. Exiting."
+  echo "Alpha Service Istio Uninstallation canceled. Exiting."
 else
   echo "Invalid input. Please enter yes/y or no/n."
 fi

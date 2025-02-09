@@ -1,0 +1,21 @@
+# API Gateway for Routing traffic to Water Alpha Microservices
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: fusion-cart-vs
+  namespace: fusion
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fusion-gateway
+  http:
+  - match:
+    # Service 2: Cart Service
+    - uri:
+        prefix: /cart/
+    route:
+    - destination:
+        host: cart-service
+        port:
+          number: 80
