@@ -13,6 +13,8 @@ spec:
   - match:
     # Service 1: Product Service
     - uri:
+        exact: /product
+    - uri:
         prefix: /product/
     route:
     - destination:

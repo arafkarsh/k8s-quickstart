@@ -16,8 +16,10 @@ kubectl get pods -o wide -n kube-system
 echo "---------------------------------------------------------------"
 echo "kubectl get pods -o wide -n istio-ingress"
 kubectl get pods -o wide -n istio-ingress
+kubectl get svc -o wide -n istio-ingress
 echo "---------------------------------------------------------------"
 echo "Check the Logs of the Pod=$podName -n istio-ingress"
 echo "---------------------------------------------------------------"
-echo "kubectl logs -f $podName -c istio-proxy -n istio-ingress"
-kubectl logs -f $podName -c istio-proxy -n istio-ingress
+echo "kubectl describe pod $podName -n istio-ingress"
+kubectl describe pod $podName -n istio-ingress
+istioctl proxy-config cluster -n istio-ingress $podName

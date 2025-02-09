@@ -13,6 +13,8 @@ spec:
   - match:
     # Service 3: Order Service
     - uri:
+        exact: /order
+    - uri:
         prefix: /order/
     route:
     - destination:
