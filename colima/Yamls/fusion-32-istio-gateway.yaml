@@ -7,7 +7,8 @@ metadata:
   namespace: fusion
 spec:
   selector:
-    istio: ingressgateway # use istio default controller
+    istio: ingress # IF the installation done using HELM
+    #istio: ingressgateway # use istio default controller
   servers:
   - port:
       number: 80

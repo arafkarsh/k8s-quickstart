@@ -13,9 +13,11 @@ spec:
   - match:
     # Service 2: Cart Service
     - uri:
+        exact: /cart
+    - uri:
         prefix: /cart/
     route:
     - destination:
-        host: cart-service
+        host: water-cart-service
         port:
           number: 80
