@@ -1,0 +1,17 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "kubectl delete httproute fusion-*-route -n fusion"
+kubectl delete httproute fusion-alpha-route -n fusion
+kubectl delete httproute fusion-product-route -n fusion
+kubectl delete httproute fusion-cart-route -n fusion
+kubectl delete httproute fusion-order-route -n fusion
+echo "---------------------------------------------------------------"

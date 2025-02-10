@@ -1,0 +1,19 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "kubectl apply -f ../../Yamls/fusion-33-*-vs.yaml"
+kubectl apply -f ../../Yamls/fusion-33-istio-alpha-vs.yaml
+kubectl apply -f ../../Yamls/fusion-33-istio-product-vs.yaml
+kubectl apply -f ../../Yamls/fusion-33-istio-cart-vs.yaml
+kubectl apply -f ../../Yamls/fusion-33-istio-order-vs.yaml
+echo "---------------------------------------------------------------"
+kubectl get virtualservice -n fusion 
+echo "---------------------------------------------------------------"

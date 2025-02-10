@@ -1,0 +1,24 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Install the Fusion Water Services in Kubernetes cluster"
+echo "---------------------------------------------------------------"
+echo "1. Setup the Namespace and Ingress"
+../k8s/fusionK8sInstall
+echo "2. Setup Alpha Service"
+alphaInstall
+echo "3. Setup Product Service"
+productInstall
+echo "4. Setup Cart Service"
+cartInstall
+echo "5. Setup Order Service"
+orderInstall
+echo "---------------------------------------------------------------"
