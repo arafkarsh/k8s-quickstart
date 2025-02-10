@@ -1,0 +1,17 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Install the Fusion Service in Kubernetes cluster"
+echo "---------------------------------------------------------------"
+echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+kubectl create -f ../../Yamls/fusion-01-namespace.yaml
+kubectl create -f ../../Yamls/fusion-02-water-ingress.yaml
+echo "---------------------------------------------------------------"

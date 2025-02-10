@@ -1,0 +1,53 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "UnInstall the Fusion Water Service in Kubernetes cluster"
+echo "---------------------------------------------------------------"
+
+# Check if the -s flag is passed
+SILENT_MODE=false
+
+# Loop through arguments
+while getopts "s" opt; do
+  case "$opt" in
+    s) SILENT_MODE=true ;;
+  esac
+done
+
+response="y"
+
+# Perform the operation only if silent mode is NOT enabled
+if [ "$SILENT_MODE" = false ]; then
+  # Ask the user the question
+  read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+  # Normalize the input to lowercase for easy comparison
+  response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+fi
+
+# Process the response
+if [[ "$response" == "y" || "$response" == "yes" ]]; then
+  echo "1. UnInstall Order Service"
+  orderUnInstall -s
+  echo "2. UnInstall Cart Service"
+  cartUnInstall -s
+  echo "3. UnInstall Product Service"
+  productUnInstall -s
+  echo "4. UnInstall Alpha Service"
+  alphaUnInstall -s
+  echo "5. UnInstall the Namespace and Ingress"
+  ../k8s/fusionK8sUnInstall -s
+  echo "---------------------------------------------------------------"
+elif [[ "$response" == "n" || "$response" == "no" ]]; then
+  echo "Alpha Service Uninstallation canceled. Exiting."
+else
+  echo "Invalid input. Please enter yes/y or no/n."
+fi
+

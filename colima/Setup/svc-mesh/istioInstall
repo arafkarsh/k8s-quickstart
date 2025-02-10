@@ -1,0 +1,30 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Install the Fusion Water Services in Kubernetes Istio cluster"
+echo "---------------------------------------------------------------"
+echo "1. Setup the Istio Namespace / Gateway "
+istioFusionInstall
+echo "2. Setup Istio VirtualServices"
+istioApplyVirtualService
+echo "3. Setup Alpha Service"
+../app/alphaInstall
+echo "4. Setup Product Service"
+../app/productInstall
+echo "5. Setup Cart Service"
+../app/cartInstall
+echo "6. Setup Order Service"
+../app/orderInstall
+echo "---------------------------------------------------------------"
+echo "Sleeping for 7 seconds..."
+sleep 7
+echo "---------------------------------------------------------------"
+list

@@ -1,0 +1,31 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+echo "---------------------------------------------------------------"
+echo "App Configuration and Secrets"
+echo "---------------------------------------------------------------"
+kubectl get configmaps -o wide -n fusion
+#echo "---------------------------------------------------------------"
+kubectl get secrets -o wide -n fusion
+echo "---------------------------------------------------------------"
+echo "Pods / Deployments / Services"
+echo "---------------------------------------------------------------"
+kubectl get pods -o wide -n fusion
+echo "---------------------------------------------------------------"
+kubectl get deploy -o wide -n fusion
+echo "---------------------------------------------------------------"
+kubectl get svc -o wide -n fusion
+echo "---------------------------------------------------------------"
+echo "Ingress : Istio Gateway / Virtual Service"
+echo "---------------------------------------------------------------"
+kubectl get ing -o wide -n fusion
+kubectl get gateway -o wide -n fusion
+kubectl get virtualservice -o wide -n fusion
+echo "---------------------------------------------------------------"
+kubectl get hpa -o wide -n fusion
+echo "---------------------------------------------------------------"

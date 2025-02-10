@@ -1,4 +1,7 @@
 #!/bin/bash
-echo "helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values-80.yaml --wait --timeout 10m"
-helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values-80.yaml --wait --timeout 10m
+#echo "helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values-80.yaml --wait --timeout 10m"
+#helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values-80.yaml --wait --timeout 10m
 #helm install istio-ingress istio/gateway -n istio-ingress -f istio-gateway-values.yaml --wait --timeout 10m
+
+echo "helm install istio-ingressgateway istio/gateway -n istio-ingress"
+helm install istio-ingressgateway istio/gateway -n istio-ingress

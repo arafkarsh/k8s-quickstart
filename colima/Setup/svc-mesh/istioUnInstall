@@ -1,0 +1,59 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "UnInstall the Fusion Water Service in Kubernetes Istio cluster"
+echo "---------------------------------------------------------------"
+
+# Check if the -s flag is passed
+SILENT_MODE=false
+
+# Loop through arguments
+while getopts "s" opt; do
+  case "$opt" in
+    s) SILENT_MODE=true ;;
+  esac
+done
+
+response="y"
+
+# Perform the operation only if silent mode is NOT enabled
+if [ "$SILENT_MODE" = false ]; then
+  # Ask the user the question
+  read -p "Do you want to uninstall Fusion-Water-Alpha K8s Istio Service? (yes/y or no/n): " response
+  # Normalize the input to lowercase for easy comparison
+  response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+fi
+
+# Process the response
+if [[ "$response" == "y" || "$response" == "yes" ]]; then
+  echo "1. UnInstall the Virtual Services"
+  istioDeleteVirtualService
+  echo "2. UnInstall Order Service"
+  ../app/orderUnInstall -s
+  echo "3. UnInstall Cart Service"
+  ../app/cartUnInstall -s
+  echo "4. UnInstall Product Service"
+  ../app/productUnInstall -s
+  echo "5. UnInstall Alpha Service"
+  ../app/alphaUnInstall -s
+  echo "6. UnInstall the Namespace / Gateway "
+  istioFusionUnInstall -s
+  echo "---------------------------------------------------------------"
+  echo "Sleeping for 7 seconds..."
+  sleep 7
+  echo "---------------------------------------------------------------"
+  list
+elif [[ "$response" == "n" || "$response" == "no" ]]; then
+  echo "Alpha Service K8s Istio Uninstallation canceled. Exiting."
+else
+  echo "Invalid input. Please enter yes/y or no/n."
+fi
+

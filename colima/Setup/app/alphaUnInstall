@@ -1,0 +1,57 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+
+
+# Function to handle uninstallation
+uninstall() {
+  echo "Proceeding with uninstallation of Alpha Service..."
+  echo "UnInstall the Fusion Service in Kubernetes cluster"
+  kubectl delete service water-alpha-service -n fusion
+  kubectl delete deploy water-alpha-deploy -n fusion
+  kubectl delete hpa water-alpha-hpa -n fusion
+  echo "Alpha Service Uninstallation complete!"
+}
+
+# List all the Fusion Water Services
+kubectl get deploy -o wide -n fusion
+kubectl get service -o wide -n fusion
+echo 
+
+# Check if the -s flag is passed
+SILENT_MODE=false
+
+# Loop through arguments
+while getopts "s" opt; do
+  case "$opt" in
+    s) SILENT_MODE=true ;;
+  esac
+done
+
+response="y"
+
+# Perform the operation only if silent mode is NOT enabled
+if [ "$SILENT_MODE" = false ]; then
+  # Ask the user the question
+  read -p "Do you want to uninstall Fusion-Water-Alpha Service? (yes/y or no/n): " response
+  # Normalize the input to lowercase for easy comparison
+  response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+fi
+
+
+# Process the response
+if [[ "$response" == "y" || "$response" == "yes" ]]; then
+  uninstall
+elif [[ "$response" == "n" || "$response" == "no" ]]; then
+  echo "Alpha service Uninstallation canceled. Exiting."
+else
+  echo "Invalid input. Please enter yes/y or no/n."
+fi
+
