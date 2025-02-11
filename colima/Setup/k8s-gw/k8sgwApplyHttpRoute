@@ -9,11 +9,11 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "kubectl apply -f ../../Yamls/fusion-23-*-route.yaml"
-kubectl apply -f ../../Yamls/fusion-23-k8s-alpha-route.yaml
-kubectl apply -f ../../Yamls/fusion-23-k8s-product-route.yaml
-kubectl apply -f ../../Yamls/fusion-23-k8s-cart-route.yaml
-kubectl apply -f ../../Yamls/fusion-23-k8s-order-route.yaml
+echo "kubectl apply -f ../../Yamls/k8s-gw/fusion-23-*-route.yaml"
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-alpha-route.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-product-route.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-cart-route.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-order-route.yaml
 echo "---------------------------------------------------------------"
 kubectl get httproute -n fusion 
 echo "---------------------------------------------------------------"

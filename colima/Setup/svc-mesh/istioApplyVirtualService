@@ -9,11 +9,11 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "kubectl apply -f ../../Yamls/fusion-33-*-vs.yaml"
-kubectl apply -f ../../Yamls/fusion-33-istio-alpha-vs.yaml
-kubectl apply -f ../../Yamls/fusion-33-istio-product-vs.yaml
-kubectl apply -f ../../Yamls/fusion-33-istio-cart-vs.yaml
-kubectl apply -f ../../Yamls/fusion-33-istio-order-vs.yaml
+echo "kubectl apply -f ../../Yamls/svc-mesh/fusion-33-*-vs.yaml"
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-alpha-vs.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-product-vs.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-cart-vs.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-order-vs.yaml
 echo "---------------------------------------------------------------"
 kubectl get virtualservice -n fusion 
 echo "---------------------------------------------------------------"

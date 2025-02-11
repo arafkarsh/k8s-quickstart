@@ -9,7 +9,7 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "UnInstall the Alpha Services (Alpha, Product, Cart, Order)...  "
+echo "UnInstall the Fusion Water Service in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
 
 # Check if the -s flag is passed
@@ -27,24 +27,27 @@ response="y"
 # Perform the operation only if silent mode is NOT enabled
 if [ "$SILENT_MODE" = false ]; then
   # Ask the user the question
-  read -p "Do you want to uninstall Fusion-Water-Alpha Services? (yes/y or no/n): " response
+  read -p "Do you want to uninstall Fusion-Water-Alpha K8s Istio Service? (yes/y or no/n): " response
   # Normalize the input to lowercase for easy comparison
   response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 fi
 
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then
-  echo "1. UnInstall Order Service"
-  orderUnInstall -s
-  echo "2. UnInstall Cart Service"
-  cartUnInstall -s
-  echo "3. UnInstall Product Service"
-  productUnInstall -s
-  echo "4. UnInstall Alpha Service"
-  alphaUnInstall -s
+  echo "1. UnInstall the Istio Virtual Services"
+  istioDeleteVirtualService
+  cd ../app
+  allUnInstall -s
+  cd ../svc-mesh
+  echo "6. UnInstall the Namespace / Gateway "
+  istioFusionUnInstall -s
   echo "---------------------------------------------------------------"
+  echo "Sleeping for 7 seconds..."
+  sleep 7
+  echo "---------------------------------------------------------------"
+  list
 elif [[ "$response" == "n" || "$response" == "no" ]]; then
-  echo "Alpha Services Uninstallation canceled. Exiting."
+  echo "Alpha Service K8s Istio Uninstallation canceled. Exiting."
 else
   echo "Invalid input. Please enter yes/y or no/n."
 fi
