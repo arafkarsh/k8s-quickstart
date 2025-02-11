@@ -1,5 +1,7 @@
 # Kubernetes/Istio examples using Colima
 
+![Setup](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/Colima-K8s-Istio.jpg)
+
 
 ## 1. Colima Setup
 

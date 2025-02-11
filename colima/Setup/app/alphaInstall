@@ -12,7 +12,7 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Alpha Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
 echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
-kubectl create -f ../../Yamls/fusion-03-water-alpha-service.yaml
-kubectl create -f ../../Yamls/fusion-04-water-alpha-deploy.yaml
-kubectl create -f ../../Yamls/fusion-11-water-alpha-hpa.yaml
+kubectl create -f ../../Yamls/app/fusion-03-water-alpha-service.yaml
+kubectl create -f ../../Yamls/app/fusion-04-water-alpha-deploy.yaml
+kubectl create -f ../../Yamls/app/fusion-11-water-alpha-hpa.yaml
 echo "---------------------------------------------------------------"

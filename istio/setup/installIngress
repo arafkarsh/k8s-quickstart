@@ -5,3 +5,4 @@
 
 echo "helm install istio-ingressgateway istio/gateway -n istio-ingress"
 helm install istio-ingressgateway istio/gateway -n istio-ingress
+helm list -A

@@ -34,17 +34,13 @@ fi
 
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then
-  echo "1. UnInstall the Virtual Services"
+  echo "1. UnInstall the Kubernetes Http Routes"
   k8sgwDeleteHttpRoute
-  echo "2. UnInstall Order Service"
-  ../app/orderUnInstall -s
-  echo "3. UnInstall Cart Service"
-  ../app/cartUnInstall -s
-  echo "4. UnInstall Product Service"
-  ../app/productUnInstall -s
-  echo "5. UnInstall Alpha Service"
-  ../app/alphaUnInstall -s
-  echo "6. UnInstall the Namespace / Gateway "
+  cd ../app
+  allUnInstall -s
+  cd ../k8s-gw
+  echo "---------------------------------------------------------------"
+  echo "UnInstall the Namespace / Gateway "
   k8sgwFusionUnInstall -s
   echo "---------------------------------------------------------------"
   echo "Sleeping for 7 seconds..."

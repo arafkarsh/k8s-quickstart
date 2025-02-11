@@ -8,10 +8,22 @@
 
 source ../../utils/colimaStatus
 
+# uninstall Istio ingress if found
+uninstall_if_istio_ingress_found
+
+# Function to check and install NGINX ingress if not found
+install_if_nginx_ingress_missing
+
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Service in Kubernetes cluster"
+echo "Install the Fusion Water Services in Kubernetes cluster"
 echo "---------------------------------------------------------------"
-echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
-kubectl create -f ../../Yamls/fusion-01-namespace.yaml
-kubectl create -f ../../Yamls/fusion-02-water-ingress.yaml
+echo "Setup the Namespace and Ingress"
+k8sFusionInstall
+cd ../app
+allInstall
+cd ../k8s
 echo "---------------------------------------------------------------"
+echo "Sleeping for 7 seconds..."
+sleep 7
+echo "---------------------------------------------------------------"
+list

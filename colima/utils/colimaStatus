@@ -6,6 +6,74 @@
 # Version 0.01
 #---------------------------------------------------------------
 
+# Function to check if nginx ingress exists
+check_nginx_ingress() {
+    # Run the kubectl command and store the output
+    output=$(kubectl get service nginx-ingress-ingress-nginx-controller -n ingress-nginx 2>&1)
+    # Check if the output contains 'nginx-ingress-ingress-nginx-controller'
+    if echo "$output" | grep -q 'LoadBalancer'; then
+        echo "CHECK>> NGINX Ingress Available!"
+        return 0
+    else
+        echo "CHECK>> NGINX Ingress not found."
+        return 1
+    fi
+}
+
+# Function to check and install NGINX ingress if not found
+install_if_nginx_ingress_missing() {
+    if ! check_nginx_ingress; then
+        echo "Installing NGINX ingress..."
+        echo "helm install nginx-ingress ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace"
+        helm install nginx-ingress ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace
+    fi
+}
+
+# Function to check and uninstall NGINX ingress if found
+uninstall_if_nginx_ingress_found() {
+    if check_nginx_ingress; then
+        echo "UnInstalling NGINX ingress..."
+        helm list -A
+        echo "helm uninstall nginx-ingress -n ingress-nginx"
+        helm uninstall nginx-ingress -n ingress-nginx
+    fi
+}
+
+# Function to check if istio-ingressgateway exists
+check_istio_ingress() {
+    # Run the kubectl command and store the output
+    output=$(kubectl get service istio-ingressgateway -n istio-ingress 2>&1)
+
+    # Check if the output contains 'istio-ingressgateway'
+    if echo "$output" | grep -q 'LoadBalancer'; then
+        echo "CHECK>> Istio Ingress-gateway Available!"
+        return 0
+    else
+        echo "CHECK>> Istio Ingress-gateway not found."
+        return 1
+    fi
+}
+
+# Function to check and install Istio ingress if not found
+install_if_istio_ingress_missing() {
+    if ! check_istio_ingress; then
+        echo "Installing Istio ingress-gateway..."
+        echo "helm install istio-ingressgateway istio/gateway -n istio-ingress"
+        helm install istio-ingressgateway istio/gateway -n istio-ingress
+        helm list -A
+    fi
+}
+
+# Function to check and uninstall Istio ingress if found
+uninstall_if_istio_ingress_found() {
+    if check_istio_ingress; then
+        echo "UnInstalling Istio ingress-gateway..."
+        helm list -A
+        echo "helm uninstall istio-ingressgateway -n istio-ingress"
+        helm uninstall istio-ingressgateway -n istio-ingress
+    fi
+}
+
 # Function to check if a command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1

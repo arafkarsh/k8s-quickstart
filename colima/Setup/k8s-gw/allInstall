@@ -8,9 +8,23 @@
 
 source ../../utils/colimaStatus
 
+# uninstall NGINX ingress if found
+uninstall_if_nginx_ingress_found
+# uninstall Istio ingress if found
+uninstall_if_istio_ingress_found
+
 echo "---------------------------------------------------------------"
-echo "kubectl apply -f ../../Yamls/k8s/fusion-02-water-ingress.yaml"
-kubectl apply -f ../../Yamls/k8s/fusion-02-water-ingress.yaml
+echo "Install the Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
-kubectl describe ingress fusion-water-gw-ingress -n fusion 
+echo "Setup the Namespace / Gateway"
+k8sgwFusionInstall
+echo "2. Setup HTTP Route"
+k8sgwApplyHttpRoute
+cd ../app
+allInstall
+cd ../k8s-gw
 echo "---------------------------------------------------------------"
+echo "Sleeping for 7 seconds..."
+sleep 7
+echo "---------------------------------------------------------------"
+list

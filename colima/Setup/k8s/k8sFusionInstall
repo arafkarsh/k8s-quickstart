@@ -9,22 +9,9 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Water Services in Kubernetes GW cluster"
+echo "Install the Fusion Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
-echo "1. Setup the Namespace / Gateway"
-k8sgwFusionInstall
-echo "2. Setup HTTP Route"
-k8sgwApplyHttpRoute
-echo "3. Setup Alpha Service"
-../app/alphaInstall
-echo "4. Setup Product Service"
-../app/productInstall
-echo "5. Setup Cart Service"
-../app/cartInstall
-echo "6. Setup Order Service"
-../app/orderInstall
+echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+kubectl create -f ../../Yamls/k8s/fusion-01-namespace.yaml
+kubectl create -f ../../Yamls/k8s/fusion-02-water-ingress.yaml
 echo "---------------------------------------------------------------"
-echo "Sleeping for 7 seconds..."
-sleep 7
-echo "---------------------------------------------------------------"
-list

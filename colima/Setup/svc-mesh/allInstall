@@ -8,6 +8,11 @@
 
 source ../../utils/colimaStatus
 
+# uninstall NGINX ingress if found
+uninstall_if_nginx_ingress_found
+# Install Istio ingress if not found
+install_if_istio_ingress_missing
+
 echo "---------------------------------------------------------------"
 echo "Install the Fusion Water Services in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
@@ -15,14 +20,9 @@ echo "1. Setup the Istio Namespace / Gateway "
 istioFusionInstall
 echo "2. Setup Istio VirtualServices"
 istioApplyVirtualService
-echo "3. Setup Alpha Service"
-../app/alphaInstall
-echo "4. Setup Product Service"
-../app/productInstall
-echo "5. Setup Cart Service"
-../app/cartInstall
-echo "6. Setup Order Service"
-../app/orderInstall
+cd ../app
+allInstall
+cd ../svc-mesh
 echo "---------------------------------------------------------------"
 echo "Sleeping for 7 seconds..."
 sleep 7

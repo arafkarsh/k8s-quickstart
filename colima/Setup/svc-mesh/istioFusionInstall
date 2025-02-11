@@ -12,6 +12,6 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Service in Kubernetes/Istio cluster"
 echo "---------------------------------------------------------------"
 echo "1. Deploy the Istio Namespace / Gateway in Kubernetes cluster"
-kubectl create -f ../../Yamls/fusion-31-istio-namespace.yaml
-kubectl create -f ../../Yamls/fusion-32-istio-gateway.yaml
+kubectl create -f ../../Yamls/svc-mesh/fusion-31-istio-namespace.yaml
+kubectl create -f ../../Yamls/svc-mesh/fusion-32-istio-gateway.yaml
 echo "---------------------------------------------------------------"
