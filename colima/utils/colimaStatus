@@ -39,6 +39,13 @@ uninstall_if_nginx_ingress_found() {
     fi
 }
 
+# Install Kubernetes CRDs
+install_k8s_gw_crds() {
+    kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
+  { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.2.0" | \
+ kubectl apply -f -; }
+}
+
 # Function to check if nginx gateway exists
 check_nginx_gateway() {
     # Run the kubectl command and store the output

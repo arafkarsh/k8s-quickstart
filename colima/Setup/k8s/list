@@ -19,7 +19,7 @@ kubectl get pods,deploy,svc -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Ingress : K8s / nginx "
 echo "---------------------------------------------------------------"
-kubectl get ing -o wide -n fusion
+kubectl get ingress -o wide -n fusion
 kubectl get service nginx-ingress-ingress-nginx-controller -n ingress-nginx 
 echo "---------------------------------------------------------------"
 echo "Horizontal Pod AutoScaler"
