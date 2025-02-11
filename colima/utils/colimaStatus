@@ -39,6 +39,39 @@ uninstall_if_nginx_ingress_found() {
     fi
 }
 
+# Function to check if nginx gateway exists
+check_nginx_gateway() {
+    # Run the kubectl command and store the output
+    output=$(kubectl get service ngf-nginx-gateway-fabric -n nginx-gateway 2>&1)
+    # Check if the output contains 'ngf-nginx-gateway-fabric'
+    if echo "$output" | grep -q 'LoadBalancer'; then
+        echo "CHECK>> NGINX Gateway Available!"
+        return 0
+    else
+        echo "CHECK>> NGINX Gateway not found."
+        return 1
+    fi
+}
+
+# Function to check and install NGINX Gateway if not found
+install_if_nginx_gateway_missing() {
+    if ! check_nginx_gateway; then
+        echo "Installing NGINX Gateway..."
+        echo "helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway"
+        helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway
+    fi
+}
+
+# Function to check and uninstall NGINX Gateway if found
+uninstall_if_nginx_gateway_found() {
+    if check_nginx_gateway; then
+        echo "UnInstalling NGINX Gateway..."
+        helm list -A
+        echo "helm uninstall ngf -n nginx-gateway"
+        helm uninstall ngf -n nginx-gateway
+    fi
+}
+
 # Function to check if istio-ingressgateway exists
 check_istio_ingress() {
     # Run the kubectl command and store the output
