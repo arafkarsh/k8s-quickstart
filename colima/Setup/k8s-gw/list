@@ -21,10 +21,7 @@ echo "Ingress : K8s Gateway / Http Route"
 echo "---------------------------------------------------------------"
 kubectl get gateway -o wide -n fusion
 kubectl get httproute -o wide -n fusion
-echo "---------------------------------------------------------------"
-echo "List All Pods of Istio Ingress "
-echo "---------------------------------------------------------------"
-kubectl get pods,svc -o wide -n istio-ingress
+kubectl get svc -o wide -n nginx-gateway
 echo "---------------------------------------------------------------"
 kubectl get hpa -o wide -n fusion
 echo "---------------------------------------------------------------"

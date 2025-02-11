@@ -6,7 +6,8 @@ metadata:
   name: fusion-gateway
   namespace: fusion
 spec:
-  gatewayClassName: istio
+  gatewayClassName: nginx
+  #gatewayClassName: istio
   listeners:
   - name: http
     port: 80

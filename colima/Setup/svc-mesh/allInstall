@@ -8,8 +8,12 @@
 
 source ../../utils/colimaStatus
 
+# uninstall NGINX Gateway if found
+uninstall_if_nginx_gateway_found
+
 # uninstall NGINX ingress if found
 uninstall_if_nginx_ingress_found
+
 # Install Istio ingress if not found
 install_if_istio_ingress_missing
 
