@@ -14,6 +14,9 @@ uninstall_if_nginx_gateway_found
 # uninstall Istio ingress if found
 uninstall_if_istio_ingress_found
 
+# Install Kubernetes Gateway API CRDs
+install_k8s_gw_crds
+
 # Function to check and install NGINX ingress if not found
 install_if_nginx_ingress_missing
 

@@ -7,12 +7,18 @@
 - multipass (1.15)
 - Kind (0.17)
 - Kubernetes (1.32)
+- nginx ingress
+- nginx gateway
 - Istio (1.24)
 
 ##  1. Getting Started
 
 ### 1.1 Getting Started with Colima
 Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/colima">here</a> for getting started with Colima, Docker, Kubernetes, Istio installation and Demo Apps.
+
+![Setup](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/Colima-K8s-Istio.jpg)
+
+![K8s-user-roles](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-resource-model.jpg)
 
 ### 1.2 Getting Started with KinD
 Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with C Docker, KinD, Kubernetes installation and Demo Apps.
