@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "---------------------------------------------------"
+echo "2. Installing Istio Discovery Chart"
+echo "---------------------------------------------------"
+echo "helm install istiod istio/istiod -n istio-system --wait"
+helm install istiod istio/istiod -n istio-system --wait
+echo "---------------------------------------------------"
+echo "helm ls -n istio-system"
+helm ls -n istio-system
+echo "---------------------------------------------------"
+#echo "helm status istiod -n istio-system"
+#helm status istiod -n istio-system
+#echo "---------------------------------------------------"
+echo "kubectl get deployments -n istio-system --output wide"
+kubectl get deployments -n istio-system --output wide

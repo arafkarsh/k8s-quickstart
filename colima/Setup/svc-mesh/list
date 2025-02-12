@@ -19,12 +19,12 @@ kubectl get pods,deploy,svc -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Ingress : Istio Gateway / Virtual Service"
 echo "---------------------------------------------------------------"
-kubectl get gateway -o wide -n fusion
+kubectl get gw -o wide -n fusion
 kubectl get virtualservice -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "List All Pods of Istio Ingress "
 echo "---------------------------------------------------------------"
-kubectl get pods,svc -o wide -n istio-ingress
+kubectl get svc -n istio-ingress
 echo "---------------------------------------------------------------"
 kubectl get hpa -o wide -n fusion
 echo "---------------------------------------------------------------"
