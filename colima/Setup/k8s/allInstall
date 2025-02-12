@@ -8,6 +8,9 @@
 
 source ../../utils/colimaStatus
 
+echo "---------------------------------------------------------------"
+echo "Checking the Ingress Drivers... "
+echo "---------------------------------------------------------------"
 # uninstall NGINX Gateway if found
 uninstall_if_nginx_gateway_found
 
@@ -20,6 +23,9 @@ install_k8s_gw_crds
 # Function to check and install NGINX ingress if not found
 install_if_nginx_ingress_missing
 
+echo "---------------------------------------------------------------"
+echo "Sleeping for 7 seconds to activate the Ingress Controller..."
+sleep 7
 echo "---------------------------------------------------------------"
 echo "Install the Fusion Water Services in Kubernetes cluster"
 echo "---------------------------------------------------------------"

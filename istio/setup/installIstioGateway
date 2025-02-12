@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Function to check if nginx ingress exists
+# Uninstall nginx ingress if found
+check_nginx_ingress() {
+    # Run the kubectl command and store the output
+    output=$(kubectl get service nginx-ingress-ingress-nginx-controller -n ingress-nginx 2>&1)
+    # Check if the output contains 'nginx-ingress-ingress-nginx-controller'
+    if echo "$output" | grep -q 'LoadBalancer'; then
+        echo "UnInstalling NGINX ingress..."
+        helm list -A
+        echo "helm uninstall nginx-ingress -n ingress-nginx"
+        helm uninstall nginx-ingress -n ingress-nginx
+        return 0
+    fi
+}
+
+# Function to check if nginx gateway exists
+# Uninstall nginx ingress if found
+check_nginx_gateway() {
+    # Run the kubectl command and store the output
+    output=$(kubectl get service ngf-nginx-gateway-fabric -n nginx-gateway 2>&1)
+    # Check if the output contains 'ngf-nginx-gateway-fabric'
+    if echo "$output" | grep -q 'LoadBalancer'; then
+        echo "UnInstalling NGINX Gateway..."
+        helm list -A
+        echo "helm uninstall ngf -n nginx-gateway"
+        helm uninstall ngf -n nginx-gateway
+        return 0
+    fi
+}
+
+check_nginx_ingress
+check_nginx_gateway
+
+echo "---------------------------------------------------"
+echo "3. Installing Istio Ingress Gateway"
+echo "---------------------------------------------------"
+echo "kubectl create namespace istio-ingress"
+kubectl create namespace istio-ingress
+echo "helm install istio-ingressgateway istio/gateway -n istio-ingress"
+helm install istio-ingressgateway istio/gateway -n istio-ingress
+echo "---------------------------------------------------"
+helm list -A
+echo "---------------------------------------------------"
+sleep 10
+kubectl get pods,svc -n istio-ingress
+echo "---------------------------------------------------"
+
+
+
+
+

@@ -1,7 +1,5 @@
 #!/bin/bash
-#echo "helm uninstall Legacy istio-ingress -n istio-ingress "
-#helm uninstall istio-ingress -n istio-ingress 
-
 echo "Uninstall istio-ingressgateway... "
 helm list -A
 helm uninstall istio-ingressgateway -n istio-ingress
+kubectl delete ns istio-ingress

@@ -7,9 +7,9 @@
 - multipass (1.15)
 - Kind (0.17)
 - Kubernetes (1.32)
-- nginx ingress
-- nginx gateway
-- Istio (1.24)
+- nginx ingress (1.12.0)
+- nginx gateway (1.6.0)
+- Istio (1.24.2)
 
 ##  1. Getting Started
 
@@ -20,12 +20,9 @@ Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/coli
 
 ![K8s-user-roles](https://raw.githubusercontent.com/arafkarsh/k8s-quickstart/main/diagrams/K8s-resource-model.jpg)
 
-### 1.2 Getting Started with KinD
-Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with C Docker, KinD, Kubernetes installation and Demo Apps.
+### 1.2 Updates as on Jan 26, 2025
 
-### 1.3 Updates as on Jan 26, 2025
-
-#### 1. Multi Architecture Containers
+#### 1.2.1. Multi Architecture Containers
 
 1. Java (11,17,21 & 23) for Alpine, Alpaquita and Ubuntu OS
 2. OS - Alpine, Alpaquita & Ubuntu
@@ -34,12 +31,28 @@ Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind
 5. PodShell
 6. OShell
 
-#### 2. Added Test Containers to Docker Hub
+#### 1.2.2. Added Alpa Series Containers to Docker Hub
+
+1. <a href="https://hub.docker.com/r/arafkarsh/alpha/tags">Alpha</a>
+2. <a href="https://hub.docker.com/r/arafkarsh/mock-product-ui/tags">Product UI</a>
+3. <a href="https://hub.docker.com/r/arafkarsh/mock-cart-ui/tags">Cart UI</a>
+4. <a href="https://hub.docker.com/r/arafkarsh/mock-order-ui/tags">Order UI</a>
+
+#### 1.2.3. Added SpringBoot App to Docker Hub
+
+1. <a href="https://hub.docker.com/r/arafkarsh/mock-product/tags">Product</a>
+2. <a href="https://hub.docker.com/r/arafkarsh/mock-cart/tags">Cart</a>
+3. <a href="https://hub.docker.com/r/arafkarsh/mock-order/tags">Order</a>
+
+#### 1.2.4. Added Chapter Containers to Docker Hub
 
 1. <a href="https://hub.docker.com/r/arafkarsh/omega/tags">Omega</a>
 2. <a href="https://hub.docker.com/r/arafkarsh/sigma/tags">Sigma</a>
 3. <a href="https://hub.docker.com/r/arafkarsh/lambda/tags">Lambda</a>
 4. <a href="https://hub.docker.com/r/arafkarsh/kappa/tags">Kappa</a>
+
+### 1.3 Getting Started with KinD
+Please click <a href="https://github.com/arafkarsh/k8s-quickstart/tree/main/kind">here</a> for getting started with C Docker, KinD, Kubernetes installation and Demo Apps.
 
 ### 1.4 New Apps Added in Kind section
 

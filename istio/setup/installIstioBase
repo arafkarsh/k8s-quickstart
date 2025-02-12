@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "---------------------------------------------------"
+echo "Installing Istio using Helm Charts"
+echo "---------------------------------------------------"
+echo "Setting up the pre-requisites"
+echo "---------------------------------------------------"
+echo "helm repo add istio https://istio-release.storage.googleapis.com/charts"
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+echo "helm repo update"
+helm repo update
+echo "1. Installing Istio Base Chart"
+echo "---------------------------------------------------"
+echo "helm install istio-base istio/base -n istio-system --set defaultRevision=default --create-namespace"
+helm install istio-base istio/base -n istio-system --set defaultRevision=default --create-namespace
+echo "---------------------------------------------------"
+echo "helm ls -n istio-system"
+helm ls -n istio-system

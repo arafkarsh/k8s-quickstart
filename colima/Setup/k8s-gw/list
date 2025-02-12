@@ -21,7 +21,7 @@ echo "Ingress : K8s Gateway / Http Route"
 echo "---------------------------------------------------------------"
 kubectl get gateway -o wide -n fusion
 kubectl get httproute -o wide -n fusion
-kubectl get svc -o wide -n nginx-gateway
+kubectl get svc -n nginx-gateway
 echo "---------------------------------------------------------------"
 kubectl get hpa -o wide -n fusion
 echo "---------------------------------------------------------------"

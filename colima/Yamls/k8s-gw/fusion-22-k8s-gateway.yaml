@@ -1,5 +1,4 @@
-# Istio API Gateway for Routing traffic to 
-# respective Microservices
+# Kubernetes API Gateway 
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:

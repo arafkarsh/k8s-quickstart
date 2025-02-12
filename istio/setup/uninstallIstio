@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "---------------------------------------------------"
+echo "Uninstall Istio"
+echo "---------------------------------------------------"
+helm ls -n istio-system
+echo "---------------------------------------------------"
+echo "1. Deleting Istio ingressgateway"
+echo "---------------------------------------------------"
+helm delete istio-ingress -n istio-ingress
+kubectl delete namespace istio-ingress
+echo "---------------------------------------------------"
+echo "2. Deleting Istio Discovery Chart"
+echo "---------------------------------------------------"
+helm delete istiod -n istio-system
+echo "3. Deleting Istio base Chart"
+echo "---------------------------------------------------"
+helm delete istio-base -n istio-system
+kubectl delete namespace istio-system
+echo "---------------------------------------------------"

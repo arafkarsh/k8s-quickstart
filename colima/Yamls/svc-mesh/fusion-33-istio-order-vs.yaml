@@ -1,4 +1,4 @@
-# API Gateway for Routing traffic to Water Alpha Microservices
+# API Gateway for Routing traffic to Water Order Microservices
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
