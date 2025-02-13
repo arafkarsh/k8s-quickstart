@@ -1,0 +1,46 @@
+# Order Microservice - Deployment / Replicaset / Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: water-order-deploy
+  namespace: fusion
+  labels:
+    app: water-order-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      # Matching the labels from Pod MetaData, Multiple labels can be used
+      app: water-order-pod
+  minReadySeconds: 5
+  strategy:
+    # Re-Create / Rolling Update
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: water-order-pod
+        version: "2.0.0"
+        release: stable
+        organization: Ozazo
+    spec:
+      containers:
+      - name: water-order-container
+        image: arafkarsh/mock-order-ui:2.0.0
+        # Use Always ONLY for Development purpose.
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 93
+        resources:
+          # QoS : [Guaranteed], BestEffort, Burstable
+          # Pod will not be launched if the Hardware  resources are not available
+          limits:
+            cpu: 5m
+            memory: 16Mi
+          requests:
+            cpu: 5m
+            memory: 16Mi
+
