@@ -1,17 +1,17 @@
-# Product Microservice - Deployment / Replicaset / Pod
+# Cart Microservice - Deployment / Replicaset / Pod
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-product-deploy
+  name: water-cart-deploy
   namespace: fusion
   labels:
-    app: water-product-deploy
+    app: water-cart-deploy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      # Matching the labels from Pod MetaData,  Multiple labels can be used
-      app: water-product-pod
+      # Matching the labels from Pod MetaData, Multiple labels can be used
+      app: water-cart-pod
   minReadySeconds: 5
   strategy:
     # Re-Create / Rolling Update
@@ -22,21 +22,21 @@ spec:
   template:
     metadata:
       labels:
-        app: water-product-pod
+        app: water-cart-pod
         version: "2.0.0"
         release: stable
         organization: Ozazo
     spec:
       containers:
-      - name: water-product-container
-        image: arafkarsh/mock-product-ui:2
+      - name: water-cart-container
+        image: arafkarsh/mock-cart-ui:2.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 91
+        - containerPort: 92
         resources:
-        # QoS : Burstable
-        # Pod will not be launched if the Hardware resources are not available
+          # QoS : [Guaranteed], BestEffort, Burstable
+          # Pod will not be launched if the Hardware  resources are not available
           limits:
             cpu: 5m
             memory: 16Mi

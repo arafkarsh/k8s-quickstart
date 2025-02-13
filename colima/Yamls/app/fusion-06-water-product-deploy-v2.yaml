@@ -23,20 +23,20 @@ spec:
     metadata:
       labels:
         app: water-product-pod
-        version: "1.0.0"
+        version: "2.0.0"
         release: stable
         organization: Ozazo
     spec:
       containers:
       - name: water-product-container
-        image: arafkarsh/mock-product-ui:1.0.0
+        image: arafkarsh/mock-product-ui:2.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 91
         resources:
-        # QoS : [Guaranteed], BestEffort, Burstable
-        # Pod will not be launched if the Hardware  resources are not available
+        # QoS : Burstable
+        # Pod will not be launched if the Hardware resources are not available
           limits:
             cpu: 5m
             memory: 16Mi
