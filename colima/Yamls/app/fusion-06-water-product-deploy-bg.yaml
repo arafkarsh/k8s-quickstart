@@ -1,17 +1,17 @@
-# Alpha Microservice -  Deployment / Replicaset / Pod
+# Product Microservice - Deployment / Replicaset / Pod
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-alpha-deploy
+  name: water-product-deploy-v2
   namespace: fusion
   labels:
-    app: water-alpha-deploy
+    app: water-product-deploy-v2
 spec:
   replicas: 2
   selector:
     matchLabels:
-      # Matching the labels from Pod MetaData, Multiple labels can be used
-      app: water-alpha-pod
+      # Matching the labels from Pod MetaData,  Multiple labels can be used
+      app: water-product-pod-v2
   minReadySeconds: 5
   strategy:
     # Re-Create / Rolling Update
@@ -22,25 +22,25 @@ spec:
   template:
     metadata:
       labels:
-        app: water-alpha-pod
-        version: "1.0.0"
+        app: water-product-pod-v2
+        version: "2.0.0"
         release: stable
         organization: Ozazo
     spec:
       containers:
-      - name: water-alpha-container
-        image: arafkarsh/alpha:1.0.0
+      - name: water-product-container
+        image: arafkarsh/mock-product-ui:2.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 81
+        - containerPort: 91
         resources:
-          # QoS : [Burstable], BestEffort, Guaranteed
-          # Pod will not be launched if the Hardware  resources are not available
+        # QoS : Burstable
+        # Pod will not be launched if the Hardware resources are not available
           limits:
             cpu: 5m
             memory: 16Mi
           requests:
             cpu: 5m
-            memory: 12Mi
+            memory: 16Mi
 

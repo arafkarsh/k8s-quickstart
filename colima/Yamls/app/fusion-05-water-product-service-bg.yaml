@@ -1,13 +1,13 @@
-# Cart Microservice
+# Product Microservice
 # Service Definition
 apiVersion: v1
 kind: Service
 metadata:
-  # Service Name: Ex. Water - Cart Service
-  name: water-cart-service
+  # Service Name: Ex. Water - Product Service
+  name: water-product-service-v2
   namespace: fusion
   labels:
-    app: water-cart-service
+    app: water-product-service-v2
 spec:
   # Type Cluster IP, Load Balancer, Node Port etc.
   # Cluster IP Automatically assigned by Kubernetes
@@ -15,15 +15,15 @@ spec:
   ports:
   - port: 80
     # Port Exposed by the Container
-    targetPort: 92
+    targetPort: 91
     protocol: TCP
     name: http
   selector:
     # Instance Labels
-    # Ex. Water - Cart Service Instances
-    app: water-cart-pod
+    # Ex. Water - Product Service Instances
+    app: water-product-pod-v2
     release: stable
-    version: "1.0.0"
+    version: "2.0.0"
     organization: Ozazo
 
 
