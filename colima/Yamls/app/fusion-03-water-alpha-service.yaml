@@ -23,6 +23,7 @@ spec:
     # Ex. Water - Alpha Service Instances
     app: water-alpha-pod
     release: stable
+    version: "1.0.0"
     organization: Ozazo
 
 
