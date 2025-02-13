@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: water-product-container
-        image: arafkarsh/mock-product-ui:1
+        image: arafkarsh/mock-product-ui:1.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
