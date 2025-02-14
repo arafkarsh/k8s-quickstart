@@ -8,7 +8,10 @@
 
 source ../../utils/colimaStatus
 
-echo "Deploy the Fusion Water Cart Service in Kubernetes cluster"
-echo "kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy.yaml"
-kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy.yaml
-kubectl get deploy -o wide -n fusion
+echo "---------------------------------------------------------------"
+echo "Upgrade the Fusion Water Services in Kubernetes Istio cluster"
+cd ../app
+allUpgrade
+cd ../svc-mesh
+echo "---------------------------------------------------------------"
+list

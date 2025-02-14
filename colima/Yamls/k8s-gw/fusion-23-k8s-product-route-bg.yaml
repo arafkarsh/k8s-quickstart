@@ -1,4 +1,5 @@
-# Product Service Route
+# Product Service Route - Blue Green Deployment
+# Split between v1 and v2
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -16,4 +17,7 @@ spec:
     backendRefs:
     - name: water-product-service
       port: 80
-      weight: 100
+      weight: 50
+    - name: water-product-service-v2
+      port: 80
+      weight: 50

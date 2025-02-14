@@ -1,0 +1,19 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Upgrade the Alpha Services to v2.0.0 (Product, Cart, Order)...."
+echo "---------------------------------------------------------------"
+echo "1. Upgrade Product Service"
+productUpgrade
+echo "2. Upgrade Cart Service"
+cartUpgrade
+echo "3. Upgrade Order Service"
+orderUpgrade

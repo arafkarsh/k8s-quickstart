@@ -23,6 +23,7 @@ spec:
     # Ex. Water - Order Service Instances
     app: water-order-pod
     release: stable
+    version: "1.0.0"
     organization: Ozazo
 
 
