@@ -9,9 +9,18 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
 echo "Upgrade the Fusion Water Services in Kubernetes GW cluster"
 cd ../app
 allUpgrade
 cd ../k8s-gw
 echo "---------------------------------------------------------------"
-list
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+rolloutStatus
+echo "---------------------------------------------------------------"

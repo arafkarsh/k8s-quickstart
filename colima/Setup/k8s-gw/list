@@ -13,9 +13,9 @@ kubectl get configmaps -o wide -n fusion
 echo "---------------------------------------------------------------"
 kubectl get secrets -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Pods / Deployments / Services"
+echo "Pods / Deployments / Services / Endpoints"
 echo "---------------------------------------------------------------"
-kubectl get pods,deploy,svc -o wide -n fusion
+kubectl get pods,deploy,svc,ep -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Ingress : K8s Gateway / Http Route"
 echo "---------------------------------------------------------------"

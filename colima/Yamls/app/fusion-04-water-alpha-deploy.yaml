@@ -6,7 +6,10 @@ metadata:
   namespace: fusion
   labels:
     app: water-alpha-deploy
+  annotations:
+    kubernetes.io/change-cause: "Updated the container image to v1.0.0"
 spec:
+  revisionHistoryLimit: 100  # Ensures Kubernetes retains the last 100 revisions
   replicas: 2
   selector:
     matchLabels:

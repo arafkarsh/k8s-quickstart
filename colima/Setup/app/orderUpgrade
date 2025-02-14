@@ -12,3 +12,5 @@ echo "Upgrade the Fusion Water Order Service in Kubernetes cluster"
 echo "kubectl apply -f ../../Yamls/app/fusion-10-water-order-deploy-v2.yaml"
 kubectl apply -f ../../Yamls/app/fusion-10-water-order-deploy-v2.yaml
 kubectl get deploy -o wide -n fusion
+kubectl rollout history deployment water-order-deploy -n fusion
+kubectl rollout status deployment water-order-deploy -n fusion

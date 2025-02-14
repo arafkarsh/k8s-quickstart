@@ -9,9 +9,19 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
 echo "Upgrade the Fusion Water Services in Kubernetes Istio cluster"
 cd ../app
 allUpgrade
 cd ../svc-mesh
 echo "---------------------------------------------------------------"
-list
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+rolloutStatus
+echo "---------------------------------------------------------------"
+
