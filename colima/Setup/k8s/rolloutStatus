@@ -6,15 +6,5 @@
 # Version 0.01
 #---------------------------------------------------------------
 
-echo "---------------------------------------------------------------"
-echo "Rollout History... "
-echo "---------------------------------------------------------------"
-kubectl rollout history deployment water-product-deploy -n fusion
-kubectl rollout history deployment water-cart-deploy -n fusion
-kubectl rollout history deployment water-order-deploy -n fusion
-echo "---------------------------------------------------------------"
-echo "Rollout Status... "
-echo "---------------------------------------------------------------"
-kubectl rollout status deployment water-product-deploy -n fusion
-kubectl rollout status deployment water-cart-deploy -n fusion
-kubectl rollout status deployment water-order-deploy -n fusion
+cd ../../
+rolloutStatus

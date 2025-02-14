@@ -9,6 +9,6 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "kubectl delete ingress fusion-water-gw-ingress -n fusion"
-kubectl delete ingress fusion-water-gw-ingress -n fusion
+echo "kubectl delete ingress fusion-ingress -n fusion"
+kubectl delete ingress fusion-ingress -n fusion
 echo "---------------------------------------------------------------"
