@@ -11,7 +11,7 @@ source ../../utils/colimaStatus
 echo "---------------------------------------------------------------"
 echo "Install the Fusion Product Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
-echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+echo "1. Deploy the Pods/Services/HPA in Kubernetes cluster"
 kubectl create -f ../../Yamls/app/fusion-05-water-product-service.yaml
 kubectl create -f ../../Yamls/app/fusion-06-water-product-deploy.yaml
 kubectl create -f ../../Yamls/app/fusion-12-water-product-hpa.yaml

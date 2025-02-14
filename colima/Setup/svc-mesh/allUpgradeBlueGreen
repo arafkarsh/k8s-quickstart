@@ -1,0 +1,26 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+echo "Blue/Green the Fusion Water Services in Kubernetes Istio cluster"
+cd ../app
+allUpgradeBlueGreen
+cd ../svc-mesh
+echo "---------------------------------------------------------------"
+echo "Endpoints"
+echo "---------------------------------------------------------------"
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+rolloutStatus
+echo "---------------------------------------------------------------"

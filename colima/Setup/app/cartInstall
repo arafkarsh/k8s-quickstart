@@ -11,7 +11,7 @@ source ../../utils/colimaStatus
 echo "---------------------------------------------------------------"
 echo "Install the Fusion Cart Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
-echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+echo "1. Deploy the Pods/Services/HPA in Kubernetes cluster"
 kubectl create -f ../../Yamls/app/fusion-07-water-cart-service.yaml
 kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy.yaml
 kubectl create -f ../../Yamls/app/fusion-13-water-cart-hpa.yaml
