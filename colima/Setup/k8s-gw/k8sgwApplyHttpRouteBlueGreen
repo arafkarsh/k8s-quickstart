@@ -1,0 +1,18 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "kubectl apply -f ../../Yamls/k8s-gw/fusion-23-*-route-bg.yaml"
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-product-route-bg.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-cart-route-bg.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-order-route-bg.yaml
+echo "---------------------------------------------------------------"
+kubectl get httproute -n fusion 
+echo "---------------------------------------------------------------"

@@ -1,11 +1,11 @@
-# Product Microservice - Deployment / Replicaset / Pod
+# Order Microservice - Deployment / Replicaset / Pod
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-product-deploy-v2
+  name: water-order-deploy-v2
   namespace: fusion
   labels:
-    app: water-product-deploy-v2
+    app: water-order-deploy-v2
   annotations:
     kubernetes.io/change-cause: "Blue/Green container image to v2.0.0"
 spec:
@@ -13,8 +13,8 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      # Matching the labels from Pod MetaData,  Multiple labels can be used
-      app: water-product-pod-v2
+      # Matching the labels from Pod MetaData, Multiple labels can be used
+      app: water-order-pod-v2
   minReadySeconds: 5
   strategy:
     # Re-Create / Rolling Update
@@ -25,21 +25,21 @@ spec:
   template:
     metadata:
       labels:
-        app: water-product-pod-v2
+        app: water-order-pod-v2
         version: "2.0.0"
         release: stable
         organization: Ozazo
     spec:
       containers:
-      - name: water-product-container
-        image: arafkarsh/mock-product-ui:2.0.0
+      - name: water-order-container
+        image: arafkarsh/mock-order-ui:2.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 91
+        - containerPort: 93
         resources:
-        # QoS : Burstable
-        # Pod will not be launched if the Hardware resources are not available
+          # QoS : [Guaranteed], BestEffort, Burstable
+          # Pod will not be launched if the Hardware  resources are not available
           limits:
             cpu: 5m
             memory: 16Mi
