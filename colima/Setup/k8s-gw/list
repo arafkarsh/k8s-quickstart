@@ -6,12 +6,12 @@
 # Version 0.01
 #---------------------------------------------------------------
 
+source ../../utils/colimaStatus
+
 echo "---------------------------------------------------------------"
 echo "App Configuration and Secrets"
 echo "---------------------------------------------------------------"
-kubectl get configmaps -o wide -n fusion
-echo "---------------------------------------------------------------"
-kubectl get secrets -o wide -n fusion
+kubectl get secrets,configmaps -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Pods / Deployments / Services / Endpoints"
 echo "---------------------------------------------------------------"
@@ -19,8 +19,7 @@ kubectl get pods,deploy,svc,ep -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Ingress : K8s Gateway / Http Route"
 echo "---------------------------------------------------------------"
-kubectl get gateway -o wide -n fusion
-kubectl get httproute -o wide -n fusion
+kubectl get gateway,httproute -o wide -n fusion
 kubectl get svc -n nginx-gateway
 echo "---------------------------------------------------------------"
 kubectl get hpa -o wide -n fusion

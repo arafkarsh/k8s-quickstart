@@ -1,0 +1,31 @@
+# API Gateway for Routing traffic to Water Order Microservices
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: fusion-order-vs
+  namespace: fusion
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fusion-gateway
+  http:
+  - match:
+    # Service 3: Order Service
+    - uri:
+        exact: /order
+    - uri:
+        prefix: /order/
+    route:
+    - destination:
+        host: water-order-service
+        subset: v1  # Uses subset instead of service name
+        port:
+          number: 80
+      weight: 20
+    - destination:
+        host: water-order-service-v2
+        subset: v2  # Uses subset instead of service name
+        port:
+          number: 80
+      weight: 80
