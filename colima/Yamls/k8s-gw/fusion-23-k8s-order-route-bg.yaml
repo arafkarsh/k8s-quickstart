@@ -1,19 +1,22 @@
-# Product Service Route
+# Order Service Route
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: fusion-product-route
+  name: fusion-order-route
   namespace: fusion
 spec:
   parentRefs:
   - name: fusion-gateway
   rules:
-  # Service 1: Product Service
+  # Service 3: Order Service
   - matches:
     - path:
         type: PathPrefix
-        value: /product
+        value: /order
     backendRefs:
-    - name: water-product-service
+    - name: water-order-service
       port: 80
-      weight: 100
+      weight: 20
+    - name: water-order-service-v2
+      port: 80
+      weight: 80

@@ -13,7 +13,7 @@ source ../../utils/colimaStatus
 uninstall() {
   echo "Proceeding with Alpha Service uninstallation..."
   echo "UnInstall the Fusion Service in Kubernetes cluster"
-  kubectl delete ingress fusion-water-gw-ingress -n fusion
+  kubectl delete ingress fusion-ingress -n fusion
   kubectl delete namespace fusion
   echo "Alpha Service Uninstallation complete!"
 }

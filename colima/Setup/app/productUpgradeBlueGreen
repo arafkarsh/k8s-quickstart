@@ -1,0 +1,17 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "Upgrade (Blue/Green) the Fusion Water Product Service in Kubernetes cluster"
+kubectl apply -f ../../Yamls/app/fusion-05-water-product-service-v1.yaml
+kubectl create -f ../../Yamls/app/fusion-05-water-product-service-bg.yaml
+kubectl create -f ../../Yamls/app/fusion-06-water-product-deploy-bg.yaml
+kubectl get deploy -o wide -n fusion
+kubectl rollout history deployment water-product-deploy-v2 -n fusion
+kubectl rollout status deployment water-product-deploy-v2 -n fusion

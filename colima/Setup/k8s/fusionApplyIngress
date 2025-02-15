@@ -12,5 +12,5 @@ echo "---------------------------------------------------------------"
 echo "kubectl apply -f ../../Yamls/k8s/fusion-02-water-ingress.yaml"
 kubectl apply -f ../../Yamls/k8s/fusion-02-water-ingress.yaml
 echo "---------------------------------------------------------------"
-kubectl describe ingress fusion-water-gw-ingress -n fusion 
+kubectl describe ingress fusion-ingress -n fusion 
 echo "---------------------------------------------------------------"

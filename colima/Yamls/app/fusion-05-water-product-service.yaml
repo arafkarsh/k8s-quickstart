@@ -23,7 +23,6 @@ spec:
     # Ex. Water - Product Service Instances
     app: water-product-pod
     release: stable
-    version: "1.0.0"
     organization: Ozazo
 
 

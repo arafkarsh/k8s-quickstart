@@ -9,10 +9,18 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Order Service in Kubernetes cluster"
+echo "Upgrade the Alpha Services to v2.0.0 (Product, Cart, Order)...."
 echo "---------------------------------------------------------------"
-echo "1. Deploy the Pods/Services/HPA in Kubernetes cluster"
-kubectl create -f ../../Yamls/app/fusion-09-water-order-service.yaml
-kubectl create -f ../../Yamls/app/fusion-10-water-order-deploy.yaml
-kubectl create -f ../../Yamls/app/fusion-14-water-order-hpa.yaml
+echo "1. Upgrade Product Service"
+productUpgrade
+echo "2. Upgrade Cart Service"
+cartUpgrade
+echo "3. Upgrade Order Service"
+orderUpgrade
 echo "---------------------------------------------------------------"
+echo "Rollout Status... "
+echo "---------------------------------------------------------------"
+kubectl rollout status deployment water-product-deploy -n fusion
+kubectl rollout status deployment water-cart-deploy -n fusion
+kubectl rollout status deployment water-order-deploy -n fusion
+ 

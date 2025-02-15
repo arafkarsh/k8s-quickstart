@@ -6,23 +6,19 @@
 # Version 0.01
 #---------------------------------------------------------------
 
+source utils/colimaStatus
+
 echo "---------------------------------------------------------------"
-echo "App Configuration and Secrets"
+echo "Rollback History"
 echo "---------------------------------------------------------------"
-kubectl get configmaps -o wide -n fusion
+kubectl rollout history deployment $1 -n fusion
 echo "---------------------------------------------------------------"
-kubectl get secrets -o wide -n fusion
+echo "Rollback Deployment $1 to Revision=$2"
+echo "---------------------------------------------------------------"
+kubectl rollout undo deployment $1 --to-revision=$2 -n fusion
+kubectl rollout status deployment $1 -n fusion
 echo "---------------------------------------------------------------"
 echo "Pods / Deployments / Services / Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get pods,deploy,svc,ep -o wide -n fusion
-echo "---------------------------------------------------------------"
-echo "Ingress : K8s / nginx "
-echo "---------------------------------------------------------------"
-kubectl get ingress -o wide -n fusion
-kubectl get service nginx-ingress-ingress-nginx-controller -n ingress-nginx 
-echo "---------------------------------------------------------------"
-echo "Horizontal Pod AutoScaler"
-echo "---------------------------------------------------------------"
-kubectl get hpa -o wide -n fusion
 echo "---------------------------------------------------------------"

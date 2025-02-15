@@ -9,6 +9,6 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "kubectl describe ingress fusion-water-gw-ingress -n fusion "
-kubectl describe ingress fusion-water-gw-ingress -n fusion 
+echo "kubectl describe ingress fusion-ingress -n fusion "
+kubectl describe ingress fusion-ingress -n fusion 
 echo "---------------------------------------------------------------"

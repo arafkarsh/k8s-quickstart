@@ -1,28 +1,26 @@
 #!/bin/bash
 #---------------------------------------------------------------
-# Fusion Kubernetes Utils
+# Fusion Microservice Kubernetes Utils
 # Araf Karsh Hamid, (c) Copyright 2025
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
 
+source ../../utils/colimaStatus
+
 echo "---------------------------------------------------------------"
-echo "App Configuration and Secrets"
+echo "Endpoints"
 echo "---------------------------------------------------------------"
-kubectl get configmaps -o wide -n fusion
+kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
-kubectl get secrets -o wide -n fusion
+echo "Blue/Green the Fusion Water Services in Kubernetes cluster"
+cd ../app
+allUpgradeBlueGreen
+cd ../k8s
 echo "---------------------------------------------------------------"
-echo "Pods / Deployments / Services / Endpoints"
+echo "Endpoints"
 echo "---------------------------------------------------------------"
-kubectl get pods,deploy,svc,ep -o wide -n fusion
+kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Ingress : K8s / nginx "
-echo "---------------------------------------------------------------"
-kubectl get ingress -o wide -n fusion
-kubectl get service nginx-ingress-ingress-nginx-controller -n ingress-nginx 
-echo "---------------------------------------------------------------"
-echo "Horizontal Pod AutoScaler"
-echo "---------------------------------------------------------------"
-kubectl get hpa -o wide -n fusion
+rolloutStatus
 echo "---------------------------------------------------------------"

@@ -9,6 +9,6 @@
 source ../../utils/colimaStatus
 
 echo "Deploy the Fusion Water Cart Service in Kubernetes cluster"
-echo "kubectl create -f ../../Yamls/app/fusion-08-cart-lambda-deploy.yaml"
-kubectl create -f ../../Yamls/app/fusion-08-cart-lambda-deploy.yaml
+echo "kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy.yaml"
+kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy.yaml
 kubectl get deploy -o wide -n fusion

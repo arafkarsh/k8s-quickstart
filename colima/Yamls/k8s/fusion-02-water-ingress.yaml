@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: fusion-water-gw-ingress
+  name: fusion-ingress
   namespace: fusion
 spec:
   ingressClassName: nginx

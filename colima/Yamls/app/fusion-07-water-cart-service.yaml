@@ -23,7 +23,6 @@ spec:
     # Ex. Water - Cart Service Instances
     app: water-cart-pod
     release: stable
-    version: "1.0.0"
     organization: Ozazo
 
 
