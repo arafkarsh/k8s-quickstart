@@ -9,18 +9,18 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Blue/Green the Alpha Services to v1/v2 (Product, Cart, Order).."
+echo "Canary Upgrade: Alpha Services to v2.0.0 (Product, Cart, Order)"
 echo "---------------------------------------------------------------"
-echo "1. Upgrade (Blue/Green) Product Service"
-productUpgradeBlueGreen
-echo "2. Upgrade (Blue/Green) Cart Service"
-cartUpgradeBlueGreen
-echo "3. Upgrade (Blue/Green) Order Service"
-orderUpgradeBlueGreen
+echo "1. Canary Upgrade Product Service"
+productUpgradeCanary
+echo "2. Canary Upgrade Cart Service"
+cartUpgradeCanary
+echo "3. Canary Upgrade Order Service"
+orderUpgradeCanary
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"
-kubectl rollout status deployment water-product-deploy-v2 -n fusion
-kubectl rollout status deployment water-cart-deploy-v2 -n fusion
-kubectl rollout status deployment water-order-deploy-v2 -n fusion
+kubectl rollout status deployment water-product-deploy -n fusion
+kubectl rollout status deployment water-cart-deploy -n fusion
+kubectl rollout status deployment water-order-deploy -n fusion
  

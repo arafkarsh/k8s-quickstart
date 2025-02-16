@@ -8,10 +8,11 @@
 
 source ../../utils/colimaStatus
 
-echo "Upgrade (Blue/Green) the Fusion Water Cart Service in Kubernetes cluster"
-kubectl apply -f ../../Yamls/app/fusion-07-water-cart-service-v1.yaml
+echo "Upgrade (A/B Testing) the Fusion Water Cart Service in Kubernetes cluster"
+kubectl apply -f ../../Yamls/app/fusion-07-water-cart-service-blue.yaml
 kubectl create -f ../../Yamls/app/fusion-07-water-cart-service-bg.yaml
 kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy-bg.yaml
+kubectl apply -f ../../Yamls/app/fusion-13-water-cart-hpa-bg.yaml
 kubectl get deploy -o wide -n fusion
-kubectl rollout history deployment water-cart-deploy-v2 -n fusion
-kubectl rollout status deployment water-cart-deploy-v2 -n fusion
+kubectl rollout history deployment water-cart-deploy-green -n fusion
+kubectl rollout status deployment water-cart-deploy-green -n fusion

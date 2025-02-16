@@ -16,7 +16,7 @@ spec:
     backendRefs:
     - name: water-order-service
       port: 80
-      weight: 0    # Stop the Traffic to Blue (Current Version)
+      weight: 30
     - name: water-order-service-green
       port: 80
-      weight: 100   # Switch over to the Green (new version)
+      weight: 70

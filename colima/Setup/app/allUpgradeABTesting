@@ -9,14 +9,14 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Blue/Green the Alpha Services to v1/v2 (Product, Cart, Order).."
+echo "A/B Testing the Alpha Services to v1/v2 (Product, Cart, Order).."
 echo "---------------------------------------------------------------"
-echo "1. Upgrade (Blue/Green) Istio Product Service"
-productUpgradeBlueGreenIstio
-echo "2. Upgrade (Blue/Green) Istio Cart Service"
-cartUpgradeBlueGreenIstio
-echo "3. Upgrade (Blue/Green) Istio Order Service"
-orderUpgradeBlueGreenIstio
+echo "1. Upgrade (A/B Testing) Product Service"
+productUpgradeABTesting
+echo "2. Upgrade (A/B Testing) Cart Service"
+cartUpgradeABTesting
+echo "3. Upgrade (A/B Testing) Order Service"
+orderUpgradeABTesting
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"

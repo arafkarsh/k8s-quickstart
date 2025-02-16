@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-cart-deploy-v2
+  name: water-cart-deploy-green
   namespace: fusion
   labels:
-    app: water-cart-deploy-v2
+    app: water-cart-deploy-green
   annotations:
     kubernetes.io/change-cause: "Blue/Green container image to v2.0.0"
 spec:

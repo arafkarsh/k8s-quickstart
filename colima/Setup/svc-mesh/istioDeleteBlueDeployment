@@ -9,18 +9,12 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Upgrade the Alpha Services to v2.0.0 (Product, Cart, Order)...."
+echo "kubectl delete deploy water-*-deploy -n fusion"
+kubectl delete hpa water-product-hpa -n fusion
+kubectl delete hpa water-cart-hpa -n fusion
+kubectl delete hpa water-order-hpa -n fusion
 echo "---------------------------------------------------------------"
-echo "1. Upgrade Product Service"
-productUpgrade
-echo "2. Upgrade Cart Service"
-cartUpgrade
-echo "3. Upgrade Order Service"
-orderUpgrade
+kubectl delete deploy water-product-deploy -n fusion
+kubectl delete deploy water-cart-deploy -n fusion
+kubectl delete deploy water-order-deploy -n fusion
 echo "---------------------------------------------------------------"
-echo "Rollout Status... "
-echo "---------------------------------------------------------------"
-kubectl rollout status deployment water-product-deploy -n fusion
-kubectl rollout status deployment water-cart-deploy -n fusion
-kubectl rollout status deployment water-order-deploy -n fusion
- 

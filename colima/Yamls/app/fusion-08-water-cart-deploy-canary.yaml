@@ -1,20 +1,20 @@
-# Order Microservice - Deployment / Replicaset / Pod
+# Cart Microservice - Deployment / Replicaset / Pod
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-order-deploy
+  name: water-cart-deploy
   namespace: fusion
   labels:
-    app: water-order-deploy
+    app: water-cart-deploy
   annotations:
-    kubernetes.io/change-cause: "Updated the container image to v2.0.0"
+    kubernetes.io/change-cause: "Canary: Updated the container image to v2.0.0"
 spec:
   revisionHistoryLimit: 100  # Ensures Kubernetes retains the last 100 revisions
   replicas: 2
   selector:
     matchLabels:
       # Matching the labels from Pod MetaData, Multiple labels can be used
-      app: water-order-pod
+      app: water-cart-pod
   minReadySeconds: 5
   strategy:
     # Re-Create / Rolling Update
@@ -25,18 +25,18 @@ spec:
   template:
     metadata:
       labels:
-        app: water-order-pod
+        app: water-cart-pod
         version: "2.0.0"
         release: stable
         organization: Ozazo
     spec:
       containers:
-      - name: water-order-container
-        image: arafkarsh/mock-order-ui:2.0.0
+      - name: water-cart-container
+        image: arafkarsh/mock-cart-ui:2.0.0
         # Use Always ONLY for Development purpose.
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 93
+        - containerPort: 92
         resources:
           # QoS : [Guaranteed], BestEffort, Burstable
           # Pod will not be launched if the Hardware  resources are not available

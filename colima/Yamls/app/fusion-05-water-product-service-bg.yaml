@@ -4,10 +4,10 @@ apiVersion: v1
 kind: Service
 metadata:
   # Service Name: Ex. Water - Product Service
-  name: water-product-service-v2
+  name: water-product-service-green
   namespace: fusion
   labels:
-    app: water-product-service-v2
+    app: water-product-service-green
 spec:
   # Type Cluster IP, Load Balancer, Node Port etc.
   # Cluster IP Automatically assigned by Kubernetes
@@ -21,7 +21,7 @@ spec:
   selector:
     # Instance Labels
     # Ex. Water - Product Service Instances
-    app: water-product-pod-v2
+    app: water-product-pod-green
     release: stable
     version: "2.0.0"
     organization: Ozazo
