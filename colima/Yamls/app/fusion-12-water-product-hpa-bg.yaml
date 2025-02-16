@@ -1,0 +1,44 @@
+# Product Microservice
+# Horizontal Pod Auto Scaling 
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: water-product-hpa
+  namespace: fusion
+spec:
+  scaleTargetRef:
+    apiVersion:  apps/v1
+    kind: Deployment
+    name: water-product-deploy-v2
+  # Min Replica will overwrite Deployment replicas with
+  # if minReplicas > replicas (in Deployment)
+  # For Ex. tc11-deply.yaml replicas = 2
+  minReplicas: 3
+  maxReplicas: 35
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        # Kept at 2% for Demo ONLY
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: packets-per-second
+      target:
+        type: AverageValue
+        averageValue: 3k
+  - type: Object
+    object:
+      metric:
+        name: requests-per-second
+      describedObject:
+        apiVersion: networking.k8s.io/v1beta1
+        kind: Ingress
+        name: main-route
+      target:
+        # Kept a low value for Demo ONLY
+        type: Value
+        value: 1k

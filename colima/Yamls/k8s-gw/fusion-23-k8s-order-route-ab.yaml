@@ -16,7 +16,7 @@ spec:
     backendRefs:
     - name: water-order-service
       port: 80
-      weight: 20
+      weight: 30
     - name: water-order-service-v2
       port: 80
-      weight: 80
+      weight: 70

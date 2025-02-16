@@ -8,7 +8,7 @@
 
 source ../../utils/colimaStatus
 
-echo "Upgrade (Blue/Green) the Fusion Water Product Service in Kubernetes cluster"
+echo "Upgrade (A/B Testing) the Fusion Water Product Service in Kubernetes cluster"
 kubectl apply -f ../../Yamls/app/fusion-05-water-product-service-v1.yaml
 kubectl create -f ../../Yamls/app/fusion-05-water-product-service-bg.yaml
 kubectl create -f ../../Yamls/app/fusion-06-water-product-deploy-bg.yaml

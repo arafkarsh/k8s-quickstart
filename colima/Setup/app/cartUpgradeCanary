@@ -9,8 +9,8 @@
 source ../../utils/colimaStatus
 
 echo "Upgrade the Fusion Water Cart Service in Kubernetes cluster"
-echo "kubectl apply -f ../../Yamls/app/fusion-08-water-cart-deploy-v2.yaml"
-kubectl apply -f ../../Yamls/app/fusion-08-water-cart-deploy-v2.yaml
+echo "kubectl apply -f ../../Yamls/app/fusion-08-water-cart-deploy-canary.yaml"
+kubectl apply -f ../../Yamls/app/fusion-08-water-cart-deploy-canary.yaml
 kubectl get deploy -o wide -n fusion
 kubectl rollout history deployment water-cart-deploy -n fusion
 kubectl rollout status deployment water-cart-deploy -n fusion

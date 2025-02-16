@@ -13,10 +13,10 @@ echo "Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Upgrade the Fusion Water Services in Kubernetes GW cluster"
+echo "Canary Upgrade the Fusion Water Services in Kubernetes cluster"
 cd ../app
-allUpgrade
-cd ../k8s-gw
+allUpgradeCanary
+cd ../k8s
 echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"
