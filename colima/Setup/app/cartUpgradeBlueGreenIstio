@@ -1,0 +1,17 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "Upgrade (Blue/Green) the Fusion Water Cart Service in Kubernetes cluster"
+#kubectl apply -f ../../Yamls/app/fusion-07-water-cart-service-v1.yaml
+#kubectl create -f ../../Yamls/app/fusion-07-water-cart-service-bg.yaml
+kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy-bg.yaml
+kubectl get deploy -o wide -n fusion
+kubectl rollout history deployment water-cart-deploy-v2 -n fusion
+kubectl rollout status deployment water-cart-deploy-v2 -n fusion

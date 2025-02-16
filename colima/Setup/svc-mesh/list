@@ -6,21 +6,20 @@
 # Version 0.01
 #---------------------------------------------------------------
 
+source ../../utils/colimaStatus
+
 echo "---------------------------------------------------------------"
 echo "Alpha App Configuration and Secrets"
 echo "---------------------------------------------------------------"
-kubectl get configmaps -o wide -n fusion
-echo "---------------------------------------------------------------"
-kubectl get secrets -o wide -n fusion
+kubectl get secrets,configmaps -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Pods / Deployments / Services / Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get pods,deploy,svc,ep -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Ingress : Istio Gateway / Virtual Service"
+echo "Ingress : Istio Gateway / Virtual Service / Destination Rule"
 echo "---------------------------------------------------------------"
-kubectl get gw -o wide -n fusion
-kubectl get virtualservice -o wide -n fusion
+kubectl get gw,vs,dr -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "List All Pods of Istio Ingress "
 echo "---------------------------------------------------------------"

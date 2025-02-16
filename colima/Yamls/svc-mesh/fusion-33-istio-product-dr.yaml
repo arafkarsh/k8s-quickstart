@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: fusion-product-dr
+  namespace: fusion
+spec:
+  host: water-product-service
+  trafficPolicy:
+    # Random: Requests are forwarded at random to instances in the pool.
+    # Weighted: Requests are forwarded to instances in the pool according to a specific percentage.
+    # Round robin: Requests are forwarded to each instance in sequence.
+    # Consistent hash: Provides soft session affinity based on HTTP headers, cookies or other properties.
+    # Ring hash: Implements consistent hashing to upstream hosts using the Ketama algorithm.
+    # Maglev: Implements consistent hashing to upstream hosts as described in the Maglev paper.
+    loadBalancer:
+      simple: ROUND_ROBIN  # Optional: Can be LEAST_CONN or RANDOM
+  subsets:
+  - name: v1
+    labels:
+      version: 1.0.0
+  - name: v2
+    labels:
+      version: 2.0.0

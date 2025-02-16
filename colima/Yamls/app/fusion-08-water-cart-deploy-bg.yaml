@@ -14,7 +14,8 @@ spec:
   selector:
     matchLabels:
       # Matching the labels from Pod MetaData, Multiple labels can be used
-      app: water-cart-pod-v2
+      app: water-cart-pod
+      version: "2.0.0"
   minReadySeconds: 5
   strategy:
     # Re-Create / Rolling Update
@@ -25,7 +26,7 @@ spec:
   template:
     metadata:
       labels:
-        app: water-cart-pod-v2
+        app: water-cart-pod
         version: "2.0.0"
         release: stable
         organization: Ozazo
