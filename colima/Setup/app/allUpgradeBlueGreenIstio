@@ -20,7 +20,7 @@ orderUpgradeBlueGreenIstio
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"
-kubectl rollout status deployment water-product-deploy-v2 -n fusion
-kubectl rollout status deployment water-cart-deploy-v2 -n fusion
-kubectl rollout status deployment water-order-deploy-v2 -n fusion
+kubectl rollout status deployment water-product-deploy-green -n fusion
+kubectl rollout status deployment water-cart-deploy-green -n fusion
+kubectl rollout status deployment water-order-deploy-green -n fusion
  

@@ -12,5 +12,5 @@ echo "Upgrade (Blue/Green) the Fusion Water Order Service in Kubernetes cluster"
 kubectl create -f ../../Yamls/app/fusion-10-water-order-deploy-bg.yaml
 kubectl apply -f ../../Yamls/app/fusion-14-water-order-hpa-bg.yaml
 kubectl get deploy -o wide -n fusion
-kubectl rollout history deployment water-order-deploy-v2 -n fusion
-kubectl rollout status deployment water-order-deploy-v2 -n fusion
+kubectl rollout history deployment water-order-deploy-green -n fusion
+kubectl rollout status deployment water-order-deploy-green -n fusion

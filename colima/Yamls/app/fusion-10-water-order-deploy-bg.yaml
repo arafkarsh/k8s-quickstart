@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: water-order-deploy-v2
+  name: water-order-deploy-green
   namespace: fusion
   labels:
-    app: water-order-deploy-v2
+    app: water-order-deploy-green
   annotations:
     kubernetes.io/change-cause: "Blue/Green container image to v2.0.0"
 spec:

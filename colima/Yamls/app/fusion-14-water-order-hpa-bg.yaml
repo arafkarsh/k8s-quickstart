@@ -9,7 +9,7 @@ spec:
   scaleTargetRef:
     apiVersion:  apps/v1
     kind: Deployment
-    name: water-order-deploy-v2
+    name: water-order-deploy-green
   # Min Replica will overwrite Deployment replicas with
   # if minReplicas > replicas (in Deployment)
   # For Ex. tc11-deply.yaml replicas = 2

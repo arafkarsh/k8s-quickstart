@@ -16,7 +16,7 @@ spec:
     backendRefs:
     - name: water-cart-service
       port: 80
-      weight: 40
+      weight: 0    # Stop the Traffic to Blue (Current Version)
     - name: water-cart-service-green
       port: 80
-      weight: 60
+      weight: 100  # Switch over to the Green (new version)
