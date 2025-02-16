@@ -24,7 +24,7 @@ spec:
           number: 80
       weight: 50
     - destination:
-        host: water-product-service-v2
+        host: water-product-service
         subset: v2  # Uses subset instead of service name
         port:
           number: 80

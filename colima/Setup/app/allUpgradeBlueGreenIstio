@@ -1,0 +1,26 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Blue/Green the Alpha Services to v1/v2 (Product, Cart, Order).."
+echo "---------------------------------------------------------------"
+echo "1. Upgrade (Blue/Green) Istio Product Service"
+productUpgradeBlueGreenIstio
+echo "2. Upgrade (Blue/Green) Istio Cart Service"
+cartUpgradeBlueGreenIstio
+echo "3. Upgrade (Blue/Green) Istio Order Service"
+orderUpgradeBlueGreenIstio
+echo "---------------------------------------------------------------"
+echo "Rollout Status... "
+echo "---------------------------------------------------------------"
+kubectl rollout status deployment water-product-deploy-v2 -n fusion
+kubectl rollout status deployment water-cart-deploy-v2 -n fusion
+kubectl rollout status deployment water-order-deploy-v2 -n fusion
+ 
