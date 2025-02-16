@@ -19,13 +19,13 @@ spec:
     route:
     - destination:
         host: water-cart-service
-        subset: v1  # Stop the Traffic to Blue (Current Version)
+        subset: v1  # Uses subset instead of service name
         port:
           number: 80
-      weight: 0
+      weight: 50
     - destination:
         host: water-cart-service
-        subset: v2  # Switch over to the Green (new version)
+        subset: v1  # Uses subset instead of service name
         port:
           number: 80
-      weight: 100
+      weight: 50

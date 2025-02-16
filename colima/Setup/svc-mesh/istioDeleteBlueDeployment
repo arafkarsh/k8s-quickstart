@@ -1,0 +1,16 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "kubectl delete virtualservice fusion-*-vs -n fusion"
+kubectl delete delete fusion-product-deploy -n fusion
+kubectl delete delete fusion-cart-deploy -n fusion
+kubectl delete delete fusion-order-deploy -n fusion
+echo "---------------------------------------------------------------"
