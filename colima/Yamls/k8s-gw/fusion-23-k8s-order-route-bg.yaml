@@ -19,4 +19,4 @@ spec:
       weight: 0    # Stop the Traffic to Blue (Current Version)
     - name: water-order-service-green
       port: 80
-      weight: 100   # Switch over to the Green (new version)
+      weight: 100   # Switch over to the Green (New version)

@@ -18,12 +18,12 @@ source ../../utils/colimaStatus
 echo "---------------------------------------------------------------"
 echo "Blue/Green: Alpha Services: v1 & v2 (Product, Cart, Order).."
 echo "---------------------------------------------------------------"
-echo "1. Upgrade (Blue/Green) Istio Product Service"
-productUpgradeBlueGreenIstio
-echo "2. Upgrade (Blue/Green) Istio Cart Service"
-cartUpgradeBlueGreenIstio
-echo "3. Upgrade (Blue/Green) Istio Order Service"
-orderUpgradeBlueGreenIstio
+echo "1. Upgrade (Blue/Green) Product Service"
+productUpgradeBlueGreen
+echo "2. Upgrade (Blue/Green) Cart Service"
+cartUpgradeBlueGreen
+echo "3. Upgrade (Blue/Green) Order Service"
+orderUpgradeBlueGreen
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"

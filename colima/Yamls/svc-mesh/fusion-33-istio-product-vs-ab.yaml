@@ -22,10 +22,10 @@ spec:
         subset: v1  # Uses subset instead of service name
         port:
           number: 80
-      weight: 50
+      weight: 50    # Split the Traffic between v1 & v2. v1 or Blue = 50%
     - destination:
         host: water-product-service
         subset: v2  # Uses subset instead of service name
         port:
           number: 80
-      weight: 50
+      weight: 50    # Split the Traffic between v1 & v2. v2 or Green = 50%

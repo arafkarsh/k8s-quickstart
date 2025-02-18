@@ -12,21 +12,13 @@ echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get ep -o wide -n fusion
-echo "---------------------------------------------------------------"
-echo "Blue/Green the Fusion Water Services in Kubernetes Istio cluster"
-cd ../app
-allUpgradeBlueGreenIstio
-cd ../svc-mesh
+#echo "---------------------------------------------------------------"
+#echo "Blue/Green the Fusion Water Services in Kubernetes Istio cluster"
+#cd ../app
+#allUpgradeBlueGreenIstio
+#cd ../svc-mesh
 echo "---------------------------------------------------------------"
 echo "Blue/Green the Fusion Water Services in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
 istioApplyVirtualServiceBlueGreen
-echo "---------------------------------------------------------------"
-echo "Delete Blue Deployment Services in Kubernetes Istio cluster"
-echo "---------------------------------------------------------------"
-istioDeleteBlueDeployment
-echo "---------------------------------------------------------------"
-echo "Endpoints"
-echo "---------------------------------------------------------------"
-kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"

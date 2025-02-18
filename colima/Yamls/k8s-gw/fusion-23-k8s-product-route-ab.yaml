@@ -17,7 +17,7 @@ spec:
     backendRefs:
     - name: water-product-service
       port: 80
-      weight: 50
+      weight: 50  # Split the Traffic between v1 & v2. v1 or Blue = 50%
     - name: water-product-service-green
       port: 80
-      weight: 50
+      weight: 50  # Split the Traffic between v1 & v2. v2 or Green = 50%

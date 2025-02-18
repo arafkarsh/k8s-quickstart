@@ -9,6 +9,8 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
+echo "Enabling Traffic Splitting: Blue (Current) & Green (New versio)"
+echo "---------------------------------------------------------------"
 echo "kubectl apply -f ../../Yamls/k8s-gw/fusion-23-*-route-ab.yaml"
 kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-product-route-ab.yaml
 kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-cart-route-ab.yaml

@@ -9,6 +9,8 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
+echo "Enabling Traffic Splitting: Blue (Current) & Green (New versio)"
+echo "---------------------------------------------------------------"
 echo "kubectl apply -f ../../Yamls/svc-mesh/fusion-33-*.yaml"
 
 kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-product-dr.yaml
