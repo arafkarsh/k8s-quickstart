@@ -8,10 +8,34 @@
 
 source ../../utils/colimaStatus
 
+# Define the YAML file path
+yaml_file="../../Yamls/k8s/fusion-02-water-ingress.yaml"
+
+# Define the success message
+success_message="ingress.networking.k8s.io/fusion-ingress created"
+
 echo "---------------------------------------------------------------"
 echo "Install the Fusion Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
 echo "1. Deploy the Pods/Services/Ingress in Kubernetes cluster"
+echo "kubectl create -f ../../Yamls/k8s/fusion-01-namespace.yaml"
 kubectl create -f ../../Yamls/k8s/fusion-01-namespace.yaml
-kubectl create -f ../../Yamls/k8s/fusion-02-water-ingress.yaml
+echo "kubectl create -f ../../Yamls/k8s/fusion-02-water-ingress.yaml"
+
+# Loop until the command succeeds
+while true; do
+    echo "Attempting to create ingress resource..."
+    output=$(kubectl create -f "$yaml_file" 2>&1)
+    
+    if echo "$output" | grep -q "$success_message"; then
+        echo "Success: $success_message"
+        break
+    elif echo "$output" | grep -q "failed calling webhook"; then
+        echo "Error: Webhook validation failed. Retrying in 10 seconds..."
+        sleep 10
+    else
+        echo "Unexpected error: $output"
+        exit 1
+    fi
+done
 echo "---------------------------------------------------------------"

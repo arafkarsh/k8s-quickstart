@@ -7,13 +7,13 @@ metadata:
   labels:
     app: water-product-deploy-green
   annotations:
-    kubernetes.io/change-cause: "Blue/Green container image to v2.0.0"
+    kubernetes.io/change-cause: "Green: container image v2.0.0"
 spec:
   revisionHistoryLimit: 100  # Ensures Kubernetes retains the last 100 revisions
   replicas: 2
   selector:
     matchLabels:
-      # Matching the labels from Pod MetaData,  Multiple labels can be used
+      # Matching the labels from Pod MetaData, Multiple labels can be used
       app: water-product-pod
       version: "2.0.0"
   minReadySeconds: 5

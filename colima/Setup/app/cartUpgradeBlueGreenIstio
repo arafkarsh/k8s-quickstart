@@ -5,12 +5,19 @@
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
+# For Both A/B Testing and Blue Green Deployment the product
+# upgrades are always Blue Green Deployment.
+# What differentiates between them is the Traffic Split. 
+# In Blue Green deployment the Traffic is 
+# Blue = 100%, Green = 0% OR
+# Blue = 0%, Green = 100%
+#---------------------------------------------------------------
 
 source ../../utils/colimaStatus
 
 echo "Upgrade (Blue/Green) the Fusion Water Cart Service in Kubernetes cluster"
-kubectl create -f ../../Yamls/app/fusion-08-water-cart-deploy-bg.yaml
-kubectl apply -f ../../Yamls/app/fusion-13-water-cart-hpa-bg.yaml
+kubectl create --save-config -f ../../Yamls/app/fusion-08-water-cart-deploy-bg.yaml
+kubectl apply -f ../../Yamls/app/fusion-13-water-cart-hpa-green.yaml
 kubectl get deploy -o wide -n fusion
 kubectl rollout history deployment water-cart-deploy-green -n fusion
 kubectl rollout status deployment water-cart-deploy-green -n fusion

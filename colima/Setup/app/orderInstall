@@ -12,7 +12,7 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Order Service in Kubernetes cluster"
 echo "---------------------------------------------------------------"
 echo "1. Deploy the Pods/Services/HPA in Kubernetes cluster"
-kubectl create -f ../../Yamls/app/fusion-09-water-order-service.yaml
-kubectl create -f ../../Yamls/app/fusion-10-water-order-deploy.yaml
-kubectl create -f ../../Yamls/app/fusion-14-water-order-hpa.yaml
+kubectl create --save-config -f ../../Yamls/app/fusion-09-water-order-service.yaml
+kubectl create --save-config -f ../../Yamls/app/fusion-10-water-order-deploy.yaml
+kubectl create --save-config -f ../../Yamls/app/fusion-14-water-order-hpa.yaml
 echo "---------------------------------------------------------------"

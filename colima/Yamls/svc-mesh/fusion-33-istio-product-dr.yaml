@@ -17,7 +17,9 @@ spec:
   subsets:
   - name: v1
     labels:
+      # Blue Version (Current Version)
       version: 1.0.0
   - name: v2
     labels:
+      # Green Version (New Version)
       version: 2.0.0

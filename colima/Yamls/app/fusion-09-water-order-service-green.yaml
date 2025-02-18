@@ -1,13 +1,13 @@
-# Product Microservice
+# Order Microservice
 # Service Definition
 apiVersion: v1
 kind: Service
 metadata:
-  # Service Name: Ex. Water - Product Service
-  name: water-product-service-green
+  # Service Name: Ex. Water - Order Service
+  name: water-order-service-green
   namespace: fusion
   labels:
-    app: water-product-service-green
+    app: water-order-service-green
 spec:
   # Type Cluster IP, Load Balancer, Node Port etc.
   # Cluster IP Automatically assigned by Kubernetes
@@ -15,15 +15,16 @@ spec:
   ports:
   - port: 80
     # Port Exposed by the Container
-    targetPort: 91
+    targetPort: 93
     protocol: TCP
     name: http
   selector:
     # Instance Labels
-    # Ex. Water - Product Service Instances
-    app: water-product-pod-green
+    # Ex. Water - Order Service Instances
+    app: water-order-pod
     release: stable
     version: "2.0.0"
     organization: Ozazo
+
 
 

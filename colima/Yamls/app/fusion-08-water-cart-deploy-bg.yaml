@@ -7,7 +7,7 @@ metadata:
   labels:
     app: water-cart-deploy-green
   annotations:
-    kubernetes.io/change-cause: "Blue/Green container image to v2.0.0"
+    kubernetes.io/change-cause: "Green: Container image v2.0.0"
 spec:
   revisionHistoryLimit: 100  # Ensures Kubernetes retains the last 100 revisions
   replicas: 2
