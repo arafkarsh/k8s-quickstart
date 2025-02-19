@@ -1,0 +1,26 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "---------------------------------------------------------------"
+echo "Enabling Traffic Splitting: Stable (Current) & Canary (New versio)"
+echo "---------------------------------------------------------------"
+echo "kubectl apply -f ../../Yamls/svc-mesh/fusion-33-*.yaml"
+
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-product-dr.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-product-vs-canary.yaml
+
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-cart-dr.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-cart-vs-canary.yaml
+
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-order-dr.yaml
+kubectl apply -f ../../Yamls/svc-mesh/fusion-33-istio-order-vs-canary.yaml
+echo "---------------------------------------------------------------"
+kubectl get gw,virtualservice,dr -n fusion 
+echo "---------------------------------------------------------------"

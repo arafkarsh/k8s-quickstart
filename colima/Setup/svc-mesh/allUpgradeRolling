@@ -13,14 +13,10 @@ echo "Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
-echo "Canary: Fusion Water Services in Kubernetes GW cluster"
+echo "Canary: Upgrade the Fusion Services in Kubernetes Istio cluster"
 cd ../app
-allUpgradeCanary
-cd ../k8s-gw
-echo "---------------------------------------------------------------"
-echo "Canary: Fusion Water Services in Kubernetes GW cluster"
-echo "---------------------------------------------------------------"
-k8sgwApplyHttpRouteCanary
+allUpgradeRolling
+cd ../svc-mesh
 echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"
@@ -28,3 +24,4 @@ kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
 rolloutStatus
 echo "---------------------------------------------------------------"
+

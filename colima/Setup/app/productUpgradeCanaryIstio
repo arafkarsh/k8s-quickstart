@@ -15,11 +15,9 @@
 
 source ../../utils/colimaStatus
 
-echo "Upgrade (A/B Testing) the Fusion Water Order Service in Kubernetes cluster"
-kubectl apply -f ../../Yamls/app/fusion-09-water-order-service-blue.yaml
-kubectl create --save-config -f ../../Yamls/app/fusion-09-water-order-service-green.yaml
-kubectl create --save-config -f ../../Yamls/app/fusion-10-water-order-deploy-bg.yaml
-kubectl create --save-config -f ../../Yamls/app/fusion-14-water-order-hpa-green.yaml
+echo "Upgrade (Canary) the Fusion Water Product Service in Kubernetes cluster"
+kubectl create --save-config -f ../../Yamls/app/fusion-06-water-product-deploy-bg.yaml
+kubectl apply -f ../../Yamls/app/fusion-12-water-product-hpa-green.yaml
 kubectl get deploy -o wide -n fusion
-kubectl rollout history deployment water-order-deploy-green -n fusion
-kubectl rollout status deployment water-order-deploy-green -n fusion
+kubectl rollout history deployment water-product-deploy-green -n fusion
+kubectl rollout status deployment water-product-deploy-green -n fusion

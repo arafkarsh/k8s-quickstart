@@ -5,22 +5,29 @@
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
+# For Both A/B Testing and Blue Green Deployment the product
+# upgrades are always Blue Green Deployment.
+# What differentiates between them is the Traffic Split. 
+# In Blue Green deployment the Traffic is 
+# Blue = 100%, Green = 0% OR
+# Blue = 0%, Green = 100%
+#---------------------------------------------------------------
 
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Canary Upgrade: Alpha Services to v2.0.0 (Product, Cart, Order)"
+echo "Canary: Alpha Services: v1 & v2 (Product, Cart, Order).."
 echo "---------------------------------------------------------------"
-echo "1. Canary Upgrade Product Service"
+echo "1. Upgrade (Canary) Product Service"
 productUpgradeCanary
-echo "2. Canary Upgrade Cart Service"
+echo "2. Upgrade (Canary) Cart Service"
 cartUpgradeCanary
-echo "3. Canary Upgrade Order Service"
+echo "3. Upgrade (Canary) Order Service"
 orderUpgradeCanary
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"
-kubectl rollout status deployment water-product-deploy -n fusion
-kubectl rollout status deployment water-cart-deploy -n fusion
-kubectl rollout status deployment water-order-deploy -n fusion
+kubectl rollout status deployment water-product-deploy-green -n fusion
+kubectl rollout status deployment water-cart-deploy-green -n fusion
+kubectl rollout status deployment water-order-deploy-green -n fusion
  
