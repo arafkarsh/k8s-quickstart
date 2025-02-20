@@ -41,7 +41,7 @@ if [[ "$response" == "y" || "$response" == "yes" ]]; then
   cd ../k8s-gw
   echo "---------------------------------------------------------------"
   echo "UnInstall the Namespace / Gateway "
-  k8sgwFusionUnInstall -s
+fusionUnInstall -s
   echo "---------------------------------------------------------------"
   echo "Sleeping for 7 seconds..."
   sleep 7

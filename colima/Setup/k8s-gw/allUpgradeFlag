@@ -16,5 +16,5 @@ echo "---------------------------------------------------------------"
 echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
 echo "Feature Flag the Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
-k8sgwApplyHttpRouteFlag
+routeApplyFlag
 echo "---------------------------------------------------------------"

@@ -20,9 +20,9 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
 echo "Setup the Namespace / Gateway"
-k8sgwFusionInstall
+fusionInstall
 echo "2. Setup HTTP Route"
-k8sgwApplyHttpRoute
+routeApply
 cd ../app
 allInstall
 cd ../k8s-gw

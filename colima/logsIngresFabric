@@ -6,15 +6,14 @@
 # Version 0.01
 #---------------------------------------------------------------
 
-source ../../utils/colimaStatus
+source utils/colimaStatus
+
+podName=$(kubectl get pods -n kube-system | grep "nginx" | awk 'NR==1 {print $1}')
 
 echo "---------------------------------------------------------------"
-echo "Endpoints"
+kubectl get pods -o wide -n kube-system
 echo "---------------------------------------------------------------"
-kubectl get ep -o wide -n fusion
+echo "Check the Logs of the Pod=$podName -n nginx-gateway"
 echo "---------------------------------------------------------------"
-echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
-echo "Shadow (Mirror data) the Fusion Water Services in Kubernetes GW cluster"
-echo "---------------------------------------------------------------"
-routeApplyShadow
-echo "---------------------------------------------------------------"
+echo "kubectl logs -f $podName -n nginx-gateway"
+kubectl logs -f $podName -n nginx-gateway

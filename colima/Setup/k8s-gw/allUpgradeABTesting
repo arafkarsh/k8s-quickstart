@@ -21,6 +21,6 @@ echo "---------------------------------------------------------------"
 echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
 echo "A/B Testing the Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
-k8sgwApplyHttpRouteABTesting
+routeApplyABTesting
 echo "---------------------------------------------------------------"
 

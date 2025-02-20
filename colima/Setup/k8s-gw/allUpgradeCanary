@@ -20,7 +20,7 @@ cd ../k8s-gw
 echo "---------------------------------------------------------------"
 echo "Canary: Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
-k8sgwApplyHttpRouteCanary
+routeApplyCanary
 echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"

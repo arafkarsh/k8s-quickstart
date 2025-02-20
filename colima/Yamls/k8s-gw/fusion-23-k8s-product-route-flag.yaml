@@ -12,15 +12,16 @@ spec:
   # Route to product-green if User-Agent = Firefox AND PathPrefix = /product
   - matches:
     # Version v2 is enabled under a specific condition
-    - headers:
-      - name: User-Agent
-        value: .*Firefox.*  # Matches any FireFox browser then v2
+    - queryParams:
+      - name: browser
+        value: "Firefox"  # Matches any FireFox browser then v2
       path:
         type: PathPrefix
         value: /product
     backendRefs:
     - name: water-product-service-green
       port: 80
+      weight: 100
 
   # For all others Route to Version v1 (Blue)
   - matches:
@@ -30,3 +31,4 @@ spec:
     backendRefs:
     - name: water-product-service-blue
       port: 80
+      weight: 100

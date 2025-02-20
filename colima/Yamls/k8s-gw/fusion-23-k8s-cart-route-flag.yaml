@@ -9,20 +9,21 @@ spec:
   - name: fusion-gateway
   rules:
   # Service 2: Cart Service
-  # Route to cart-green if User-Agent = Firefox AND PathPrefix = /cart
+    # Route to cart-green if User-Agent = Firefox AND PathPrefix = /cart
   - matches:
     # Version v2 is enabled under a specific condition
-    - headers:
-      - name: User-Agent
-        value: .*Firefox.*  # Matches any FireFox browser then v2
+    - queryParams:
+      - name: browser
+        value: "Firefox" # Matches any FireFox browser then v2
       path:
         type: PathPrefix
         value: /cart
     backendRefs:
     - name: water-cart-service-green
       port: 80
-
-  # For all others Route to Version v1 (Blue)
+      weight: 100
+      
+  # Default Route: Send all /cart requests to v1 (Blue)
   - matches:
     - path:
         type: PathPrefix
@@ -30,3 +31,6 @@ spec:
     backendRefs:
     - name: water-cart-service-blue
       port: 80
+      weight: 100
+
+
