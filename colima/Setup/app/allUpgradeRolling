@@ -1,25 +1,26 @@
 #!/bin/bash
 #---------------------------------------------------------------
-# Fusion Kubernetes Utils
+# Fusion Microservice Kubernetes Utils
 # Araf Karsh Hamid, (c) Copyright 2025
 # License: Apache 2.0
 # Version 0.01
 #---------------------------------------------------------------
 
-source utils/colimaStatus
+source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Rollout History... "
+echo "Rolling Upgrade: Alpha Services to v2.0.0 (Product, Cart, Order)"
 echo "---------------------------------------------------------------"
-kubectl rollout history deployment water-product-deploy -n fusion
-kubectl rollout history deployment water-cart-deploy -n fusion
-kubectl rollout history deployment water-order-deploy -n fusion
+echo "1. Rolling Upgrade Product Service"
+productUpgradeRolling
+echo "2. Rolling Upgrade Cart Service"
+cartUpgradeRolling
+echo "3. Rolling Upgrade Order Service"
+orderUpgradeRolling
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"
 kubectl rollout status deployment water-product-deploy -n fusion
 kubectl rollout status deployment water-cart-deploy -n fusion
 kubectl rollout status deployment water-order-deploy -n fusion
-echo "---------------------------------------------------------------"
-kubectl get deploy -o wide -n fusion
-echo "---------------------------------------------------------------"
+ 

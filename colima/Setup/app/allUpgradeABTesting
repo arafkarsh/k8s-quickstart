@@ -19,11 +19,11 @@ echo "---------------------------------------------------------------"
 echo "A/B Testing: Alpha Services: v1 & v2 (Product, Cart, Order).."
 echo "---------------------------------------------------------------"
 echo "1. Upgrade (A/B Testing) Product Service"
-productUpgradeBlueGreen
+productUpgradeCanary
 echo "2. Upgrade (A/B Testing) Cart Service"
-cartUpgradeBlueGreen
+cartUpgradeCanary
 echo "3. Upgrade (A/B Testing) Order Service"
-orderUpgradeBlueGreen
+orderUpgradeCanary
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"

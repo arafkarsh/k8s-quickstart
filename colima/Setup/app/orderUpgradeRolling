@@ -1,0 +1,16 @@
+#!/bin/bash
+#---------------------------------------------------------------
+# Fusion Microservice Kubernetes Utils
+# Araf Karsh Hamid, (c) Copyright 2025
+# License: Apache 2.0
+# Version 0.01
+#---------------------------------------------------------------
+
+source ../../utils/colimaStatus
+
+echo "Upgrade the Fusion Water Order Service in Kubernetes cluster"
+echo "kubectl apply -f ../../Yamls/app/fusion-10-water-order-deploy-rolling.yaml"
+kubectl apply -f ../../Yamls/app/fusion-10-water-order-deploy-rolling.yaml
+kubectl get deploy -o wide -n fusion
+kubectl rollout history deployment water-order-deploy -n fusion
+kubectl rollout status deployment water-order-deploy -n fusion

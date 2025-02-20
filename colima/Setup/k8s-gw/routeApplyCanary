@@ -9,18 +9,12 @@
 source ../../utils/colimaStatus
 
 echo "---------------------------------------------------------------"
-echo "Endpoints"
+echo "Enabling Traffic Splitting: Stable (Current) & Canary (New versio)"
 echo "---------------------------------------------------------------"
-kubectl get ep -o wide -n fusion
-#echo "---------------------------------------------------------------"
-#echo "A/B Testing the Fusion Water Services in Kubernetes GW cluster"
-#cd ../app
-#allUpgradeABTesting
-#cd ../k8s-gw
+echo "kubectl apply -f ../../Yamls/k8s-gw/fusion-23-*-route-canary.yaml"
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-product-route-canary.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-cart-route-canary.yaml
+kubectl apply -f ../../Yamls/k8s-gw/fusion-23-k8s-order-route-canary.yaml
 echo "---------------------------------------------------------------"
-echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
-echo "A/B Testing the Fusion Water Services in Kubernetes GW cluster"
+kubectl get httproute -n fusion 
 echo "---------------------------------------------------------------"
-routeApplyABTesting
-echo "---------------------------------------------------------------"
-

@@ -8,26 +8,20 @@
 
 source ../../utils/colimaStatus
 
-# uninstall NGINX ingress if found
-uninstall_if_nginx_ingress_found
-# uninstall Istio ingress if found
-uninstall_if_istio_ingress_found
-
-# install NGINX Gateway if not found
-install_if_nginx_gateway_missing
-
 echo "---------------------------------------------------------------"
-echo "Install the Fusion Water Services in Kubernetes GW cluster"
+echo "Endpoints"
 echo "---------------------------------------------------------------"
-echo "Setup the Namespace / Gateway"
-fusionInstall
-echo "2. Setup HTTP Route"
-routeApply
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+echo "Canary: Upgrade the Fusion Services in Kubernetes Istio cluster"
 cd ../app
-allInstall
-cd ../k8s-gw
+allUpgradeRolling
+cd ../svc-mesh
 echo "---------------------------------------------------------------"
-echo "Sleeping for 7 seconds..."
-sleep 7
+echo "Endpoints"
 echo "---------------------------------------------------------------"
-list
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+rolloutStatus
+echo "---------------------------------------------------------------"
+

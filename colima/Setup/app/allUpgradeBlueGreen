@@ -19,11 +19,11 @@ echo "---------------------------------------------------------------"
 echo "Blue/Green: Alpha Services: v1 & v2 (Product, Cart, Order).."
 echo "---------------------------------------------------------------"
 echo "1. Upgrade (Blue/Green) Product Service"
-productUpgradeBlueGreen
+productUpgradeCanary
 echo "2. Upgrade (Blue/Green) Cart Service"
-cartUpgradeBlueGreen
+cartUpgradeCanary
 echo "3. Upgrade (Blue/Green) Order Service"
-orderUpgradeBlueGreen
+orderUpgradeCanary
 echo "---------------------------------------------------------------"
 echo "Rollout Status... "
 echo "---------------------------------------------------------------"

@@ -1,0 +1,31 @@
+# API Gateway for Routing traffic to Water Cart Microservices
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: fusion-cart-vs
+  namespace: fusion
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fusion-gateway
+  http:
+  - match:
+    # Service 2: Cart Service
+    - uri:
+        exact: /cart
+    - uri:
+        prefix: /cart/
+    route:
+    - destination:
+        host: water-cart-service
+        subset: v1  # Uses subset instead of service name
+        port:
+          number: 80
+      weight: 90  # Split the Traffic between v1 & v2. v1 or Blue = 90%
+    - destination:
+        host: water-cart-service
+        subset: v2  # Uses subset instead of service name
+        port:
+          number: 80
+      weight: 10  # Split the Traffic between v1 & v2. v2 or Green = 10%

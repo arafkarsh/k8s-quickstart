@@ -16,7 +16,7 @@ spec:
     backendRefs:
     - name: water-cart-service-blue
       port: 80
-      weight: 0    # Stop the Traffic to Blue (Current Version)
+      weight: 90  # Split the Traffic between v1 & v2. v1 or Blue = 90%
     - name: water-cart-service-green
       port: 80
-      weight: 100  # Switch over to the Green (New version)
+      weight: 10  # Split the Traffic between v1 & v2. v2 or Green = 10%

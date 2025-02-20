@@ -12,15 +12,15 @@ echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"
 kubectl get ep -o wide -n fusion
-#echo "---------------------------------------------------------------"
-#echo "A/B Testing the Fusion Water Services in Kubernetes GW cluster"
-#cd ../app
-#allUpgradeABTesting
-#cd ../k8s-gw
 echo "---------------------------------------------------------------"
-echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
-echo "A/B Testing the Fusion Water Services in Kubernetes GW cluster"
+echo "Rolling: Upgrade the Fusion Services in Kubernetes cluster"
+cd ../app
+allUpgradeRolling
+cd ../k8s
 echo "---------------------------------------------------------------"
-routeApplyABTesting
+echo "Endpoints"
 echo "---------------------------------------------------------------"
-
+kubectl get ep -o wide -n fusion
+echo "---------------------------------------------------------------"
+rolloutStatus
+echo "---------------------------------------------------------------"
