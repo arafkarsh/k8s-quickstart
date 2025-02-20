@@ -16,6 +16,7 @@
 source ../../utils/colimaStatus
 
 echo "Upgrade (Canary) the Fusion Water Cart Service in Kubernetes cluster"
+kubectl delete service water-cart-service -n fusion
 kubectl apply -f ../../Yamls/app/fusion-07-water-cart-service-blue.yaml
 kubectl create --save-config -f ../../Yamls/app/fusion-07-water-cart-service-green.yaml
 kubectl create --save-config -f ../../Yamls/app/fusion-08-water-cart-deploy-bg.yaml

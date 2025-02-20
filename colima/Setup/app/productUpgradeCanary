@@ -16,6 +16,7 @@
 source ../../utils/colimaStatus
 
 echo "Upgrade (Canary) the Fusion Water Product Service in Kubernetes cluster"
+kubectl delete service water-product-service -n fusion
 kubectl apply -f ../../Yamls/app/fusion-05-water-product-service-blue.yaml
 kubectl create --save-config -f ../../Yamls/app/fusion-05-water-product-service-green.yaml
 kubectl create --save-config -f ../../Yamls/app/fusion-06-water-product-deploy-bg.yaml

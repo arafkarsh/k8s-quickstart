@@ -35,7 +35,7 @@ fi
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then
   echo "1. UnInstall the Kubernetes Http Routes"
-  k8sgwDeleteHttpRoute
+  routeDelete
   cd ../app
   allUnInstall -s
   cd ../k8s-gw
