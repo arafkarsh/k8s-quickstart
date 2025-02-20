@@ -1,0 +1,32 @@
+# Order Service Route
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: fusion-order-route
+  namespace: fusion
+spec:
+  parentRefs:
+  - name: fusion-gateway
+  rules:
+  # Service 3: Order Service
+  # Route to order-green if User-Agent = Firefox AND PathPrefix = /order
+  - matches:
+    # Version v2 is enabled under a specific condition
+    - headers:
+      - name: User-Agent
+        value: .*Firefox.*  # Matches any FireFox browser then v2
+      path:
+        type: PathPrefix
+        value: /order
+    backendRefs:
+    - name: water-order-service-green
+      port: 80
+
+  # For all others Route to Version v1 (Blue)
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /order
+    backendRefs:
+    - name: water-order-service-blue
+      port: 80

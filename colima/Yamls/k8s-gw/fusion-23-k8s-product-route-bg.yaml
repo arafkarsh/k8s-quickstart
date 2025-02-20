@@ -15,7 +15,7 @@ spec:
         type: PathPrefix
         value: /product
     backendRefs:
-    - name: water-product-service
+    - name: water-product-service-blue
       port: 80
       weight: 0     # Stop the Traffic to Blue (Current Version)
     - name: water-product-service-green

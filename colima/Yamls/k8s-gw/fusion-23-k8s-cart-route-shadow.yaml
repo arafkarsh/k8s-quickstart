@@ -16,7 +16,8 @@ spec:
     backendRefs:
     - name: water-cart-service-blue
       port: 80
-      weight: 0    # Stop the Traffic to Blue (Current Version)
+      weight: 100  # Mirror the traffic 100% between v1 and v2
+    mirror:
     - name: water-cart-service-green
       port: 80
-      weight: 100  # Switch over to the Green (New version)
+      weight: 100  # Mirror the traffic 100% between v1 and v2

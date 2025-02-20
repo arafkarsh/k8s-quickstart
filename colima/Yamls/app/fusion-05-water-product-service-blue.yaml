@@ -4,10 +4,10 @@ apiVersion: v1
 kind: Service
 metadata:
   # Service Name: Ex. Water - Product Service
-  name: water-product-service
+  name: water-product-service-blue
   namespace: fusion
   labels:
-    app: water-product-service
+    app: water-product-service-blue
 spec:
   # Type Cluster IP, Load Balancer, Node Port etc.
   # Cluster IP Automatically assigned by Kubernetes

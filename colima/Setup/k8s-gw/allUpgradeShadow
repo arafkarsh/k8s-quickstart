@@ -14,7 +14,7 @@ echo "---------------------------------------------------------------"
 kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Please run 'allUpgradeCanary' before executity AB Testing....  "
-echo "Blue/Green the Fusion Water Services in Kubernetes GW cluster"
+echo "Shadow (Mirror data) the Fusion Water Services in Kubernetes GW cluster"
 echo "---------------------------------------------------------------"
-k8sgwApplyHttpRouteBlueGreen
+k8sgwApplyHttpRouteShadow
 echo "---------------------------------------------------------------"

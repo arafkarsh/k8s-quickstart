@@ -14,7 +14,7 @@ spec:
         type: PathPrefix
         value: /order
     backendRefs:
-    - name: water-order-service
+    - name: water-order-service-blue
       port: 80
       weight: 0    # Stop the Traffic to Blue (Current Version)
     - name: water-order-service-green

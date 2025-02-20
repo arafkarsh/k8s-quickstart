@@ -14,7 +14,7 @@ spec:
         type: PathPrefix
         value: /cart
     backendRefs:
-    - name: water-cart-service
+    - name: water-cart-service-blue
       port: 80
       weight: 90  # Split the Traffic between v1 & v2. v1 or Blue = 90%
     - name: water-cart-service-green
