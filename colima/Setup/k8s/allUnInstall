@@ -39,7 +39,7 @@ if [[ "$response" == "y" || "$response" == "yes" ]]; then
   cd ../k8s
   echo "---------------------------------------------------------------"
   echo "UnInstall the Namespace and Ingress"
-  k8sFusionUnInstall -s
+  fusionUnInstall -s
   echo "---------------------------------------------------------------"
 elif [[ "$response" == "n" || "$response" == "no" ]]; then
   echo "Alpha K8s Service Uninstallation canceled. Exiting."

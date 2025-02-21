@@ -30,7 +30,7 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Water Services in Kubernetes cluster"
 echo "---------------------------------------------------------------"
 echo "Setup the Namespace and Ingress"
-k8sFusionInstall
+fusionInstall
 cd ../app
 allInstall
 cd ../k8s

@@ -35,12 +35,12 @@ fi
 # Process the response
 if [[ "$response" == "y" || "$response" == "yes" ]]; then
   echo "1. UnInstall the Istio Virtual Services"
-  istioDeleteVirtualService
+virtualServiceDelete
   cd ../app
   allUnInstall -s
   cd ../svc-mesh
   echo "6. UnInstall the Namespace / Gateway "
-  istioFusionUnInstall -s
+  fusionUnInstall -s
   echo "---------------------------------------------------------------"
   echo "Sleeping for 7 seconds..."
   sleep 7

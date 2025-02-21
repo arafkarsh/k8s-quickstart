@@ -15,5 +15,5 @@ kubectl get ep -o wide -n fusion
 echo "---------------------------------------------------------------"
 echo "Blue/Green the Fusion Water Services in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
-istioApplyVirtualServiceBlueGreen
+virtualServiceApplyBlueGreen
 echo "---------------------------------------------------------------"

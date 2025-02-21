@@ -20,7 +20,7 @@ cd ../svc-mesh
 echo "---------------------------------------------------------------"
 echo "A/B Testing: Fusion Water Services in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
-istioApplyVirtualServiceABTesting
+virtualServiceApplyABTesting
 echo "---------------------------------------------------------------"
 echo "Endpoints"
 echo "---------------------------------------------------------------"

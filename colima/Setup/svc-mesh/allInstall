@@ -21,9 +21,9 @@ echo "---------------------------------------------------------------"
 echo "Install the Fusion Water Services in Kubernetes Istio cluster"
 echo "---------------------------------------------------------------"
 echo "1. Setup the Istio Namespace / Gateway "
-istioFusionInstall
+fusionInstall
 echo "2. Setup Istio VirtualServices"
-istioApplyVirtualService
+virtualServiceApply
 cd ../app
 allInstall
 cd ../svc-mesh
